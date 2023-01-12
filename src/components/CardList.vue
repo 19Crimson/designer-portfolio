@@ -74,6 +74,9 @@ const thirdColumnCards = cards.filter((_, index) => (index - 2) % 3 === 0)
 }
 .card_container {
   width: 100%;
-  margin-right: 2px;
+}
+.card_container:nth-child(even) {
+  width: 100%;
+  margin: 0 2px;
 }
 </style>
