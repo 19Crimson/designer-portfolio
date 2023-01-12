@@ -1,6 +1,3 @@
-<script setup lang="ts">
-</script>
-
 <template>
   <header>
     <div class="header_content">

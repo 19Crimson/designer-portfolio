@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import PageWrapper from './components/PageWrapper.vue'
+import MainPage from './components/MainPage.vue'
 </script>
 
 <template>
-  <PageWrapper/>
+  <MainPage/>
 </template>
 
 <style scoped>
