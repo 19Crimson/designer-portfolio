@@ -1,45 +1,93 @@
 <script setup lang="ts">
-import CardParallax from './CardParallax.vue'
+  import {
+    onMounted,
+    ref,
+    computed,
+    useSlots
+} from 'vue'
+
+const slots = useSlots();
+
+	const props = defineProps({
+    dataImage: String,
+	})
+
+  const width = ref(0)
+  const height = ref(0)
+  const mouseX = ref(0)
+  const mouseY = ref(0)
+  const mouseLeaveDelay = ref(0)
+
+  const card = ref({
+    offsetWidth: 0,
+    offsetHeight: 0,
+    offsetLeft: 0,
+    offsetTop: 0,
+  })
+
+  onMounted(() => {
+    width.value = card.value.offsetWidth;
+    height.value = card.value.offsetHeight;
+    console.log('slots', slots)
+  })
+
+  const mousePX = computed(() => mouseX.value / width.value)
+  const mousePY = computed(() => mouseY.value / height.value)
+
+  const cardStyle = computed(() => {
+    const rX = mousePX.value * 30;
+    const rY = mousePY.value * -30;
+    return {
+      transform: `rotateY(${rX}deg) rotateX(${rY}deg)`
+    };
+  })
+
+  const cardBgTransform = computed(() => {
+    const tX = mousePX.value * -40;
+    const tY = mousePY.value * -40;
+    return {
+      transform: `translateX(${tX}px) translateY(${tY}px)`
+    }
+  })
+
+  const cardBgImage = computed(() => {
+    return {
+      backgroundImage: `url(${props.dataImage})`
+    }
+  })
+
+  const handleMouseMove = (e: MouseEvent) => {
+    mouseX.value = e.pageX - card.value.offsetLeft - width.value / 2;
+    mouseY.value = e.pageY - card.value.offsetTop - height.value / 2;
+  }
+
+  const handleMouseEnter = () => {
+    clearTimeout(mouseLeaveDelay.value);
+  }
+
+  const handleMouseLeave = () => {
+    mouseLeaveDelay.value = setTimeout(()=>{
+      mouseX.value = 0;
+      mouseY.value = 0;
+    }, 1000);
+  }
 </script>
 
 <template>
-  <div class="card-list-wrapper">
-  <CardParallax data-image="https://images.unsplash.com/photo-1479660656269-197ebb83b540?dpr=2&auto=compress,format&fit=crop&w=1199&h=798&q=80&cs=tinysrgb&crop=">
-    <template v-slot:header>
-      <h1>Canyons</h1>
-    </template>
-    <template v-slot:content>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-    </template>
-  </CardParallax>
-
-  <CardParallax data-image="https://images.unsplash.com/photo-1479659929431-4342107adfc1?dpr=2&auto=compress,format&fit=crop&w=1199&h=799&q=80&cs=tinysrgb&crop=">
-    <template v-slot:header>
-      <h1>Beaches</h1>
-    </template>
-    <template v-slot:content>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-    </template>
-  </CardParallax>
-
-  <CardParallax data-image="https://images.unsplash.com/photo-1479644025832-60dabb8be2a1?dpr=2&auto=compress,format&fit=crop&w=1199&h=799&q=80&cs=tinysrgb&crop=">
-    <template v-slot:header>
-      <h1>Trees</h1>
-    </template>
-    <template v-slot:content>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-    </template>
-  </CardParallax>
-
-  <CardParallax data-image="https://images.unsplash.com/photo-1479621051492-5a6f9bd9e51a?dpr=2&auto=compress,format&fit=crop&w=1199&h=811&q=80&cs=tinysrgb&crop=">
-    <template v-slot:header>
-      <h1>Lakes</h1>
-    </template>
-    <template v-slot:content>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-    </template>
-  </CardParallax>
-</div>
+  <div class="card-wrap"
+    @mousemove="handleMouseMove"
+    @mouseenter="handleMouseEnter"
+    @mouseleave="handleMouseLeave"
+    ref="card">
+    <div class="card"
+      :style="cardStyle">
+      <div class="card-bg" :style="[cardBgTransform, cardBgImage]"></div>
+      <div class="card-info">
+        <slot name="header"></slot>
+        <slot name="content"></slot>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style lang="scss" scoped>
@@ -60,13 +108,6 @@ p {
 
 h1+p, p+p {
   margin-top: 10px;
-}
-
-.card-list-wrapper {
-  padding: 40px 80px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
 }
 
 .card-wrap {
@@ -182,15 +223,4 @@ h1+p, p+p {
   font-weight: 700;
   text-shadow: rgba(black, 0.5) 0 10px 10px;
 }
-/* .card_list_wrapper {
-  height: 100vh;
-  display: flex;
-}
-.card_container {
-  width: 100%;
-}
-.card_container:nth-child(even) {
-  width: 100%;
-  margin: 0 2px;
-} */
 </style>

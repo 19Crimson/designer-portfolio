@@ -60,6 +60,11 @@
 	width: 100%;
 	text-align: left;
   margin-bottom: 2px;
+  transition: ease-in-out .3s;
+}
+.card_wrapper:hover {
+  z-index: 10;
+  transform: scale(1.05); 
 }
 .card_title {
 	font-family: Mont;
@@ -68,6 +73,7 @@
 .card_image {
   width: 100%;
   display: block;
+  transition: ease-in-out .3s;
 }
 .gradient {
 	position: absolute;

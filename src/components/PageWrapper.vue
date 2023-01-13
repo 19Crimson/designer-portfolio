@@ -1,11 +1,11 @@
 <template>
-  <div class="container">
+  <div class="page-container">
     <slot/>
   </div>
 </template>
 
 <style scoped>
-.container {
+.page-container {
   display: flex;
   flex-direction: column;
 }

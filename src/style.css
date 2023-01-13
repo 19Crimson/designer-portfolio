@@ -3,15 +3,6 @@
   src: url("../src/assets/fonts/Mont-Bold.otf") format("opentype");  
 }
 
-:root {
-  font-family: Inter, sans-serif;
-  font-size: 46px;
-  /* line-height: 57px; */
-  font-weight: 400;
-
-  color-scheme: light dark;
-}
-
 body {
   margin: 0;
   display: flex;
