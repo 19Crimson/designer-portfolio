@@ -5,7 +5,7 @@ const cards = [
   {
     bgImage: 'bg.png',
     fgImage: 'fg.png',
-    title: 'Canyons',
+    title: 'Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ',
     titleColor: 'white',
     'gradient-color': '20, 20, 20',
   },

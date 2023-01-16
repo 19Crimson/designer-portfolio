@@ -5,7 +5,7 @@
     ref,
     computed,
     watch,
-} from 'vue'
+  } from 'vue'
 
 	const props = defineProps({
     bgImage: String,
@@ -60,9 +60,9 @@
       transform: `rotateY(${0.33*rX}deg) rotateX(${0.33*rY}deg)`,
     };
 
-    if (isHovered.value) {
-      style.transform += 'scale(1.03)'
-    }
+    // if (isHovered.value) {
+    //   style.transform += 'scale(1.03)'
+    // }
     
     return style;
   })
@@ -182,7 +182,7 @@
 </script>
 
 <template>
-  <div class="card-wrap"
+  <div class="card-wrapper"
     @mousemove="handleMouseMove"
     @mouseenter="handleMouseEnter"
     @mouseleave="handleMouseLeave"
@@ -225,11 +225,12 @@ h1+p, p+p {
   margin-top: 10px;
 }
 
-.card-wrap {
+.card-wrapper {
+  user-select: none;
   font-size: 24px;
   margin-bottom: 40px;
   font-family: 'Mont';
-  transform: perspective(800px);
+  transform: perspective(1000px);
   transform-style: preserve-3d;
   cursor: pointer;
   
@@ -238,19 +239,19 @@ h1+p, p+p {
       opacity: 1;
     }
     .card-info, .card-info p {
-      transition: 0.6s $hoverEasing;
+      transition: 0.3s $hoverEasing;
     }
     .card-info:after {
-      transition: 0.6s $hoverEasing;
+      transition: 0.3s $hoverEasing;
       opacity: 1;
     }
     .card-fg {
       transition: 
-        0.6s $hoverEasing,
+        0.3s $hoverEasing,
     }
     .card {
       transition:
-        0.6s $hoverEasing,
+        0.3s $hoverEasing,
         box-shadow 2s $hoverEasing;
       box-shadow:
         rgba(black, 0.66) 0 30px 60px 0,
@@ -267,9 +268,13 @@ h1+p, p+p {
   position: relative;
   // flex: 0 0 240px;
   overflow: hidden;
-  transition: .5s $returnEasing;
+  transition: .3s $returnEasing;
+  
   &:hover {
     z-index: 9999;
+  }
+  &:active {
+    transform: scale(1.5)
   }
 }
 
@@ -292,7 +297,7 @@ h1+p, p+p {
   background-position: center;
   pointer-events: none;
   transition:
-    .5s $returnEasing;
+    .3s $returnEasing;
 }
 
 .gradient {
@@ -305,15 +310,15 @@ h1+p, p+p {
 
 .card-info {
   font-size: 24px;
-  margin-left: 24px;
+  margin: 0 24px;
   position: absolute;
   bottom: 20px;
-  transition: .5s $returnEasing;
+  transition: .3s $returnEasing;
   
   p {
     opacity: 0;
     text-shadow: rgba(black, 1) 0 2px 3px;
-    transition: 0.6s 1.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition: 0.3s 1.6s cubic-bezier(0.215, 0.61, 0.355, 1);
   }
   
   * {
