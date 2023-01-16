@@ -1,21 +1,34 @@
 <script setup lang="ts">
   import {
     onMounted,
+    onBeforeUnmount,
     ref,
     computed,
-    useSlots
+    watch,
 } from 'vue'
 
-const slots = useSlots();
-
 	const props = defineProps({
-    dataImage: String,
+    bgImage: String,
+    fgImage: String,
+    title: String,
+    titleColor: {
+			type: String,
+			default: 'white'
+		},
+		gradientColor: {
+			type: String,
+			default: '20, 20, 20'
+		},
 	})
 
   const width = ref(0)
-  const height = ref(0)
+
+  const clientWidth = ref(document.documentElement.clientWidth)
+  const clientHeight = ref(document.documentElement.clientHeight)
+  const cardHeight = ref(0)
   const mouseX = ref(0)
   const mouseY = ref(0)
+  const isHovered = ref(false)
   const mouseLeaveDelay = ref(0)
 
   const card = ref({
@@ -26,39 +39,95 @@ const slots = useSlots();
   })
 
   onMounted(() => {
+    window.addEventListener("resize", getDimensions);
     width.value = card.value.offsetWidth;
-    height.value = card.value.offsetHeight;
-    console.log('slots', slots)
+  })
+
+  onBeforeUnmount(() => {
+    window.removeEventListener("resize", getDimensions);
   })
 
   const mousePX = computed(() => mouseX.value / width.value)
-  const mousePY = computed(() => mouseY.value / height.value)
+  const mousePY = computed(() => mouseY.value / cardHeight.value)
 
   const cardStyle = computed(() => {
     const rX = mousePX.value * 30;
     const rY = mousePY.value * -30;
-    return {
-      transform: `rotateY(${rX}deg) rotateX(${rY}deg)`
+    console.log(rX, rY)
+    const style = {
+      color: props.titleColor,
+      height: `${cardHeight.value}px`,
+      transform: `rotateY(${0.33*rX}deg) rotateX(${0.33*rY}deg)`,
     };
+
+    if (isHovered.value) {
+      style.transform += 'scale(1.03)'
+    }
+    
+    return style;
   })
 
-  const cardBgTransform = computed(() => {
+  const fgStyle = computed(() => {
+    const rX = mousePX.value * 30;
+    const rY = mousePY.value * -30;
     const tX = mousePX.value * -40;
     const tY = mousePY.value * -40;
+    const style = {
+      transform: `rotateY(${0.33*rX}deg) rotateX(${0.33*rY}deg) translateX(${-0.33 * tX}px) translateY(${-0.33 * tY}px)`,
+    }
+    return style;
+  })
+
+  const titleStyle = computed(() => {
+    const rX = mousePX.value * 30;
+    const rY = mousePY.value * -30;
+    const tX = mousePX.value * -40;
+    const tY = mousePY.value * -40;
+    const style = {
+      transform: `rotateY(${0.33*rX}deg) rotateX(${0.33*rY}deg) translateX(${-0.33 * tX}px) translateY(${-0.33 * tY}px)`,
+    }
+    // if (isHovered.value) {
+    //   style.transform += 'scale(1.05)'
+    // }
+    return style;
+  })
+
+  // const cardBgTransform = computed(() => {
+  //   const rX = mousePX.value * 30;
+  //   const rY = mousePY.value * -30;
+  //   const tX = mousePX.value * -40;
+  //   const tY = mousePY.value * -40;
+  //   const style = {
+  //     transform: `rotateY(${rX}deg) rotateX(${rY}deg) translateX(${tX}px) translateY(${tY}px)`,
+  //   }
+  //   if (isHovered.value) {
+  //     style.transform += 'scale(1.02)'
+  //   }
+  //   return style;
+  // })
+
+  const bgStyle = computed(() => {
     return {
-      transform: `translateX(${tX}px) translateY(${tY}px)`
+      backgroundImage: `url("/src/assets/img/${props.bgImage}")`,
+      height: `${cardHeight.value}px`,
     }
   })
 
-  const cardBgImage = computed(() => {
+  const cardFgImage = computed(() => {
     return {
-      backgroundImage: `url(${props.dataImage})`
+      backgroundImage: `url("/src/assets/img/${props.fgImage}")`
     }
   })
+
+  const getDimensions = () => {
+      clientWidth.value = document.documentElement.clientWidth;
+      clientHeight.value = document.documentElement.clientHeight;
+    }
 
   const handleMouseMove = (e: MouseEvent) => {
     mouseX.value = e.pageX - card.value.offsetLeft - width.value / 2;
-    mouseY.value = e.pageY - card.value.offsetTop - height.value / 2;
+    mouseY.value = e.pageY - card.value.offsetTop - cardHeight.value / 2;
+    isHovered.value = true
   }
 
   const handleMouseEnter = () => {
@@ -69,8 +138,47 @@ const slots = useSlots();
     mouseLeaveDelay.value = setTimeout(()=>{
       mouseX.value = 0;
       mouseY.value = 0;
-    }, 1000);
+      isHovered.value = false
+    }, 0);
   }
+
+  const getImageHeight = (url: any, cb: any) => {
+    const img = new Image();
+    img.onload = () => cb(null, img);
+    img.onerror = (err) => cb(err);
+    img.src = url;
+  };
+
+
+  watch(
+    () => clientWidth.value,
+    () => {
+      getImageHeight(`/src/assets/img/${props.bgImage}`, (err: any, img: any) => {
+        cardHeight.value = (img.naturalHeight / img.naturalWidth) * (window.innerWidth -160) / 3;
+      });
+    },
+    { immediate: true },
+  )
+
+	const gradientStyle = {
+		backgroundImage: `linear-gradient(0deg,
+		rgba(${props.gradientColor}, 1) 0%,
+		rgba(${props.gradientColor}, 0.991353) 6.67%,
+		rgba(${props.gradientColor}, 0.96449) 13.33%,
+		rgba(${props.gradientColor}, 0.91834) 20%,
+		rgba(${props.gradientColor}, 0.852589) 26.67%,
+		rgba(${props.gradientColor}, 0.768225) 33.33%,
+		rgba(${props.gradientColor}, 0.668116) 40%,
+		rgba(${props.gradientColor}, 0.557309) 46.67%,
+		rgba(${props.gradientColor}, 0.442691) 53.33%,
+		rgba(${props.gradientColor}, 0.331884) 60%,
+		rgba(${props.gradientColor}, 0.231775) 66.67%,
+		rgba(${props.gradientColor}, 0.147411) 73.33%,
+		rgba(${props.gradientColor}, 0.0816599) 80%,
+		rgba(${props.gradientColor}, 0.03551) 86.67%,
+		rgba(${props.gradientColor}, 0.0086472) 93.33%,
+		rgba(${props.gradientColor}, 0) 100%)`
+	}
 </script>
 
 <template>
@@ -78,14 +186,21 @@ const slots = useSlots();
     @mousemove="handleMouseMove"
     @mouseenter="handleMouseEnter"
     @mouseleave="handleMouseLeave"
-    ref="card">
+    ref="card"
+  >
+    <!-- :style="[cardHeightStyle]" -->
     <div class="card"
-      :style="cardStyle">
-      <div class="card-bg" :style="[cardBgTransform, cardBgImage]"></div>
-      <div class="card-info">
-        <slot name="header"></slot>
-        <slot name="content"></slot>
-      </div>
+      :style="cardStyle"
+    >
+      <div class="card-bg" :style="[bgStyle]"></div>
+      <img class="card-fg"  :src="`/src/assets/img/${fgImage}`" :style="[fgStyle]">
+      <div
+        class="gradient"
+        :style="gradientStyle"
+      />
+      <div class="card-info" :style="[titleStyle]">
+          {{ title }}
+        </div>
     </div>
   </div>
 </template>
@@ -95,7 +210,6 @@ $hoverEasing: cubic-bezier(0.23, 1, 0.32, 1);
 $returnEasing: cubic-bezier(0.445, 0.05, 0.55, 0.95);
 
 .title {
-  font-family: "Raleway";
   font-size: 24px;
   font-weight: 700;
   color: #5D4037;
@@ -107,20 +221,19 @@ p {
 }
 
 h1+p, p+p {
+  font-size: 24px;
   margin-top: 10px;
 }
 
 .card-wrap {
-  margin: 10px;
+  font-size: 24px;
+  margin-bottom: 40px;
+  font-family: 'Mont';
   transform: perspective(800px);
   transform-style: preserve-3d;
   cursor: pointer;
-  // background-color: #fff;
   
   &:hover {
-    .card-info {
-      transform: translateY(0);
-    }
     .card-info p {
       opacity: 1;
     }
@@ -128,68 +241,74 @@ h1+p, p+p {
       transition: 0.6s $hoverEasing;
     }
     .card-info:after {
-      transition: 5s $hoverEasing;
+      transition: 0.6s $hoverEasing;
       opacity: 1;
-      transform: translateY(0);
     }
-    .card-bg {
+    .card-fg {
       transition: 
         0.6s $hoverEasing,
-        opacity 5s $hoverEasing;
-      opacity: 0.8;
     }
     .card {
       transition:
         0.6s $hoverEasing,
         box-shadow 2s $hoverEasing;
       box-shadow:
-        rgba(white, 0.2) 0 0 40px 5px,
-        rgba(white, 1) 0 0 0 1px,
         rgba(black, 0.66) 0 30px 60px 0,
         inset #333 0 0 0 5px,
-        inset white 0 0 0 6px;
     }
   }
 }
 
 .card {
+  display: flex;
+  align-items: center;
+  border-radius: 16px;
+  width: 100%;
   position: relative;
-  flex: 0 0 240px;
-  width: 240px;
-  height: 320px;
-  background-color: #333;
+  // flex: 0 0 240px;
   overflow: hidden;
-  border-radius: 10px;
-  box-shadow:
-    rgba(black, 0.66) 0 30px 60px 0,
-    inset #333 0 0 0 5px,
-    inset rgba(white, 0.5) 0 0 0 6px;
-  transition: 1s $returnEasing;
+  transition: .5s $returnEasing;
+  &:hover {
+    z-index: 9999;
+  }
 }
 
 .card-bg {
-  opacity: 0.5;
   position: absolute;
-  top: -20px; left: -20px;
+  top: 0px; left: 0px;
   width: 100%;
-  height: 100%;
-  padding: 20px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  transition:
-    1s $returnEasing,
-    opacity 5s 1s $returnEasing;
   pointer-events: none;
 }
 
+.card-fg {
+  // position: absolute;
+  // top: -50px;
+  // left: 0px;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  pointer-events: none;
+  transition:
+    .5s $returnEasing;
+}
+
+.gradient {
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	padding: 30px;
+	width: calc(100% - 24px);
+}
+
 .card-info {
-  padding: 20px;
+  font-size: 24px;
+  margin-left: 24px;
   position: absolute;
-  bottom: 0;
-  color: #fff;
-  transform: translateY(40%);
-  transition: 0.6s 1.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+  bottom: 20px;
+  transition: .5s $returnEasing;
   
   p {
     opacity: 0;
@@ -209,17 +328,14 @@ h1+p, p+p {
     z-index: 0;
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(to bottom, transparent 0%, rgba(#000, 0.6) 100%);
     background-blend-mode: overlay;
     opacity: 0;
-    transform: translateY(100%);
-    transition: 5s 1s $returnEasing;
   }
 }
 
 .card-info h1 {
-  font-family: "Playfair Display";
-  font-size: 36px;
+  display: none;
+  font-size: 24px;
   font-weight: 700;
   text-shadow: rgba(black, 0.5) 0 10px 10px;
 }

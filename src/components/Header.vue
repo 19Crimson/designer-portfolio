@@ -17,8 +17,8 @@ header {
   display: flex;
   flex-direction: column;
   height: 382px;
-  padding: 46px 54px 30px 36px;
-  background-image : url("../src/assets/img/header_bg.png");
+  padding: 40px;
+  /* background-image : url("../src/assets/img/header_bg.png"); */
   background-repeat: no-repeat;
   background-size: auto;
 }
@@ -29,7 +29,7 @@ title {
   font-weight: 700;
   font-size: 105px;
   line-height: 96px;
-  color: #2B2B2B;
+  color: #ffffff;
   text-align: left;
   max-width: 840px;
 }
@@ -47,23 +47,26 @@ a {
   white-space: nowrap;
 }
 .username {
+  font-family: 'Mont';
   margin-left: 22px;
   font-style: normal;
   font-weight: 700;
   font-size: 32px;
   line-height: 39px;
-  color: #000000;
+  color: #ffffff;
 }
 .about_me {
+  font-family: 'Mont';
   margin-left: 40px;
   font-style: normal;
   font-weight: 500;
   font-size: 32px;
   line-height: 39px;
-  color: #000000;
+  color: #ffffff;
   opacity: 0.5;
 }
 .tg_link {
+  font-family: 'Mont';
   height: 48px;
   padding: 11px 25px;
   background-color: #FFFFFF;

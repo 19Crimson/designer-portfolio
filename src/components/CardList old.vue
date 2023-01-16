@@ -45,20 +45,20 @@ const thirdColumnCards = cards.filter((_, index) => (index - 2) % 3 === 0)
 </script>
 
 <template>
-  <div class="card-list-wrapper">
-    <div class="card-container">
+  <div class="card-list-container">
+    <div class="card-list-column">
       <Card
         v-for="card in firstColumnCards"
         v-bind="card"
       />
     </div>
-    <div class="card-container">
+    <div class="card-list-column">
       <Card
         v-for="card in secondColumnCards"
         v-bind="card"
       />
     </div>
-    <div class="card-container">
+    <div class="card-list-column">
       <Card
         v-for="card in thirdColumnCards"
         v-bind="card"
@@ -68,14 +68,14 @@ const thirdColumnCards = cards.filter((_, index) => (index - 2) % 3 === 0)
 </template>
 
 <style scoped>
-.card-list-wrapper {
+.card-list-container {
   height: 100vh;
   display: flex;
 }
-.card-container {
+.card-list-column {
   width: 100%;
 }
-.card-container:nth-child(even) {
+.card-list-column:nth-child(even) {
   width: 100%;
   margin: 0 2px;
 }

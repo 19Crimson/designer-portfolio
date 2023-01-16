@@ -1,45 +1,163 @@
 <script setup lang="ts">
 import CardParallax from './CardParallax.vue'
+
+const cards = [
+  {
+    bgImage: 'bg.png',
+    fgImage: 'fg.png',
+    title: 'Canyons',
+    titleColor: 'white',
+    'gradient-color': '20, 20, 20',
+  },
+  {
+    bgImage: 'bg-1.png',
+    fgImage: 'fg-1.png',
+    title: 'Beaches',
+    titleColor: 'white',
+    'gradient-color': '20, 20, 20',
+  },
+  {
+    bgImage: 'bg-2.png',
+    fgImage: 'fg-2.png',
+    title: 'Beaches',
+    titleColor: 'white',
+    'gradient-color': '20, 20, 20'
+  },
+  {
+    bgImage: 'bg-3.png',
+    fgImage: 'fg-3.png',
+    title: 'Trees',
+    titleColor: 'white',
+    'gradient-color': '20, 20, 20'
+  },
+  {
+    bgImage: 'bg-4.png',
+    fgImage: 'fg-4.png',
+    title: 'Trees',
+    titleColor: 'white',
+    'gradient-color': '77, 45, 45',
+  },
+  {
+    bgImage: 'bg-5.png',
+    fgImage: 'fg-5.png',
+    title: 'Trees',
+    titleColor: 'white',
+    'gradient-color': '20, 20, 20'
+  },
+  {
+    bgImage: 'bg.png',
+    fgImage: 'fg.png',
+    title: 'Canyons',
+    titleColor: 'white',
+    'gradient-color': '20, 20, 20',
+  },
+  {
+    bgImage: 'bg-1.png',
+    fgImage: 'fg-1.png',
+    title: 'Beaches',
+    titleColor: 'white',
+    'gradient-color': '20, 20, 20',
+  },
+  {
+    bgImage: 'bg-2.png',
+    fgImage: 'fg-2.png',
+    title: 'Beaches',
+    titleColor: 'white',
+    'gradient-color': '20, 20, 20'
+  },
+  {
+    bgImage: 'bg-3.png',
+    fgImage: 'fg-3.png',
+    title: 'Trees',
+    titleColor: 'white',
+    'gradient-color': '20, 20, 20'
+  },
+  {
+    bgImage: 'bg-4.png',
+    fgImage: 'fg-4.png',
+    title: 'Trees',
+    titleColor: 'white',
+    'gradient-color': '77, 45, 45',
+  },
+  {
+    bgImage: 'bg-5.png',
+    fgImage: 'fg-5.png',
+    title: 'Trees',
+    titleColor: 'white',
+    'gradient-color': '20, 20, 20'
+  },
+  {
+    bgImage: 'bg.png',
+    fgImage: 'fg.png',
+    title: 'Canyons',
+    titleColor: 'white',
+    'gradient-color': '20, 20, 20',
+  },
+  {
+    bgImage: 'bg-1.png',
+    fgImage: 'fg-1.png',
+    title: 'Beaches',
+    titleColor: 'white',
+    'gradient-color': '20, 20, 20',
+  },
+  {
+    bgImage: 'bg-2.png',
+    fgImage: 'fg-2.png',
+    title: 'Beaches',
+    titleColor: 'white',
+    'gradient-color': '20, 20, 20'
+  },
+  {
+    bgImage: 'bg-3.png',
+    fgImage: 'fg-3.png',
+    title: 'Trees',
+    titleColor: 'white',
+    'gradient-color': '20, 20, 20'
+  },
+  {
+    bgImage: 'bg-4.png',
+    fgImage: 'fg-4.png',
+    title: 'Trees',
+    titleColor: 'white',
+    'gradient-color': '77, 45, 45',
+  },
+  {
+    bgImage: 'bg-5.png',
+    fgImage: 'fg-5.png',
+    title: 'Trees',
+    titleColor: 'white',
+    'gradient-color': '20, 20, 20'
+  },
+]
+
+const firstColumnCards = cards.filter((_, index) => index % 3 === 0)
+const secondColumnCards = cards.filter((_, index) => (index - 1) % 3 === 0)
+const thirdColumnCards = cards.filter((_, index) => (index - 2) % 3 === 0)
 </script>
 
 <template>
-  <div class="card-list-wrapper">
-  <CardParallax data-image="https://images.unsplash.com/photo-1479660656269-197ebb83b540?dpr=2&auto=compress,format&fit=crop&w=1199&h=798&q=80&cs=tinysrgb&crop=">
-    <template v-slot:header>
-      <h1>Canyons</h1>
-    </template>
-    <template v-slot:content>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-    </template>
-  </CardParallax>
+  <div class="card-list-container">
+    <div class="card-list-column">
+      <CardParallax
+        v-for="card in firstColumnCards"
+        v-bind="card"
+      />
+    </div>
 
-  <CardParallax data-image="https://images.unsplash.com/photo-1479659929431-4342107adfc1?dpr=2&auto=compress,format&fit=crop&w=1199&h=799&q=80&cs=tinysrgb&crop=">
-    <template v-slot:header>
-      <h1>Beaches</h1>
-    </template>
-    <template v-slot:content>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-    </template>
-  </CardParallax>
+    <div class="card-list-column">
+      <CardParallax
+        v-for="card in secondColumnCards"
+        v-bind="card"
+      />
+    </div>
 
-  <CardParallax data-image="https://images.unsplash.com/photo-1479644025832-60dabb8be2a1?dpr=2&auto=compress,format&fit=crop&w=1199&h=799&q=80&cs=tinysrgb&crop=">
-    <template v-slot:header>
-      <h1>Trees</h1>
-    </template>
-    <template v-slot:content>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-    </template>
-  </CardParallax>
-
-  <CardParallax data-image="https://images.unsplash.com/photo-1479621051492-5a6f9bd9e51a?dpr=2&auto=compress,format&fit=crop&w=1199&h=811&q=80&cs=tinysrgb&crop=">
-    <template v-slot:header>
-      <h1>Lakes</h1>
-    </template>
-    <template v-slot:content>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-    </template>
-  </CardParallax>
-</div>
+    <div class="card-list-column">
+      <CardParallax
+        v-for="card in thirdColumnCards"
+        v-bind="card"
+      />
+    </div>
+  </div>
 </template>
 
 <style lang="scss" scoped>
@@ -47,7 +165,7 @@ $hoverEasing: cubic-bezier(0.23, 1, 0.32, 1);
 $returnEasing: cubic-bezier(0.445, 0.05, 0.55, 0.95);
 
 .title {
-  font-family: "Raleway";
+  font-family: "Mont";
   font-size: 24px;
   font-weight: 700;
   color: #5D4037;
@@ -62,125 +180,19 @@ h1+p, p+p {
   margin-top: 10px;
 }
 
-.card-list-wrapper {
-  padding: 40px 80px;
+.card-list-container {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  margin: 0 40px;
 }
 
-.card-wrap {
-  margin: 10px;
-  transform: perspective(800px);
-  transform-style: preserve-3d;
-  cursor: pointer;
-  // background-color: #fff;
-  
-  &:hover {
-    .card-info {
-      transform: translateY(0);
-    }
-    .card-info p {
-      opacity: 1;
-    }
-    .card-info, .card-info p {
-      transition: 0.6s $hoverEasing;
-    }
-    .card-info:after {
-      transition: 5s $hoverEasing;
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .card-bg {
-      transition: 
-        0.6s $hoverEasing,
-        opacity 5s $hoverEasing;
-      opacity: 0.8;
-    }
-    .card {
-      transition:
-        0.6s $hoverEasing,
-        box-shadow 2s $hoverEasing;
-      box-shadow:
-        rgba(white, 0.2) 0 0 40px 5px,
-        rgba(white, 1) 0 0 0 1px,
-        rgba(black, 0.66) 0 30px 60px 0,
-        inset #333 0 0 0 5px,
-        inset white 0 0 0 6px;
-    }
-  }
-}
-
-.card {
-  position: relative;
-  flex: 0 0 240px;
-  width: 240px;
-  height: 320px;
-  background-color: #333;
-  overflow: hidden;
-  border-radius: 10px;
-  box-shadow:
-    rgba(black, 0.66) 0 30px 60px 0,
-    inset #333 0 0 0 5px,
-    inset rgba(white, 0.5) 0 0 0 6px;
-  transition: 1s $returnEasing;
-}
-
-.card-bg {
-  opacity: 0.5;
-  position: absolute;
-  top: -20px; left: -20px;
+.card-list-column {
   width: 100%;
-  height: 100%;
-  padding: 20px;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  transition:
-    1s $returnEasing,
-    opacity 5s 1s $returnEasing;
-  pointer-events: none;
-}
-
-.card-info {
-  padding: 20px;
-  position: absolute;
-  bottom: 0;
-  color: #fff;
-  transform: translateY(40%);
-  transition: 0.6s 1.6s cubic-bezier(0.215, 0.61, 0.355, 1);
-  
-  p {
-    opacity: 0;
-    text-shadow: rgba(black, 1) 0 2px 3px;
-    transition: 0.6s 1.6s cubic-bezier(0.215, 0.61, 0.355, 1);
-  }
-  
-  * {
-    position: relative;
-    z-index: 1;
-  }
-  
-  &:after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    z-index: 0;
-    width: 100%;
-    height: 100%;
-    background-image: linear-gradient(to bottom, transparent 0%, rgba(#000, 0.6) 100%);
-    background-blend-mode: overlay;
-    opacity: 0;
-    transform: translateY(100%);
-    transition: 5s 1s $returnEasing;
+  &:hover {
+    z-index: 9999;
   }
 }
-
-.card-info h1 {
-  font-family: "Playfair Display";
-  font-size: 36px;
-  font-weight: 700;
-  text-shadow: rgba(black, 0.5) 0 10px 10px;
+.card-list-column:nth-child(even) {
+  margin: 0 40px;
 }
 /* .card_list_wrapper {
   height: 100vh;
