@@ -41,7 +41,7 @@
         <div class="username">Nikita Karpinsky</div>
       </div>
       <a class="tg_link" href="https://t.me/karpnsky" target="_blank">
-        Let's talk on telegram
+        Let's talk on telegram 🙂
       </a>
     </div>
     <div class="header-title" >When product</div>
@@ -109,8 +109,21 @@ a {
   font-weight: 400;
   font-size: 38px;
   transition: ease-in-out .3s;
+  
+
+  color: #ffffff;
+  font-size: 18px;
+  text-decoration: none;
+  padding: 10px 12px 10px 19px;
+  background: #272727;
+  border: 2px solid #555555;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border-radius: 32px;
+  line-height: 30px;
+  font-weight: bold;
 }
 .tg_link:hover {
-  color:  #1a8ad5;
+  opacity: .8;
 }
 </style>
