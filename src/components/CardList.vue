@@ -7,28 +7,24 @@ const cards = [
     fgImage: 'fg.png',
     title: 'Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ',
     titleColor: 'white',
-    'gradient-color': '20, 20, 20',
   },
   {
     bgImage: 'bg-1.png',
     fgImage: 'fg-1.png',
     title: 'Beaches',
     titleColor: 'white',
-    'gradient-color': '20, 20, 20',
   },
   {
     bgImage: 'bg-2.png',
     fgImage: 'fg-2.png',
     title: 'Beaches',
     titleColor: 'white',
-    'gradient-color': '20, 20, 20'
   },
   {
     bgImage: 'bg-3.png',
     fgImage: 'fg-3.png',
     title: 'Trees',
     titleColor: 'white',
-    'gradient-color': '20, 20, 20'
   },
   {
     bgImage: 'bg-4.png',
@@ -42,35 +38,30 @@ const cards = [
     fgImage: 'fg-5.png',
     title: 'Trees',
     titleColor: 'white',
-    'gradient-color': '20, 20, 20'
   },
   {
     bgImage: 'bg.png',
     fgImage: 'fg.png',
     title: 'Canyons',
     titleColor: 'white',
-    'gradient-color': '20, 20, 20',
   },
   {
     bgImage: 'bg-1.png',
     fgImage: 'fg-1.png',
     title: 'Beaches',
     titleColor: 'white',
-    'gradient-color': '20, 20, 20',
   },
   {
     bgImage: 'bg-2.png',
     fgImage: 'fg-2.png',
     title: 'Beaches',
     titleColor: 'white',
-    'gradient-color': '20, 20, 20'
   },
   {
     bgImage: 'bg-3.png',
     fgImage: 'fg-3.png',
     title: 'Trees',
     titleColor: 'white',
-    'gradient-color': '20, 20, 20'
   },
   {
     bgImage: 'bg-4.png',
@@ -84,35 +75,30 @@ const cards = [
     fgImage: 'fg-5.png',
     title: 'Trees',
     titleColor: 'white',
-    'gradient-color': '20, 20, 20'
   },
   {
     bgImage: 'bg.png',
     fgImage: 'fg.png',
     title: 'Canyons',
     titleColor: 'white',
-    'gradient-color': '20, 20, 20',
   },
   {
     bgImage: 'bg-1.png',
     fgImage: 'fg-1.png',
     title: 'Beaches',
     titleColor: 'white',
-    'gradient-color': '20, 20, 20',
   },
   {
     bgImage: 'bg-2.png',
     fgImage: 'fg-2.png',
     title: 'Beaches',
     titleColor: 'white',
-    'gradient-color': '20, 20, 20'
   },
   {
     bgImage: 'bg-3.png',
     fgImage: 'fg-3.png',
     title: 'Trees',
     titleColor: 'white',
-    'gradient-color': '20, 20, 20'
   },
   {
     bgImage: 'bg-4.png',
@@ -126,7 +112,6 @@ const cards = [
     fgImage: 'fg-5.png',
     title: 'Trees',
     titleColor: 'white',
-    'gradient-color': '20, 20, 20'
   },
 ]
 

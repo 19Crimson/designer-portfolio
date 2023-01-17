@@ -17,7 +17,7 @@
 		},
 		gradientColor: {
 			type: String,
-			default: '20, 20, 20'
+			default: '45, 45, 45'
 		},
 	})
 
