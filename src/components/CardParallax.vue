@@ -56,8 +56,12 @@
     const style = {
       color: props.titleColor,
       height: `${cardHeight.value}px`,
-      transform: `rotateY(${0.33*rX}deg) rotateX(${0.33*rY}deg)`,
+      transform: `rotateY(${-0.33*rX}deg) rotateX(${-0.33*rY}deg)`,
     };
+
+    // if (isHovered.value) {
+    //   style.transform += 'scale(1.03)'
+    // }
     
     return style;
   })
@@ -68,7 +72,7 @@
     const tX = mousePX.value * -40;
     const tY = mousePY.value * -40;
     const style = {
-      transform: `rotateY(${0.33*rX}deg) rotateX(${0.33*rY}deg) translateX(${-0.33 * tX}px) translateY(${-0.33 * tY}px)`,
+      transform: `rotateY(${-0.33*rX}deg) rotateX(${-0.33*rY}deg) translateX(${0.33 * tX}px) translateY(${0.33 * tY}px)`,
     }
     return style;
   })
@@ -79,7 +83,7 @@
     const tX = mousePX.value * -40;
     const tY = mousePY.value * -40;
     const style = {
-      transform: `rotateY(${0.33*rX}deg) rotateX(${0.33*rY}deg) translateX(${-0.33 * tX}px) translateY(${-0.33 * tY}px)`,
+      transform: `rotateY(${-0.33*rX}deg) rotateX(${-0.33*rY}deg) translateX(${0.33 * tX}px) translateY(${0.33 * tY}px)`,
     }
     // if (isHovered.value) {
     //   style.transform += 'scale(1.05)'
@@ -244,9 +248,6 @@ h1+p, p+p {
       transition:
         1s $hoverEasing,
         box-shadow 2s $hoverEasing;
-      box-shadow:
-        rgba(black, 0.66) 0 30px 60px 0,
-        inset #333 0 0 0 5px,
     }
   }
 }
