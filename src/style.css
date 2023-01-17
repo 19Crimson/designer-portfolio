@@ -3,6 +3,11 @@
   src: url("../src/assets/fonts/Mont-Bold.otf") format("opentype");  
 }
 
+@font-face {
+  font-family: SfPro;
+  src: url("../src/assets/fonts/SF-Pro.ttf") format('truetype');  
+}
+
 body {
   background-color: #161616;
   margin: 0;

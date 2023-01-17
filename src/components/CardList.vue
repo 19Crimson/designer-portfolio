@@ -172,10 +172,6 @@ $returnEasing: cubic-bezier(0.445, 0.05, 0.55, 0.95);
   text-align: center;
 }
 
-p {
-  line-height: 1.5em;
-}
-
 h1+p, p+p {
   margin-top: 10px;
 }
@@ -194,15 +190,4 @@ h1+p, p+p {
 .card-list-column:nth-child(even) {
   margin: 0 40px;
 }
-/* .card_list_wrapper {
-  height: 100vh;
-  display: flex;
-}
-.card_container {
-  width: 100%;
-}
-.card_container:nth-child(even) {
-  width: 100%;
-  margin: 0 2px;
-} */
 </style>

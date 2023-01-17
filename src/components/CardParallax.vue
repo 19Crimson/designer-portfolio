@@ -53,16 +53,11 @@
   const cardStyle = computed(() => {
     const rX = mousePX.value * 30;
     const rY = mousePY.value * -30;
-    console.log(rX, rY)
     const style = {
       color: props.titleColor,
       height: `${cardHeight.value}px`,
       transform: `rotateY(${0.33*rX}deg) rotateX(${0.33*rY}deg)`,
     };
-
-    // if (isHovered.value) {
-    //   style.transform += 'scale(1.03)'
-    // }
     
     return style;
   })
@@ -216,10 +211,6 @@ $returnEasing: cubic-bezier(0.445, 0.05, 0.55, 0.95);
   text-align: center;
 }
 
-p {
-  line-height: 1.5em;
-}
-
 h1+p, p+p {
   font-size: 24px;
   margin-top: 10px;
@@ -239,19 +230,19 @@ h1+p, p+p {
       opacity: 1;
     }
     .card-info, .card-info p {
-      transition: 0.3s $hoverEasing;
+      transition: 1s $hoverEasing;
     }
     .card-info:after {
-      transition: 0.3s $hoverEasing;
+      transition: 1s $hoverEasing;
       opacity: 1;
     }
     .card-fg {
       transition: 
-        0.3s $hoverEasing,
+        1s $hoverEasing,
     }
     .card {
       transition:
-        0.3s $hoverEasing,
+        1s $hoverEasing,
         box-shadow 2s $hoverEasing;
       box-shadow:
         rgba(black, 0.66) 0 30px 60px 0,
@@ -266,7 +257,6 @@ h1+p, p+p {
   border-radius: 16px;
   width: 100%;
   position: relative;
-  // flex: 0 0 240px;
   overflow: hidden;
   transition: .3s $returnEasing;
   
@@ -318,7 +308,7 @@ h1+p, p+p {
   p {
     opacity: 0;
     text-shadow: rgba(black, 1) 0 2px 3px;
-    transition: 0.3s 1.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition: 1s 1.6s cubic-bezier(0.215, 0.61, 0.355, 1);
   }
   
   * {
