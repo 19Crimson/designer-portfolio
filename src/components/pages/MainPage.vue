@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import PageWrapper from '@/components/layout/PageWrapper.vue'
-import Header from './Header.vue'
-import CardList from './CardList.vue'
+import Header from '@/components/layout/Header.vue'
+import CardList from '@/components/layout/CardList.vue'
 </script>
 
 <template>
