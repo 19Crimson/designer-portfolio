@@ -1,10 +1,8 @@
 <script setup lang="ts">
-import MainPage from '@/components/layout//MainPage.vue'
+import MainPage from '@/components/pages/MainPage.vue'
 </script>
 
 <template>
   <MainPage/>
 </template>
 
-<style scoped>
-</style>
