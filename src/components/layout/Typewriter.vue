@@ -105,9 +105,6 @@
     const availableWords = props.value.filter(word => !usedKeywords.value.includes(word))
     const availableColors = props.colors.filter(color => !usedColors.value.includes(color))
 
-    console.log('usedColors', usedColors.value)
-    console.log('usedKeywords', usedKeywords.value)
-
     currentColor.value = availableColors[getRandomInt(availableColors.length)]
     currentKeyword.value = availableWords[getRandomInt(availableWords.length)]
     usedColors.value.push(currentColor.value)

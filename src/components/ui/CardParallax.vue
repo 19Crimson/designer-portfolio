@@ -2,10 +2,13 @@
   import {
     onMounted,
     onBeforeUnmount,
+    defineEmits,
     ref,
     computed,
     watch,
   } from 'vue'
+
+  const emit = defineEmits(['click'])
 
 	const props = defineProps({
     bgImage: String,
@@ -83,20 +86,6 @@
     return style;
   })
 
-  // const cardBgTransform = computed(() => {
-  //   const rX = mousePX.value * 30;
-  //   const rY = mousePY.value * -30;
-  //   const tX = mousePX.value * -40;
-  //   const tY = mousePY.value * -40;
-  //   const style = {
-  //     transform: `rotateY(${rX}deg) rotateX(${rY}deg) translateX(${tX}px) translateY(${tY}px)`,
-  //   }
-  //   if (isHovered.value) {
-  //     style.transform += 'scale(1.02)'
-  //   }
-  //   return style;
-  // })
-
   const bgStyle = computed(() => {
     return {
       backgroundImage: `url("/src/assets/img/${props.bgImage}")`,
@@ -127,13 +116,26 @@
     }, 0);
   }
 
+  const invertCardPosition = () => {
+    mouseX.value = -mouseX.value
+    mouseY.value = -mouseY.value
+  }
+
+  const handleMousedown = () => {
+    invertCardPosition()
+  }
+
+  const handleMouseup = () => {
+    invertCardPosition()
+    emit('click')
+  }
+
   const getImageHeight = (url: any, cb: any) => {
     const img = new Image();
     img.onload = () => cb(null, img);
     img.onerror = (err) => cb(err);
     img.src = url;
   };
-
 
   watch(
     () => clientWidth.value,
@@ -164,6 +166,20 @@
 		rgba(${props.gradientColor}, 0.0086472) 93.33%,
 		rgba(${props.gradientColor}, 0) 100%)`
 	}
+
+  // const cardBgTransform = computed(() => {
+  //   const rX = mousePX.value * 30;
+  //   const rY = mousePY.value * -30;
+  //   const tX = mousePX.value * -40;
+  //   const tY = mousePY.value * -40;
+  //   const style = {
+  //     transform: `rotateY(${rX}deg) rotateX(${rY}deg) translateX(${tX}px) translateY(${tY}px)`,
+  //   }
+  //   if (isHovered.value) {
+  //     style.transform += 'scale(1.02)'
+  //   }
+  //   return style;
+  // })
 </script>
 
 <template>
@@ -171,18 +187,30 @@
     @mousemove="handleMouseMove"
     @mouseenter="handleMouseEnter"
     @mouseleave="handleMouseLeave"
+    @mousedown="handleMousedown"
+    @mouseup="handleMouseup"
     ref="card"
   >
     <div class="card"
       :style="cardStyle"
     >
-      <div class="card-bg" :style="[bgStyle]"></div>
-      <img class="card-fg"  :src="`/src/assets/img/${fgImage}`" :style="[fgStyle]">
+      <div
+        class="card-bg"
+        :style="[bgStyle]"
+      />
+      <img
+        class="card-fg"
+        :src="`/src/assets/img/${fgImage}`"
+        :style="[fgStyle]"
+      >
       <div
         class="gradient"
         :style="gradientStyle"
       />
-      <div class="card-info" :style="[titleStyle]">
+      <div
+        class="card-info"
+        :style="[titleStyle]"
+      >
           {{ title }}
         </div>
     </div>
