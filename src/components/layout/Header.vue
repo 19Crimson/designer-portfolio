@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import TypeWriter from './Typewriter.vue';
+  import Typewriter from '@/components/layout/Typewriter.vue';
 
   const keywords = [
     'design',
@@ -37,7 +37,7 @@
   <header class="header">
     <div class="header_content">
       <div class="user_profile">
-        <img src="../assets/img/avatar.png"/>
+        <img src="@/assets/img/avatar.png"/>
         <div class="username">Nikita Karpinsky</div>
       </div>
       <a class="tg_link" href="https://t.me/karpnsky" target="_blank">
@@ -47,7 +47,7 @@
     <div class="header-title" >When product</div>
     <div class="header-title header-title-suffix" >
       meets&nbsp;
-      <type-writer :value="keywords" :colors="colors"/>
+      <typewriter :value="keywords" :colors="colors"/>
     </div>
   </header>
 </template>
@@ -109,8 +109,6 @@ a {
   font-weight: 400;
   font-size: 38px;
   transition: ease-in-out .3s;
-  
-
   color: #ffffff;
   font-size: 18px;
   text-decoration: none;

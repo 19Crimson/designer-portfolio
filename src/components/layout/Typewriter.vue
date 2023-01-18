@@ -3,8 +3,6 @@
     ref,
     computed,
     onMounted,
-    onBeforeUnmount,
-    defineProps
   } from 'vue'
 
   const props = defineProps({

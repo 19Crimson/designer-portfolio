@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import CardParallax from './CardParallax.vue'
+import CardParallax from '@/components/ui/CardParallax.vue'
 
 const cards = [
   {

@@ -29,7 +29,7 @@
   const mouseX = ref(0)
   const mouseY = ref(0)
   const isHovered = ref(false)
-  const mouseLeaveDelay = ref(0)
+  const mouseLeaveDelay = ref()
 
   const card = ref({
     offsetWidth: 0,
@@ -58,11 +58,6 @@
       height: `${cardHeight.value}px`,
       transform: `rotateY(${-0.33*rX}deg) rotateX(${-0.33*rY}deg)`,
     };
-
-    // if (isHovered.value) {
-    //   style.transform += 'scale(1.03)'
-    // }
-    
     return style;
   })
 
@@ -85,9 +80,6 @@
     const style = {
       transform: `rotateY(${-0.33*rX}deg) rotateX(${-0.33*rY}deg) translateX(${0.33 * tX}px) translateY(${0.33 * tY}px)`,
     }
-    // if (isHovered.value) {
-    //   style.transform += 'scale(1.05)'
-    // }
     return style;
   })
 
@@ -109,12 +101,6 @@
     return {
       backgroundImage: `url("/src/assets/img/${props.bgImage}")`,
       height: `${cardHeight.value}px`,
-    }
-  })
-
-  const cardFgImage = computed(() => {
-    return {
-      backgroundImage: `url("/src/assets/img/${props.fgImage}")`
     }
   })
 
@@ -187,7 +173,6 @@
     @mouseleave="handleMouseLeave"
     ref="card"
   >
-    <!-- :style="[cardHeightStyle]" -->
     <div class="card"
       :style="cardStyle"
     >
@@ -280,9 +265,6 @@ h1+p, p+p {
 }
 
 .card-fg {
-  // position: absolute;
-  // top: -50px;
-  // left: 0px;
   width: 100%;
   background-repeat: no-repeat;
   background-position: center;
