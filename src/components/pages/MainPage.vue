@@ -17,12 +17,9 @@ const onOpenCard = () => {
 }
 </script>
 // TODO:
-// Fixed header
-// Fix card twitch
-// Randomize words
 // Fix Dialog content owerflow
 // Fix words repeating until all words used
-// Fix CardList / header overflow (margin bottom header 40px)
+// Fix CardList / header overflow
 // overflow hidden causes scroll to top when open card
 // выдернуть надпись из хедера
 
