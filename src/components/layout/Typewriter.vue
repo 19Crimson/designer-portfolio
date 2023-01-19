@@ -4,6 +4,7 @@
     computed,
     onMounted,
   } from 'vue'
+  import { getRandomInt } from '@/utils/helpers'
 
   const props = defineProps({
     value: {
@@ -16,10 +17,6 @@
     }
   })
 
-  function getRandomInt(max: number) {
-    return Math.floor(Math.random() * max);
-  }
-
   const currentKeyword = ref(props.value[0])
   const renderedKyword = ref(props.value[0])
   const currentColor = ref(props.colors[Math.floor(getRandomInt(props.colors.length - 1))])
@@ -28,49 +25,44 @@
 
   const getRandomTypingInterval = () => {
     const num = (Math.random() + 1) * 100
-    // 100ms 0.5
-    // 60ms 0.325
-    // 30ms 0.125
-    // 10ms 0.0625
-
-    if (num <= 7) { // 7
+    // 700ms - 7%; 50ms - 13%; 130ms - 30%; 100ms - 50%
+    if (num <= 7) {
       return 700
-    } else if (num <= 20) { // 13
+    } else if (num <= 20) {
       return 50
-    } else if (num <= 50) { // 30
+    } else if (num <= 50) {
       return 130
-    } else { // 50
+    } else {
       return 100
     }
   }
 
   let i = 0;
-  let timer;
 
   function typingEffect() {
-    let word = currentKeyword.value.split("");
+    let word = currentKeyword.value.split('');
     var loopTyping = function() {
       if (word.length > 0) {
         renderedKyword.value += word.shift();
       } else {
         setTimeout(deletingEffect, 3000);
-        return false;
+        return;
       };
-      timer = setTimeout(loopTyping, getRandomTypingInterval());
+      setTimeout(loopTyping, getRandomTypingInterval());
     };
     loopTyping();
   };
 
   function deletingEffect() {
-    let word = currentKeyword.value.split("");
+    let word = currentKeyword.value.split('');
     var loopDeleting = function() {
       if (word.length > 0) {
         word.pop();
-        renderedKyword.value = word.join("");
+        renderedKyword.value = word.join('');
         if (renderedKyword.value.length === currentKeyword.value.length - 1) {
-          timer = setTimeout(loopDeleting, 200);
+          setTimeout(loopDeleting, 200);
         } else {
-          timer = setTimeout(loopDeleting, 50);
+          setTimeout(loopDeleting, 50);
         }
       } else {
         if (props.value.length > (i + 1)) {
@@ -78,17 +70,15 @@
         } else {
           i = 0;
         };
-
         nextWord()
         typingEffect();
-
-        return false;
+        return;
       };
     };
     loopDeleting();
   };
 
-  const colorStyle = computed(() => `
+  const calculatedColorStyle = computed(() => `
     color: ${currentColor.value};
     border-coler: ${currentColor.value};
   `)
@@ -119,8 +109,13 @@
 
 <template>
   <div class="typewriter" >
-    <span :style="colorStyle">{{ renderedKyword }}</span>
-    <span class="caret" :style="colorStyle"/>
+    <span :style="calculatedColorStyle">
+      {{ renderedKyword }}
+    </span>
+    <span
+      class="caret"
+      :style="calculatedColorStyle"
+    />
   </div>
 </template>
 

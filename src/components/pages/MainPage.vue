@@ -17,6 +17,12 @@ const onOpenCard = () => {
 }
 </script>
 
+
+// TODO:
+// Fixed header
+// Fix card twitch
+// Randomize words
+
 <template>
   <PageWrapper :blocked="dialogOpened">
     <Header/>

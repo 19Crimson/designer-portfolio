@@ -7,18 +7,26 @@ const props = defineProps({
   }
 })
 
-const computedStyle = computed(() => props.blocked ? 'overflow: hidden;' : '')
+const pageContainerClass = computed(
+  () => props.blocked
+    ? 'page-container page-container--fixed'
+    : 'page-container'
+)
 </script>
 
 <template>
-  <div class="page-container" :style="computedStyle">
+  <div :class="pageContainerClass">
     <slot/>
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .page-container {
   display: flex;
   flex-direction: column;
+
+  &--fixed {
+    overflow: hidden;
+  }
 }
 </style>

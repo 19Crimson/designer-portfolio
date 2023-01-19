@@ -56,12 +56,12 @@
   const cardStyle = computed(() => {
     const rX = mousePX.value * 30;
     const rY = mousePY.value * -30;
-    const style = {
+
+    return {
       color: props.titleColor,
       height: `${cardHeight.value}px`,
       transform: `rotateY(${-0.33*rX}deg) rotateX(${-0.33*rY}deg)`,
     };
-    return style;
   })
 
   const fgStyle = computed(() => {
@@ -69,10 +69,10 @@
     const rY = mousePY.value * -30;
     const tX = mousePX.value * -40;
     const tY = mousePY.value * -40;
-    const style = {
+
+    return {
       transform: `rotateY(${-0.33*rX}deg) rotateX(${-0.33*rY}deg) translateX(${0.33 * tX}px) translateY(${0.33 * tY}px)`,
     }
-    return style;
   })
 
   const titleStyle = computed(() => {
@@ -80,10 +80,10 @@
     const rY = mousePY.value * -30;
     const tX = mousePX.value * -40;
     const tY = mousePY.value * -40;
-    const style = {
+
+    return {
       transform: `rotateY(${-0.33*rX}deg) rotateX(${-0.33*rY}deg) translateX(${0.33 * tX}px) translateY(${0.33 * tY}px)`,
     }
-    return style;
   })
 
   const bgStyle = computed(() => {
@@ -166,20 +166,6 @@
 		rgba(${props.gradientColor}, 0.0086472) 93.33%,
 		rgba(${props.gradientColor}, 0) 100%)`
 	}
-
-  // const cardBgTransform = computed(() => {
-  //   const rX = mousePX.value * 30;
-  //   const rY = mousePY.value * -30;
-  //   const tX = mousePX.value * -40;
-  //   const tY = mousePY.value * -40;
-  //   const style = {
-  //     transform: `rotateY(${rX}deg) rotateX(${rY}deg) translateX(${tX}px) translateY(${tY}px)`,
-  //   }
-  //   if (isHovered.value) {
-  //     style.transform += 'scale(1.02)'
-  //   }
-  //   return style;
-  // })
 </script>
 
 <template>

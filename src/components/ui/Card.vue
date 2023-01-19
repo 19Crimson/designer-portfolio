@@ -36,18 +36,9 @@
 
 <template>
 	<div class="card_wrapper">
-		<img
-      class="card_image"
-      :src="`/src/assets/img/${props.img}`"
-    >
-		<div
-      class="gradient"
-      :style="gradientStyle"
-    >
-			<div
-        class="card_title"
-        :style="cardStyle"
-      >
+		<img class="card_image" :src="`/src/assets/img/${props.img}`" >
+		<div class="gradient" :style="gradientStyle">
+			<div class="card_title" :style="cardStyle">
 				Текст
 			</div>
 		</div>
