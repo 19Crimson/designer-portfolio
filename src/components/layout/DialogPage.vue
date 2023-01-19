@@ -28,7 +28,6 @@ const handleMouseleaveClose = () => {
 const computedCloseClass = computed(() => closeHovered.value ? 'dialog-close--transparent' : '')
 
 const handleClose = () => {
-	console.log('close')
 	emit('close')
 }
 </script>
@@ -90,7 +89,7 @@ const handleClose = () => {
 	// display: none;
 	visibility: hidden;
 	height: 2000px;
-	padding: 150px;
+	padding: 100px;
 	position: fixed;
 	top: 0;
 	left: 0;

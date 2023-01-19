@@ -261,7 +261,7 @@ h1+p, p+p {
   transition: .3s $returnEasing;
   
   &:hover {
-    z-index: 9999;
+    z-index: 250;
   }
   &:active {
     transform: scale(1.5)

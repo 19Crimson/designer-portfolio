@@ -8,7 +8,6 @@
 		},
 	})
 
-
 	const cardStyle = {
 		color: props.titleColor
 	}

@@ -6,7 +6,7 @@ import DialogPage from '@/components/layout/DialogPage.vue'
 
 import { ref } from 'vue'
 
-const dialogOpened = ref(true)
+const dialogOpened = ref(false)
 
 const onCloseDialog = () => {
   dialogOpened.value = false
@@ -16,12 +16,15 @@ const onOpenCard = () => {
   dialogOpened.value = true
 }
 </script>
-
-
 // TODO:
 // Fixed header
 // Fix card twitch
 // Randomize words
+// Fix Dialog content owerflow
+// Fix words repeating until all words used
+// Fix CardList / header overflow (margin bottom header 40px)
+// overflow hidden causes scroll to top when open card
+// выдернуть надпись из хедера
 
 <template>
   <PageWrapper :blocked="dialogOpened">

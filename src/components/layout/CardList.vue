@@ -123,7 +123,6 @@ const secondColumnCards = cards.filter((_, index) => (index - 1) % 3 === 0)
 const thirdColumnCards = cards.filter((_, index) => (index - 2) % 3 === 0)
 
 const handleClickCard = (id: number) => {
-  console.log('click')
   emit('openCard', id)
 }
 </script>

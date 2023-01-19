@@ -1,43 +1,13 @@
 <script setup lang="ts">
-  import Typewriter from '@/components/layout/Typewriter.vue';
-
-  const keywords = [
-    'design',
-    'CJM',
-    'processes',
-    'identity',
-    'accessibility',
-    'aha-moment',
-    'growth',
-    'insights',
-    'クスコム旅マップ',
-    'プロセ身元',
-    '图什尼克',
-    'xác thực',
-    'barrierefreiheit',
-    'процессы',
-    'дизайн',
-    'աճը',
-    'processus',
-    'identità',
-    'postřehy'
-  ]
-
-  const colors = [
-    '#FFB9AA',
-    '#F2FDAE',
-    '#DAC3FF',
-    '#7DE3E8',
-    '#FFEB8C',
-    '#FBD0FF',
-  ]
+import Typewriter from '@/components/layout/Typewriter.vue';
 </script>
 
 <template>
   <header class="header">
-    <div class="header_content">
+    <div class="header-plug"/>
+    <div class="header-main">
       <div class="user_profile">
-        <img src="@/assets/img/avatar.png"/>
+        <img src="@/assets/img/logo.png"/>
         <div class="username">Nikita Karpinsky</div>
       </div>
       <a class="tg_link" href="https://t.me/karpnsky" target="_blank">
@@ -47,7 +17,7 @@
     <div class="header-title" >When product</div>
     <div class="header-title header-title-suffix" >
       meets&nbsp;
-      <typewriter :value="keywords" :colors="colors"/>
+      <typewriter/>
     </div>
   </header>
 </template>
@@ -62,6 +32,7 @@
   /* background-image : url("../src/assets/img/header_bg.png"); */
   background-repeat: no-repeat;
   background-size: auto;
+  max-height: 342px;
 }
 .header-title {
   font-family: SfPro;
@@ -75,27 +46,49 @@
 
   &-suffix {
     display: flex;
+    margin-bottom: 34px;
   }
 }
-.header_content {
+.header-main {
+  width: calc(100% - 80px);
+  position: relative;
+  position: fixed;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 80px;
+  margin-bottom: 120px;
+  z-index: 500;
 }
-.user_profile{
+.header-plug {
+  margin-bottom: 120px;
+}
+.user_profile {
+  z-index: 500;
   display: flex;
+  position: relative;
   align-items: center;
+  > img {
+    position: absolute;
+    z-index: 500;
+    left: -12px;
+  }
 }
 a {
   text-decoration: none;
   white-space: nowrap;
 }
 .username {
+  user-select: none;
+  z-index: 500;
   font-family: 'Mont';
-  margin-left: 22px;
   font-style: normal;
   font-weight: 700;
   font-size: 32px;
+  position: absolute;
+  left: 94px;
+  text-transform: uppercase;
+  text-align: left;
+  letter-spacing: 80%;
+  line-height: 42px;
 }
 .tg_link {
   font-family: 'Mont';
