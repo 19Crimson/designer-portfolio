@@ -224,7 +224,7 @@ onMounted(() => {
 
   &-suffix {
     display: flex;
-    margin-bottom: 34px;
+    margin-bottom: 52px;
   }
 }
 .typewriter__keyword {

@@ -24,6 +24,7 @@ const onOpenCard = () => {
 // overflow hidden causes scroll to top when open card
 // выдернуть надпись из хедера
 // fix header content right overflow
+// scroll dialog
 
 <template>
   <PageWrapper :blocked="dialogOpened">

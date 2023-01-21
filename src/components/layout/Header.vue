@@ -18,10 +18,10 @@ import { scrrollTop } from '@/utils/helpers'
         <a class="social-link social-link--tg" href="https://t.me/karpnsky" target="_blank">
           <div class="social-link__text">Tg</div>
         </a>
-        <a class="social-link social-link--inst" href="https://t.me/karpnsky" target="_blank">
+        <a class="social-link social-link--inst" href="https://www.instagram.com/n.karpnsky/" target="_blank">
           <div class="social-link__text">Inst</div>
         </a>
-        <a class="social-link social-link--linked-in" href="https://t.me/karpnsky" target="_blank">
+        <a class="social-link social-link--linked-in" href="https://www.linkedin.com/in/nikita-karpinskiy-07b504211/" target="_blank">
           <div class="social-link__text">LinkedIn</div>
         </a>
       </div>
@@ -80,7 +80,7 @@ import { scrrollTop } from '@/utils/helpers'
 		rgba(16, 16, 16, 0) 100%);
 }
 .header__plug {
-  margin-bottom: 200px;
+  margin-bottom: 160px;
 }
 .header__logo {
   cursor: pointer;

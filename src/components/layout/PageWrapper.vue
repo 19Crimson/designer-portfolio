@@ -9,7 +9,7 @@ const props = defineProps({
 
 const pageContainerClass = computed(
   () => props.blocked
-    ? 'page-container page-container--fixed'
+    ? 'page-container page-container--noscroll'
     : 'page-container'
 )
 </script>
@@ -25,7 +25,7 @@ const pageContainerClass = computed(
   display: flex;
   flex-direction: column;
 
-  &--fixed {
+  &--noscroll {
     overflow: hidden;
   }
 }

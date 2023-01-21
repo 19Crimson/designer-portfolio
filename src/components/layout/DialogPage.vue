@@ -2,30 +2,16 @@
 import {
 	defineProps,
 	defineEmits,
-	ref,
-	computed
 } from 'vue'
+import CloseButton from '@/components/layout/CloseButton.vue'
 
 const emit = defineEmits(['close'])
-
-const props = defineProps({
+defineProps({
 	opened: {
 		type: Boolean,
 		default: false,
 	}
 })
-
-const closeHovered = ref(false)
-
-const handleMousedownClose = () => {
-	closeHovered.value = true
-}
-
-const handleMouseleaveClose = () => {
-	closeHovered.value = false
-}
-
-const computedCloseClass = computed(() => closeHovered.value ? 'dialog-close--transparent' : '')
 
 const handleClose = () => {
 	emit('close')
@@ -34,14 +20,17 @@ const handleClose = () => {
 
 <template>
 	<div
-		class="dialog"
-		:class="opened && 'dialog--active'"
+		class="overlay"
+		:class="opened && 'overlay--active'"
 		@click.self="handleClose"
 	>
 		<div
-			class="dialog__inner"
-			:class="opened && 'dialog__inner--active'"
+			class="overlay__inner"
+			:class="opened && 'overlay__inner--active'"
 		>
+      <div class="overlay__close" >
+        <CloseButton @click="handleClose"/>
+      </div>
 			<div class="content-row">
 				<div class="content-row__left-cell">
 					<div class="test-content"/>
@@ -50,15 +39,7 @@ const handleClose = () => {
 					<div class="test-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
 				</div>
 			</div>
-
 		</div>
-		<div
-			class="dialog-close"
-			:class="computedCloseClass"
-			@click.self="handleClose"
-			@mousedown="handleMousedownClose"
-			@mouseleave="handleMouseleaveClose"
-		/>
 	</div>
 </template>
 
@@ -66,7 +47,7 @@ const handleClose = () => {
 .test-content {
 	width: 100%;
 	height: 1500px;
-	background-color: green;
+	background-image: url("../src/assets/img/header_bg.png");
 }
 .content-row {
 	width: 100%;
@@ -85,46 +66,44 @@ const handleClose = () => {
 	font-family: SfPro;
 	padding: 20px;
 }
-.dialog {
+.overlay {
+  position: fixed;
+  overflow: scroll;
 	// display: none;
 	visibility: hidden;
-	height: 2000px;
 	padding: 100px;
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
 	background-color: rgba(16, 16, 16, 0.1);
 	cursor: pointer;
 	transition: ease-in-out 0.3s;
 	z-index: 1000;
 
+  &__close {
+    position: fixed;
+    top: 22px;
+    left: 22px;
+    width: 100%;
+    height: 100%;
+    max-width: 40px;
+    max-height: 40px;
+  }
+
 	&--active {
 		visibility: visible;
 		display: block;
 		backdrop-filter: blur(15px);
-
-		.dialog-close {
-			animation: scaleUp 0.5s
-				cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-		}
-		.dialog-close:before, .dialog-close:after {
-			display: block;
-		}
 	}
 
 	&__inner {
-		padding: 20px;
+    overflow: hidden;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		transform: scale(0);
-		border-radius: 16px;
+		border-radius: 20px;
 		cursor: default;
 		background-color: white;
 		width: 100%;
 		height: 100%;
-		overflow-y: auto;
 		animation: scaleDown .5s
 			cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
 
@@ -133,40 +112,6 @@ const handleClose = () => {
 			animation: scaleUp 0.5s
 				cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 		}
-	}
-
-	&-close {
-		cursor: pointer;
-		position: absolute;
-		left: 40px;
-		top: 40px;
-		width: 40px;
-		height: 40px;
-		animation: scaleDown .5s
-			cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
-	}
-
-	&-close:before, &-close:after {
-		display: none;
-		content: "";
-		position: absolute;
-    top: 16px;
-    right: 8px;
-		width: 24px;
-		height: 4px;
-		background: rgb(255, 255, 255);
-	}
-
-	&-close:before {
-		transform: rotate(45deg);
-	}
-
-	&-close:after {
-		transform: rotate(-45deg);
-	}
-
-	&-close--transparent:before, &-close--transparent:after {
-		opacity: 80%;
 	}
 
   @keyframes scaleUp {

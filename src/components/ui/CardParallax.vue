@@ -288,11 +288,11 @@ h1+p, p+p {
 }
 
 .gradient {
+  width: 100%;
 	position: absolute;
 	bottom: 0px;
 	left: 0px;
 	padding: 30px;
-	width: calc(100% - 24px);
 }
 
 .card-info {
