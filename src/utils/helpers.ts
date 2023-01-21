@@ -29,3 +29,11 @@ export function getRandomValue(config: getRandomValueConfig) {
     lowerChanceLimit = higherChanceLimit
   }
 }
+
+export function scrrollTop () {
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: 'smooth'
+  })
+}

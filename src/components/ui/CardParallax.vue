@@ -301,6 +301,7 @@ h1+p, p+p {
   position: absolute;
   bottom: 20px;
   transition: .3s $returnEasing;
+  text-align: left;
   
   p {
     opacity: 0;

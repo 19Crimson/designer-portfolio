@@ -172,14 +172,18 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="typewriter" >
-    <span :style="calculatedColorStyle">
-      {{ renderedKyword }}
-    </span>
-    <span
-      class="caret"
-      :style="calculatedColorStyle"
-    />
+  <div class="typewriter" >When product</div>
+    <div class="typewriter typewriter-suffix">
+      meets&nbsp;
+      <div class="typewriter__keyword" >
+        <span :style="calculatedColorStyle">
+          {{ renderedKyword }}
+        </span>
+        <span
+          class="caret"
+          :style="calculatedColorStyle"
+        />
+      </div>
   </div>
 </template>
 
@@ -201,13 +205,29 @@ onMounted(() => {
   to { width: 100% }
 }
 
-/* The typewriter cursor effect */
+/* The typewriter__keyword cursor effect */
 @keyframes blink-caret {
   from, to { border-color: transparent }
   50% { border-color: orange; }
 }
-
 .typewriter {
+  color: #ffffff;
+  font-family: SfPro;
+  font-style: normal;
+  font-weight: 650;
+  font-size: 96px;
+  line-height: 104px;
+  font-stretch: expanded;
+  text-align: left;
+  max-width: 840px;
+  margin-left: 40px;
+
+  &-suffix {
+    display: flex;
+    margin-bottom: 34px;
+  }
+}
+.typewriter__keyword {
   display: flex;
   white-space: nowrap;
 }
