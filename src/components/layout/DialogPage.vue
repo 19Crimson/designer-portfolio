@@ -3,7 +3,7 @@ import {
 	defineProps,
 	defineEmits,
 } from 'vue'
-import CloseButton from '@/components/layout/CloseButton.vue'
+import CloseButton from '@/components/ui/CloseButton.vue'
 
 const emit = defineEmits(['close'])
 defineProps({
@@ -46,8 +46,8 @@ const handleClose = () => {
 <style scoped lang="scss">
 .test-content {
 	width: 100%;
-	height: 1500px;
-	background-image: url("../src/assets/img/header_bg.png");
+	height: 10000px;
+	background-image: url("../src/assets/img/blurtest.jpg");
 }
 .content-row {
 	width: 100%;
@@ -68,7 +68,8 @@ const handleClose = () => {
 }
 .overlay {
   position: fixed;
-  overflow: scroll;
+  overflow-y: scroll;
+  height: 100%;
 	// display: none;
 	visibility: hidden;
 	padding: 100px;
@@ -103,7 +104,6 @@ const handleClose = () => {
 		cursor: default;
 		background-color: white;
 		width: 100%;
-		height: 100%;
 		animation: scaleDown .5s
 			cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
 

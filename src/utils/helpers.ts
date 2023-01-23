@@ -37,3 +37,10 @@ export function scrrollTop () {
     behavior: 'smooth'
   })
 }
+
+export function getImageOnload (url: string, cb: (img: any, err?: any) => void) {
+  const img = new Image();
+  img.onload = () => cb(img);
+  img.onerror = (err) => cb(null, err);
+  img.src = url;
+};

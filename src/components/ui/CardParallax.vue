@@ -7,6 +7,7 @@
     computed,
     watch,
   } from 'vue'
+  import { getImageOnload } from '@/utils/helpers'
 
   const emit = defineEmits(['click'])
 
@@ -130,17 +131,15 @@
     emit('click')
   }
 
-  const getImageHeight = (url: any, cb: any) => {
-    const img = new Image();
-    img.onload = () => cb(null, img);
-    img.onerror = (err) => cb(err);
-    img.src = url;
-  };
-
   watch(
     () => clientWidth.value,
     () => {
-      getImageHeight(`/src/assets/img/${props.bgImage}`, (err: any, img: any) => {
+      const bgImagePath = `/src/assets/img/${props.bgImage}`
+      getImageOnload(bgImagePath, (img: any, err: any) => {
+        if (err) {
+          console.error('Error while uploading image with path: ', bgImagePath)
+          return;
+        }
         cardHeight.value = (img.naturalHeight / img.naturalWidth) * (window.innerWidth -160) / 3;
       });
     },
@@ -177,28 +176,17 @@
     @mouseup="handleMouseup"
     ref="card"
   >
-    <div class="card"
-      :style="cardStyle"
-    >
-      <div
-        class="card-bg"
-        :style="[bgStyle]"
-      />
+    <div class="card" :style="cardStyle">
+      <div class="card-bg" :style="[bgStyle]"/>
       <img
         class="card-fg"
         :src="`/src/assets/img/${fgImage}`"
         :style="[fgStyle]"
       >
-      <div
-        class="gradient"
-        :style="gradientStyle"
-      />
-      <div
-        class="card-info"
-        :style="[titleStyle]"
-      >
-          {{ title }}
-        </div>
+      <div class="gradient" :style="gradientStyle"/>
+      <div class="card-info" :style="[titleStyle]">
+        {{ title }}
+      </div>
     </div>
   </div>
 </template>

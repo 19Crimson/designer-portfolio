@@ -25,6 +25,8 @@ const onOpenCard = () => {
 // выдернуть надпись из хедера
 // fix header content right overflow
 // scroll dialog
+// add folder prop to card list
+// replace cards (content config)
 
 <template>
   <PageWrapper :blocked="dialogOpened">
