@@ -13,6 +13,7 @@
 }
 
 body {
+  font-family: SfPro;
   background-color: #161616;
   margin: 0;
   display: flex;

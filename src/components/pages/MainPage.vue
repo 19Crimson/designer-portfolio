@@ -2,7 +2,7 @@
 import PageWrapper from '@/components/layout/PageWrapper.vue'
 import Header from '@/components/layout/Header.vue'
 import CardList from '@/components/layout/CardList.vue'
-import DialogPage from '@/components/layout/DialogPage.vue'
+import TestProject from '@/components/projects/TestProject.vue'
 import Typewriter from '@/components/layout/Typewriter.vue';
 
 import { ref } from 'vue'
@@ -27,13 +27,16 @@ const onOpenCard = () => {
 // scroll dialog
 // add folder prop to card list
 // replace cards (content config)
-
+// content default margins: картинки прижаты, но между ними 2px; Текст боковые 32px; заголовок - текст = 32px; макс ширина текста 680px;
+// fix ts error in project header
+// title align-center fix
+// linter
 <template>
   <PageWrapper :blocked="dialogOpened">
     <Header/>
     <Typewriter/>
     <CardList @openCard="onOpenCard"/>
-    <DialogPage
+    <TestProject
       :opened="dialogOpened"
       @close="onCloseDialog"
     />

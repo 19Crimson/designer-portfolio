@@ -2,66 +2,59 @@
 import {
 	defineProps,
 	defineEmits,
+  computed,
 } from 'vue'
 import CloseButton from '@/components/ui/CloseButton.vue'
 
 const emit = defineEmits(['close'])
-defineProps({
+
+const props = defineProps({
 	opened: {
 		type: Boolean,
 		default: false,
-	}
+	},
+	bgImage: String,
 })
 
 const handleClose = () => {
 	emit('close')
 }
+
+const overlayClass = computed(() => ({
+  'overlay': true,
+  'overlay--active': props.opened,
+}))
+
+const overlayInnerClass = computed(() => ({
+  'overlay__inner': true,
+  'overlay__inner--active': props.opened,
+}))
+
+const bgStyle = computed(() => ({
+  ...(props.bgImage && { backgroundImage: `url("/src/assets/img/${props.bgImage}")` }),
+}))
 </script>
 
 <template>
 	<div
-		class="overlay"
-		:class="opened && 'overlay--active'"
+		:class="overlayClass"
 		@click.self="handleClose"
 	>
 		<div
 			class="overlay__inner"
-			:class="opened && 'overlay__inner--active'"
-		>
-      <div class="overlay__close" >
-        <CloseButton @click="handleClose"/>
-      </div>
-			<div class="content-row">
-				<div class="content-row__left-cell">
-					<div class="test-content"/>
-				</div>
-				<div class="content-row__right-cell">
-					<div class="test-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-				</div>
-			</div>
+			:class="overlayInnerClass"
+      :style="bgStyle"
+    >
+      <CloseButton
+        class="overlay__close"
+        @click="handleClose"
+      />
+      <slot/>
 		</div>
 	</div>
 </template>
 
 <style scoped lang="scss">
-.test-content {
-	width: 100%;
-	height: 10000px;
-	background-image: url("../src/assets/img/blurtest.jpg");
-}
-.content-row {
-	width: 100%;
-	display: flex;
-
-	&__left-cell, &__right-cell {
-		width: 100%;
-		max-width: 50%;
-
-		&--third {
-			max-width: 33%;
-		}
-	}
-}
 .test-text {
 	font-family: SfPro;
 	padding: 20px;
@@ -70,6 +63,7 @@ const handleClose = () => {
   position: fixed;
   overflow-y: scroll;
   height: 100%;
+  width: 100%;
 	// display: none;
 	visibility: hidden;
 	padding: 100px;

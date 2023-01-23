@@ -35,7 +35,6 @@ import { scrrollTop } from '@/utils/helpers'
   color: #ffffff;
   display: flex;
   flex-direction: column;
-  /* background-image : url("../src/assets/img/header_bg.png"); */
   background-repeat: no-repeat;
   background-size: auto;
 }
