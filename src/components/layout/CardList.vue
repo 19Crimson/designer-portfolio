@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import CardParallax from '@/components/ui/CardParallax.vue'
-import { defineEmits } from 'vue'
+import CardParallax from '@/components/ui/ParallaxCard.vue';
+import { defineEmits } from 'vue';
 
-const emit = defineEmits(['openCard'])
+const emit = defineEmits(['openCard']);
 
 const cards = [
   {
@@ -116,15 +116,15 @@ const cards = [
     title: 'Trees',
     titleColor: 'white',
   },
-]
+];
 
-const firstColumnCards = cards.filter((_, index) => index % 3 === 0)
-const secondColumnCards = cards.filter((_, index) => (index - 1) % 3 === 0)
-const thirdColumnCards = cards.filter((_, index) => (index - 2) % 3 === 0)
+const firstColumnCards = cards.filter((_, index) => index % 3 === 0);
+const secondColumnCards = cards.filter((_, index) => (index - 1) % 3 === 0);
+const thirdColumnCards = cards.filter((_, index) => (index - 2) % 3 === 0);
 
 const handleClickCard = (id: number) => {
-  emit('openCard', id)
-}
+  emit('openCard', id);
+};
 </script>
 
 <template>
@@ -132,6 +132,7 @@ const handleClickCard = (id: number) => {
     <div class="card-list-column">
       <CardParallax
         v-for="(card, id) in firstColumnCards"
+        :key="id"
         v-bind="card"
         @click="() => handleClickCard(id)"
       />
@@ -140,6 +141,7 @@ const handleClickCard = (id: number) => {
     <div class="card-list-column">
       <CardParallax
         v-for="(card, id) in secondColumnCards"
+        :key="id"
         v-bind="card"
         @click="() => handleClickCard(id)"
       />
@@ -148,6 +150,7 @@ const handleClickCard = (id: number) => {
     <div class="card-list-column">
       <CardParallax
         v-for="(card, id) in thirdColumnCards"
+        :key="id"
         v-bind="card"
         @click="() => handleClickCard(id)"
       />

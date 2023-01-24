@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { defineProps, computed, PropType } from 'vue'
-import { TextAlign } from '@/utils/types'
+import { defineProps, computed, PropType } from 'vue';
+import { TextAlign } from '@/utils/types';
 
 const props = defineProps({
   color: String,
@@ -8,12 +8,12 @@ const props = defineProps({
     type: String as PropType<TextAlign>,
     default: 'left'
   },
-})
+});
 
 const computedStyle = computed(() => ({
   textAlign: props.align,
   color: props.color,
-}))
+}));
 </script>
 
 <template>

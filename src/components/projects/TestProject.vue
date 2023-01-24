@@ -3,22 +3,22 @@ import {
   ProjectModal,
   ProjectHeader,
   ProjectRow,
-  Headline,
+  TextHeadline,
   TextWrapper,
   TextBlock,
   ImageWrapper,
-} from '@/components/layout'
-import { defineProps, defineEmits } from 'vue'
+} from '@/components';
+import { defineProps, defineEmits } from 'vue';
 
-const props = defineProps({
+defineProps({
   opened: Boolean,
-})
+});
 
-const emit = defineEmits(['close'])
+const emit = defineEmits(['close']);
 
 const handleClose = () => {
-  emit('close')
-}
+  emit('close');
+};
 </script>
 
 <template>
@@ -44,9 +44,9 @@ const handleClose = () => {
 
     <ProjectRow center>
       <TextBlock>
-        <Headline>
+        <TextHeadline>
           Test headline
-        </Headline>
+        </TextHeadline>
         <TextWrapper>
           Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book. It usually begins with:
         </TextWrapper>
@@ -55,9 +55,9 @@ const handleClose = () => {
 
     <ProjectRow center>
       <TextBlock>
-        <Headline>
+        <TextHeadline>
           Test headline
-        </Headline>
+        </TextHeadline>
         <TextWrapper>
           Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book. It usually begins with:
         </TextWrapper>
@@ -76,9 +76,9 @@ const handleClose = () => {
       />
 
       <TextBlock>
-        <Headline>
+        <TextHeadline>
           Test headline
-        </Headline>
+        </TextHeadline>
         <TextWrapper>
           Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book. It usually begins with:
         </TextWrapper>
@@ -105,9 +105,9 @@ const handleClose = () => {
 
     <ProjectRow center color="#3c3c3c">
       <TextBlock>
-        <Headline>
+        <TextHeadline>
           Test headline
-        </Headline>
+        </TextHeadline>
         <TextWrapper>
           Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book. It usually begins with:
         </TextWrapper>
@@ -126,12 +126,12 @@ const handleClose = () => {
       title-color="#FFB9AA"
     >
       <TextBlock>
-        <Headline
+        <TextHeadline
           color="white"
           align="center"
         >
           Test headline
-        </Headline>
+        </TextHeadline>
 
         <TextWrapper
           color="white"

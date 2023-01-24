@@ -1,6 +1,6 @@
 module.exports = {
   "env": {
-    "browser": true,
+    "node": true,
     "es2021": true
   },
   "extends": [
@@ -10,11 +10,16 @@ module.exports = {
   ],
   "overrides": [
   ],
-  "parser": "@typescript-eslint/parser",
+  "parser": "vue-eslint-parser",
   "parserOptions": {
     "ecmaVersion": "latest",
-    "sourceType": "module"
+    "sourceType": "module",
+    "parser": {
+      "ts": "@typescript-eslint/parser",
+      "<template>": "espree"
+    }
   },
+
   "plugins": [
     "vue",
     "@typescript-eslint"
@@ -23,10 +28,6 @@ module.exports = {
     "indent": [
       "error",
       2
-    ],
-    "linebreak-style": [
-      "error",
-      "unix"
     ],
     "semi": [
       "error",

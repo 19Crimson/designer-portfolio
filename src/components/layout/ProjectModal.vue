@@ -1,38 +1,38 @@
 <script setup lang="ts">
 import {
-	defineProps,
-	defineEmits,
+  defineProps,
+  defineEmits,
   computed,
-} from 'vue'
-import CloseButton from '@/components/ui/CloseButton.vue'
+} from 'vue';
+import CloseButton from '@/components/ui/CloseButton.vue';
 
-const emit = defineEmits(['close'])
+const emit = defineEmits(['close']);
 
 const props = defineProps({
-	opened: {
-		type: Boolean,
-		default: false,
-	},
-	bgImage: String,
-})
+  opened: {
+    type: Boolean,
+    default: false,
+  },
+  bgImage: String,
+});
 
 const handleClose = () => {
-	emit('close')
-}
+  emit('close');
+};
 
 const overlayClass = computed(() => ({
   'overlay': true,
   'overlay--active': props.opened,
-}))
+}));
 
 const overlayInnerClass = computed(() => ({
   'overlay__inner': true,
   'overlay__inner--active': props.opened,
-}))
+}));
 
 const bgStyle = computed(() => ({
   ...(props.bgImage && { backgroundImage: `url("/src/assets/img/${props.bgImage}")` }),
-}))
+}));
 </script>
 
 <template>
@@ -64,7 +64,7 @@ const bgStyle = computed(() => ({
   overflow-y: scroll;
   height: 100%;
   width: 100%;
-	// display: none;
+	display: none;
 	visibility: hidden;
 	padding: 100px;
 	background-color: rgba(16, 16, 16, 0.1);

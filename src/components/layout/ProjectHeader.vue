@@ -1,12 +1,8 @@
 <script setup lang="ts">
-import { defineProps, computed } from 'vue'
-import { TextAlign } from '@/utils/types'
+import { defineProps, computed } from 'vue';
+import { TextAlign } from '@/utils/types';
 
 const props = defineProps({
-  /**
-   * The only true button.
-   * @title Best Button
-   */
   title: String,
   folder: String,
   bgImage: String,
@@ -14,19 +10,18 @@ const props = defineProps({
   titleColor: String,
   center: Boolean,
   noBgRepeat: Boolean,
-})
+});
 
 const headerStyle = computed(() => ({
   ...(props.bgImage && { backgroundImage: `url("/src/assets/img/${props.folder}/${props.bgImage}")` }),
-}))
+}));
 
 const titleStyle = computed(() => ({
   color: props.titleColor,
-  // FIXME: Fix ts error
   textAlign: props.center ? 'center' : 'left' as TextAlign,
   backgroundColor: props.bgColor,
   backgroundRepeat: props.noBgRepeat ? 'no-repeat' : 'repeat',
-}))
+}));
 </script>
 
 <template>

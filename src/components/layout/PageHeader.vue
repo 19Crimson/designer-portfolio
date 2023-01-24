@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { scrrollTop } from '@/utils/helpers'
+import { scrrollTop } from '@/utils/helpers';
 </script>
 
 <template>

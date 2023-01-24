@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { defineProps, computed } from 'vue'
+import { defineProps, computed } from 'vue';
 
 const props = defineProps({
   folder: String,
   image: String,
-})
+});
 
-const computedSrc = computed(() => `/src/assets/img/${props.folder}/${props.image}`)
+const computedSrc = computed(() => `/src/assets/img/${props.folder}/${props.image}`);
 </script>
 
 <template>

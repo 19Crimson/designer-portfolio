@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import {
-	defineEmits,
-} from 'vue'
+  defineEmits,
+} from 'vue';
 
-const emit = defineEmits(['click'])
+const emit = defineEmits(['click']);
 
 const handleClick = () => {
-	emit('click')
-}
+  emit('click');
+};
 </script>
 
 <template>

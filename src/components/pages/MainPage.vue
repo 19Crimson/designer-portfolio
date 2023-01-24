@@ -1,21 +1,23 @@
 <script setup lang="ts">
-import PageWrapper from '@/components/layout/PageWrapper.vue'
-import Header from '@/components/layout/Header.vue'
-import CardList from '@/components/layout/CardList.vue'
-import TestProject from '@/components/projects/TestProject.vue'
-import Typewriter from '@/components/layout/Typewriter.vue';
+import {
+  PageHeader,
+  TypeWriter,
+  TestProject,
+  PageWrapper,
+  CardList,
+} from '@/components';
 
-import { ref } from 'vue'
+import { ref } from 'vue';
 
-const dialogOpened = ref(false)
+const dialogOpened = ref(false);
 
 const onCloseDialog = () => {
-  dialogOpened.value = false
-}
+  dialogOpened.value = false;
+};
 
 const onOpenCard = () => {
-  dialogOpened.value = true
-}
+  dialogOpened.value = true;
+};
 </script>
 // TODO:
 // Fix Dialog content owerflow
@@ -33,8 +35,8 @@ const onOpenCard = () => {
 // linter
 <template>
   <PageWrapper :blocked="dialogOpened">
-    <Header/>
-    <Typewriter/>
+    <PageHeader/>
+    <TypeWriter/>
     <CardList @openCard="onOpenCard"/>
     <TestProject
       :opened="dialogOpened"

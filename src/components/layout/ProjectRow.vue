@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineProps, computed } from 'vue'
+import { defineProps, computed } from 'vue';
 
 const props = defineProps({
   folder: {
@@ -11,24 +11,24 @@ const props = defineProps({
   noBgRepeat: Boolean,
   noPadding: Boolean,
   center: Boolean,  
-})
+});
 
 const bgPath = computed(() => {
   return props.folder
     ? `url("/src/assets/img/${props.folder}/${props.bgImage}")`
-    : `url("/src/assets/img/${props.bgImage}")`
-})
+    : `url("/src/assets/img/${props.bgImage}")`;
+});
 
 const rowWrapperStyle = computed(() => ({
   ...(props.bgImage && { backgroundImage: bgPath.value }),
   backgroundColor: props.color,
   backgroundRepeat: props.noBgRepeat ? 'no-repeat' : 'repeat',
   padding: props.noPadding ? '0' : '60px 0px'
-}))
+}));
 
 const rowStyle = computed(() => ({
   'justify-content': props.center ? 'center' : 'space-between',
-}))
+}));
 </script>
 
 <template>
