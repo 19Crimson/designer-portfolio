@@ -19,11 +19,6 @@ export function getRandomValue(config: getRandomValueConfig) {
       randomChance >= lowerChanceLimit &&
       randomChance < higherChanceLimit
     ) {
-      if (chances.length === 2) {
-        console.log('randomChance', randomChance);
-        console.log('chanceLimits', lowerChanceLimit, higherChanceLimit);
-        console.log('value', values[i]);
-      }
       return values[i];
     }
     lowerChanceLimit = higherChanceLimit;

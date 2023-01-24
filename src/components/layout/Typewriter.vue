@@ -152,13 +152,9 @@ const nextWord = () => {
 
   if (step.value === 0) {
     const list = keywords[0];
-    console.log('list', list);
-    console.log('word', list[getRandomInt(list.length)]);
     currentKeyword.value = list[getRandomInt(list.length)];
   } else if (step.value === 1) {
     const list = keywords[2];
-    console.log('list', list);
-    console.log('word', list[getRandomInt(list.length)]);
     currentKeyword.value = list[getRandomInt(list.length)];
   } else {
     currentKeyword.value = currentList.value[getRandomInt(currentList.value.length)];
