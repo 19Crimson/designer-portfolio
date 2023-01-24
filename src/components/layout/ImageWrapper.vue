@@ -20,6 +20,7 @@ const computedSrc = computed(() => `/src/assets/img/${props.folder}/${props.imag
   width: 100%;
 
   > img {
+    display: block;
     width: 100%;
     object-fit: contain;
   }

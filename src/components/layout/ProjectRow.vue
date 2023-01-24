@@ -2,22 +2,38 @@
 import { defineProps, computed } from 'vue'
 
 const props = defineProps({
-  folder: String,
+  folder: {
+    type: String,
+    default: '',
+  },
   bgImage: String,
-  bgColor: String,
+  color: String,
   noBgRepeat: Boolean,
+  noPadding: Boolean,
+  center: Boolean,  
 })
 
-const headerStyle = computed(() => ({
-  ...(props.bgImage && { backgroundImage: `url("/src/assets/img/${props.folder}/${props.bgImage}")` }),
-  backgroundColor: props.bgColor,
+const bgPath = computed(() => {
+  return props.folder
+    ? `url("/src/assets/img/${props.folder}/${props.bgImage}")`
+    : `url("/src/assets/img/${props.bgImage}")`
+})
+
+const rowWrapperStyle = computed(() => ({
+  ...(props.bgImage && { backgroundImage: bgPath.value }),
+  backgroundColor: props.color,
   backgroundRepeat: props.noBgRepeat ? 'no-repeat' : 'repeat',
+  padding: props.noPadding ? '0' : '60px 0px'
+}))
+
+const rowStyle = computed(() => ({
+  'justify-content': props.center ? 'center' : 'space-between',
 }))
 </script>
 
 <template>
-  <div class="project-row__wrapper" :style="headerStyle">
-    <div class="project-row" :style="headerStyle">
+  <div class="project-row__wrapper" :style="rowWrapperStyle">
+    <div class="project-row" :style="rowStyle">
       <slot/>
     </div>
   </div>
@@ -25,8 +41,8 @@ const headerStyle = computed(() => ({
 
 <style scoped lang="scss">
 .project-row {
+  width: 100%;
   display: flex;
-  justify-content: space-between;
 
   &__wrapper {
     display: flex;

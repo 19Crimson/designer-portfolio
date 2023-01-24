@@ -1,13 +1,18 @@
 <script setup lang="ts">
 import { defineProps, computed } from 'vue'
+import { TextAlign } from '@/utils/types'
 
 const props = defineProps({
+  /**
+   * The only true button.
+   * @title Best Button
+   */
   title: String,
   folder: String,
   bgImage: String,
   bgColor: String,
   titleColor: String,
-  alignCenter: Boolean,
+  center: Boolean,
   noBgRepeat: Boolean,
 })
 
@@ -18,7 +23,7 @@ const headerStyle = computed(() => ({
 const titleStyle = computed(() => ({
   color: props.titleColor,
   // FIXME: Fix ts error
-  textAlign: props.alignCenter ? 'center' : 'left',
+  textAlign: props.center ? 'center' : 'left' as TextAlign,
   backgroundColor: props.bgColor,
   backgroundRepeat: props.noBgRepeat ? 'no-repeat' : 'repeat',
 }))
