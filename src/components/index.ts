@@ -9,7 +9,7 @@ import {
   ImageWrapper,
   PageHeader,
   PageWrapper,
-  TypeWriter,
+  Typewriter,
 } from '@/components/layout/';
 
 import MainPage from '@/components/pages/MainPage.vue';
@@ -29,5 +29,5 @@ export {
   PageWrapper,
   MainPage,
   TestProject,
-  TypeWriter
+  Typewriter
 };

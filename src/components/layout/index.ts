@@ -8,7 +8,7 @@ import TextBlock from '@/components/layout/TextBlock.vue';
 import CardList from '@/components/layout/CardList.vue';
 import PageHeader from '@/components/layout/PageHeader.vue';
 import PageWrapper from '@/components/layout/PageWrapper.vue';
-import TypeWriter from '@/components/layout/PageWrapper.vue';
+import Typewriter from '@/components/layout/PageWrapper.vue';
 
 export {
   CardList,
@@ -21,5 +21,5 @@ export {
   ImageWrapper,
   PageHeader,
   PageWrapper,
-  TypeWriter,
+  Typewriter,
 };

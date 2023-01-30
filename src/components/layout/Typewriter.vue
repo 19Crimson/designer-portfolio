@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
 import {
   ref,
@@ -168,10 +169,10 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="typewriter" >When product</div>
-    <div class="typewriter typewriter-suffix">
+  <div class="Typewriter">When product</div>
+    <div class="Typewriter Typewriter-suffix">
       meets&nbsp;
-      <div class="typewriter__keyword" >
+      <div class="Typewriter__keyword" >
         <span :style="calculatedColorStyle">
           {{ renderedKyword }}
         </span>
@@ -201,12 +202,12 @@ onMounted(() => {
   to { width: 100% }
 }
 
-/* The typewriter__keyword cursor effect */
+/* The Typewriter__keyword cursor effect */
 @keyframes blink-caret {
   from, to { border-color: transparent }
   50% { border-color: orange; }
 }
-.typewriter {
+.Typewriter {
   color: #ffffff;
   font-family: SfPro;
   font-style: normal;
@@ -223,7 +224,7 @@ onMounted(() => {
     margin-bottom: 52px;
   }
 }
-.typewriter__keyword {
+.Typewriter__keyword {
   display: flex;
   white-space: nowrap;
 }

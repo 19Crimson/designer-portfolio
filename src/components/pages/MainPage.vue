@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {
   PageHeader,
-  TypeWriter,
+  Typewriter,
   TestProject,
   PageWrapper,
   CardList,
@@ -29,7 +29,7 @@ const onOpenCard = () => {
 <template>
   <PageWrapper :blocked="dialogOpened">
     <PageHeader/>
-    <TypeWriter/>
+    <Typewriter/>
     <CardList @openCard="onOpenCard"/>
     <TestProject
       :opened="dialogOpened"
@@ -37,6 +37,3 @@ const onOpenCard = () => {
     />
   </PageWrapper>
 </template>
-
-<style scoped>
-</style>
