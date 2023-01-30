@@ -42,8 +42,8 @@ const handleClick = () => {
   &__icon {
     opacity: 1;
     position: absolute;
-    top: 7px;
-    left: 7px;
+    top: 9px;
+    left: 9px;
     transition: ease-in-out .5;
   }
 

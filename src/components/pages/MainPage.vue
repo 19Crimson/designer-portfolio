@@ -6,10 +6,16 @@ import {
   PageWrapper,
   CardList,
 } from '@/components';
-
+import {
+  keywordsList,
+  colors,
+  pretext,
+  headline
+} from '@/assets/configs/typewriter';
 import { ref } from 'vue';
 
 const dialogOpened = ref(false);
+const dialog = ref();
 
 const onCloseDialog = () => {
   dialogOpened.value = false;
@@ -17,7 +23,9 @@ const onCloseDialog = () => {
 
 const onOpenCard = () => {
   dialogOpened.value = true;
+  // dialog.value.scrollTo(0, 0);
 };
+
 </script>
 // TODO:
 // Fix Dialog content owerflow
@@ -26,13 +34,20 @@ const onOpenCard = () => {
 // overflow hidden causes scroll to top when open card
 // fix header content right overflow
 // replace cards (content config)
-// Fix closebutton margins
+// Fix close button margins
+// Fix reset scroll on open dialog
 <template>
   <PageWrapper :blocked="dialogOpened">
     <PageHeader/>
-    <Typewriter/>
+    <Typewriter
+      :keywords-list="keywordsList"
+      :colors="colors"
+      :headline="headline"
+      :pretext="pretext"
+    />
     <CardList @openCard="onOpenCard"/>
     <TestProject
+      ref="dialog"
       :opened="dialogOpened"
       @close="onCloseDialog"
     />

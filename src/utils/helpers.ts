@@ -3,8 +3,9 @@ export type getRandomValueConfig= {
   chances: Array<number>,
 }
 
-export function getRandomInt(max: number) {
-  return Math.floor(Math.random() * max);
+export function getRandomArrayElement(array: Array<any>) {
+  const max = array.length;
+  return array[Math.floor(Math.random() * max)];
 }
 
 export function getRandomValue(config: getRandomValueConfig) {
@@ -19,6 +20,9 @@ export function getRandomValue(config: getRandomValueConfig) {
       randomChance >= lowerChanceLimit &&
       randomChance < higherChanceLimit
     ) {
+      if (!values[i]) {
+        console.log('found reason', values, i);
+      }
       return values[i];
     }
     lowerChanceLimit = higherChanceLimit;

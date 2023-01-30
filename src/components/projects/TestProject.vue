@@ -8,7 +8,7 @@ import {
   TextBlock,
   ImageWrapper,
 } from '@/components';
-import { defineProps, defineEmits } from 'vue';
+import { defineEmits } from 'vue';
 
 defineProps({
   opened: Boolean,

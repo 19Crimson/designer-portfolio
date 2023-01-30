@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import {
-  defineProps,
   defineEmits,
   computed,
+  watch,
+  ref,
 } from 'vue';
 import { CloseButton } from '@/components';
 
@@ -15,6 +16,17 @@ const props = defineProps({
   },
   bgImage: String,
 });
+
+// const inner = ref();
+
+// watch(
+//   () => props.opened,
+//   () => {
+//     if (props.opened) {
+//       inner.value.scrollTo(0, 0);
+//     }
+//   }
+// );
 
 const handleClose = () => {
   emit('close');
@@ -64,13 +76,12 @@ const bgStyle = computed(() => ({
   overflow-y: scroll;
   height: 100%;
   width: 100%;
-	display: none;
 	visibility: hidden;
 	padding: 100px;
 	background-color: rgba(16, 16, 16, 0.1);
 	cursor: pointer;
-	transition: ease-in-out 0.3s;
 	z-index: 1000;
+	transition: ease-in-out 0.3s;
 
   &__close {
     position: fixed;
@@ -103,7 +114,7 @@ const bgStyle = computed(() => ({
 
 		&--active {
 			transform: scale(1);
-			animation: scaleUp 0.5s
+			animation: scaleUp .5s
 				cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 		}
 	}

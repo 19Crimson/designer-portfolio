@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { ParallaxCard } from '@/components';
-import CardsData from '@/assets/config.js';
+import Projects from '@/assets/configs/projects';
 import { defineEmits } from 'vue';
 
 const emit = defineEmits(['openCard']);
 
 // Sorting content by columns
-const firstColumnItems = CardsData.filter((_, index) => index % 3 === 0);
-const secondColumnItems = CardsData.filter((_, index) => (index - 1) % 3 === 0);
-const thirdColumnItems = CardsData.filter((_, index) => (index - 2) % 3 === 0);
+const firstColumnItems = Projects.filter((_, index) => index % 3 === 0);
+const secondColumnItems = Projects.filter((_, index) => (index - 1) % 3 === 0);
+const thirdColumnItems = Projects.filter((_, index) => (index - 2) % 3 === 0);
 
 const handleClickCard = (id: number) => {
   emit('openCard', id);

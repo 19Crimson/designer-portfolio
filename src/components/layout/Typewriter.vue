@@ -4,86 +4,77 @@ import {
   ref,
   computed,
   onMounted,
-  defineEmits,
 } from 'vue';
-import { getRandomInt, getRandomValue } from '@/utils/helpers';
+import { getRandomArrayElement, getRandomValue } from '@/utils/helpers';
 
-const keywords = [
-  [
-    'design',
-    'business thinking',
-    'UX research',
-    'CJM',
-    'JTBD',
-    'processes',
-    'identity',
-    'accessibility',
-    'aha-moment',
-    'growth',
-    'insights',
-    'relevance',
-    'clarity',
-    'logic',
-  ],
-  [
-    'Identität',
-    'barrierefreiheit',
-    'identita',
-    'přístupnost',
-    'postřehy',
-    'motif',
-    'processus',
-    'identité',
-    'accessibilité',
-    'clarté',
-  ],
-  [
-    'デザイン',
-    'ビジネス思考',
-    'UXリサーチ',
-    'プロセス',
-    '身元',
-    'アクセシビリティ',
-    'あは瞬間',
-    '成長',
-    'インサイト',
-    '関連性',
-    '明瞭さ',
-    '身份',
-    '可達性',
-    '啊哈時刻',
-    '明晰',
-    '邏輯',
-    'դիզայն',
-    'բիզնես',
-    'ինքնությունը',
-    'մատչելիությունը',
-    'աճը',
-  ],
-];
+export type KeywordsType = {
+  chance: number,
+  keywords: Array<string>
+}
 
-const colors = [
-  '#FFB9AA',
-  '#F2FDAE',
-  '#DAC3FF',
-  '#7DE3E8',
-  '#FFEB8C',
-  '#FBD0FF',
-];
+const props = defineProps({
+  keywordsList: Array<KeywordsType>,
+  colors: {
+    type: Array<string>,
+    default: ['#FFB9AA', '#F2FDAE']
+  },
+  pretext: String,
+  headline: String,
+});
 
-const emit = defineEmits(['next']);
+const firstKeyword = computed(() => {
+  if (!props.keywordsList) {
+    return '';
+  }
+  return props.keywordsList[0].keywords[0];
+});
 
-const currentKeyword = ref(keywords[0][0]);
-const renderedKyword = ref(keywords[0][0]);
-const currentList = ref(keywords[0]);
-const currentColor = ref(colors[Math.floor(getRandomInt(colors.length - 1))]);
+const keywordsLists = computed(() => {
+  if (!props.keywordsList) {
+    return [['']];
+  }
+  return props.keywordsList.map(item => item.keywords);
+});
+
+const keywordsAmount = computed(() => {
+  let amount = 0;
+  props.keywordsList?.forEach(list => {
+    amount += list.keywords.length;
+  });
+  return amount;
+});
+
+const currentKeyword = ref(firstKeyword.value);
+const renderedKeyword = ref(firstKeyword.value);
+const usedKeywords = ref([firstKeyword.value]);
+const currentList = ref(keywordsLists.value[0]);
+const currentColor = ref<string>(getRandomArrayElement(props.colors));
 const usedColors = ref<Array<string>>([currentColor.value]);
-const step = ref(0);
+const step = ref(1);
 
-const getKeywordsList = () => getRandomValue({
-  chances: [50, 10, 40],
-  values: [keywords[0], keywords[1], keywords[2]],
-}) as string[];
+const getKeywordsList = () => {
+  const availableLists = keywordsLists.value?.filter(list => {
+    const avaliableWordsAmount = list.filter(w => !usedKeywords.value.includes(w)).length;
+    return avaliableWordsAmount > 0;
+  });
+  if (availableLists.length === 0) {
+    const a = getRandomArrayElement(keywordsLists.value);
+    console.log('reason 1', a);
+    return a;
+  }
+
+  const a = getRandomValue({
+    chances: props.keywordsList?.map(item => item.chance) ?? [100],
+    values: availableLists,
+  });
+  console.log('reason 2', a);
+  return a;
+
+  // return getRandomValue({
+  //   chances: props.keywordsList?.map(item => item.chance) ?? [100],
+  //   values: availableLists,
+  // });
+};
 
 const getRandomTypingInterval = () => {
   return getRandomValue({
@@ -92,13 +83,11 @@ const getRandomTypingInterval = () => {
   });
 };
 
-let i = 0;
-
 function typingEffect() {
-  let word = currentKeyword.value?.split('');
-  var loopTyping = function() {
-    if (word.length > 0) {
-      renderedKyword.value += word?.shift();
+  const word = currentKeyword.value?.split('');
+  const loopTyping = () => {
+    if (word?.length > 0) {
+      renderedKeyword.value += word.shift();
     } else {
       setTimeout(deletingEffect, 3000);
       return;
@@ -109,23 +98,18 @@ function typingEffect() {
 }
 
 function deletingEffect() {
-  let word = currentKeyword.value?.split('');
-  var loopDeleting = function() {
-    if (word.length > 0) {
+  const word = currentKeyword.value?.split('');
+  const loopDeleting = () => {
+    if (word?.length > 0) {
       word.pop();
-      renderedKyword.value = word.join('');
-      if (renderedKyword.value.length === currentKeyword.value.length - 1) {
+      renderedKeyword.value = word.join('');
+      
+      if (renderedKeyword.value.length === currentKeyword.value.length - 1) {
         setTimeout(loopDeleting, 200);
       } else {
         setTimeout(loopDeleting, 50);
       }
     } else {
-      if (keywords.length > (i + 1)) {
-        i++;
-      } else {
-        i = 0;
-      }
-      emit('next');
       nextWord();
       typingEffect();
       return;
@@ -134,32 +118,41 @@ function deletingEffect() {
   loopDeleting();
 }
 
-const calculatedColorStyle = computed(() => `
+const colorStyle = computed(() => `
   color: ${currentColor.value};
   border-coler: ${currentColor.value};
 `);
 
 const nextWord = () => {
+  const availableColors = props.colors.filter(color => !usedColors.value.includes(color));
+
   currentList.value = getKeywordsList();
 
-  if (usedColors.value.length === colors.length) {
+  if (usedColors.value.length === props.colors.length) {
     usedColors.value = [];
   }
-
-  const availableColors = colors.filter(color => !usedColors.value.includes(color));
-
-  currentColor.value = availableColors[getRandomInt(availableColors.length)];
+  currentColor.value = getRandomArrayElement(availableColors);
   usedColors.value.push(currentColor.value);
 
-  if (step.value === 0) {
-    const list = keywords[0];
-    currentKeyword.value = list[getRandomInt(list.length)];
-  } else if (step.value === 1) {
-    const list = keywords[2];
-    currentKeyword.value = list[getRandomInt(list.length)];
-  } else {
-    currentKeyword.value = currentList.value[getRandomInt(currentList.value.length)];
+  let sourceList = currentList.value;
+  console.log('currentList.value', currentList.value);
+
+  if (step.value === 1) {
+    sourceList = keywordsLists.value[0];
+  } else if (step.value === 2 && keywordsLists.value[1]?.length > 0) {
+    sourceList = keywordsLists.value[1];
   }
+
+  if (keywordsAmount.value === usedKeywords.value.length) {
+    usedKeywords.value = [];
+    currentKeyword.value = getRandomArrayElement(sourceList);
+  } else {
+    currentKeyword.value = getRandomArrayElement(sourceList.filter(w => !usedKeywords.value.includes(w)));
+    usedKeywords.value.push(currentKeyword.value);
+  }
+
+  // console.log('usedKeywords.value', usedKeywords.value, currentKeyword.value);
+
   step.value += 1;
 };
 
@@ -169,18 +162,25 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="Typewriter">When product</div>
-    <div class="Typewriter Typewriter-suffix">
-      meets&nbsp;
-      <div class="Typewriter__keyword" >
-        <span :style="calculatedColorStyle">
-          {{ renderedKyword }}
+  <div class="typewriter">
+    <div v-if="headline" class="typewriter__headline">{{ headline }}</div>
+
+    <div class="typewriter__content">
+      <div v-if="pretext" class="typewriter__content">
+        {{ pretext + '&nbsp;' }}
+      </div>
+
+      <div class="typewriter__keyword">
+        <span :style="colorStyle">
+          {{ renderedKeyword }}
         </span>
+
         <span
-          class="caret"
-          :style="calculatedColorStyle"
+          class="typewriter__caret"
+          :style="colorStyle"
         />
       </div>
+    </div>
   </div>
 </template>
 
@@ -202,12 +202,12 @@ onMounted(() => {
   to { width: 100% }
 }
 
-/* The Typewriter__keyword cursor effect */
+/* The typewriter__keyword cursor effect */
 @keyframes blink-caret {
   from, to { border-color: transparent }
   50% { border-color: orange; }
 }
-.Typewriter {
+.typewriter {
   color: #ffffff;
   font-family: SfPro;
   font-style: normal;
@@ -218,20 +218,24 @@ onMounted(() => {
   text-align: left;
   max-width: 840px;
   margin-left: 40px;
+  margin-bottom: 52px;
 
-  &-suffix {
+  &__content {
     display: flex;
-    margin-bottom: 52px;
   }
-}
-.Typewriter__keyword {
-  display: flex;
-  white-space: nowrap;
-}
 
-.caret {
-  display: block;
-  border-left: 2px solid;
-  animation: blink 1s step-end infinite;
+  &__keyword {
+    min-height: 104px;
+    max-height: 104px;
+    display: flex;
+    white-space: nowrap;
+  }
+
+  &__caret {
+    max-height: 104px;
+    display: block;
+    border-left: 2px solid;
+    animation: blink 1s step-end infinite;
+  }
 }
 </style>
