@@ -1,126 +1,14 @@
 <script setup lang="ts">
 import { ParallaxCard } from '@/components';
+import CardsData from '@/assets/config.js';
 import { defineEmits } from 'vue';
 
 const emit = defineEmits(['openCard']);
 
-const cards = [
-  {
-    bgImage: 'bg.png',
-    fgImage: 'fg.png',
-    title: 'Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ',
-    titleColor: 'white',
-  },
-  {
-    bgImage: 'bg-1.png',
-    fgImage: 'fg-1.png',
-    title: 'Beaches',
-    titleColor: 'white',
-  },
-  {
-    bgImage: 'bg-2.png',
-    fgImage: 'fg-2.png',
-    title: 'Beaches',
-    titleColor: 'white',
-  },
-  {
-    bgImage: 'bg-3.png',
-    fgImage: 'fg-3.png',
-    title: 'Trees',
-    titleColor: 'white',
-  },
-  {
-    bgImage: 'bg-4.png',
-    fgImage: 'fg-4.png',
-    title: 'Trees',
-    titleColor: 'white',
-    'gradient-color': '77, 45, 45',
-  },
-  {
-    bgImage: 'bg-5.png',
-    fgImage: 'fg-5.png',
-    title: 'Trees',
-    titleColor: 'white',
-  },
-  {
-    bgImage: 'bg.png',
-    fgImage: 'fg.png',
-    title: 'Canyons',
-    titleColor: 'white',
-  },
-  {
-    bgImage: 'bg-1.png',
-    fgImage: 'fg-1.png',
-    title: 'Beaches',
-    titleColor: 'white',
-  },
-  {
-    bgImage: 'bg-2.png',
-    fgImage: 'fg-2.png',
-    title: 'Beaches',
-    titleColor: 'white',
-  },
-  {
-    bgImage: 'bg-3.png',
-    fgImage: 'fg-3.png',
-    title: 'Trees',
-    titleColor: 'white',
-  },
-  {
-    bgImage: 'bg-4.png',
-    fgImage: 'fg-4.png',
-    title: 'Trees',
-    titleColor: 'white',
-    'gradient-color': '77, 45, 45',
-  },
-  {
-    bgImage: 'bg-5.png',
-    fgImage: 'fg-5.png',
-    title: 'Trees',
-    titleColor: 'white',
-  },
-  {
-    bgImage: 'bg.png',
-    fgImage: 'fg.png',
-    title: 'Canyons',
-    titleColor: 'white',
-  },
-  {
-    bgImage: 'bg-1.png',
-    fgImage: 'fg-1.png',
-    title: 'Beaches',
-    titleColor: 'white',
-  },
-  {
-    bgImage: 'bg-2.png',
-    fgImage: 'fg-2.png',
-    title: 'Beaches',
-    titleColor: 'white',
-  },
-  {
-    bgImage: 'bg-3.png',
-    fgImage: 'fg-3.png',
-    title: 'Trees',
-    titleColor: 'white',
-  },
-  {
-    bgImage: 'bg-4.png',
-    fgImage: 'fg-4.png',
-    title: 'Trees',
-    titleColor: 'white',
-    'gradient-color': '77, 45, 45',
-  },
-  {
-    bgImage: 'bg-5.png',
-    fgImage: 'fg-5.png',
-    title: 'Trees',
-    titleColor: 'white',
-  },
-];
-
-const firstColumnCards = cards.filter((_, index) => index % 3 === 0);
-const secondColumnCards = cards.filter((_, index) => (index - 1) % 3 === 0);
-const thirdColumnCards = cards.filter((_, index) => (index - 2) % 3 === 0);
+// Sorting content by columns
+const firstColumnItems = CardsData.filter((_, index) => index % 3 === 0);
+const secondColumnItems = CardsData.filter((_, index) => (index - 1) % 3 === 0);
+const thirdColumnItems = CardsData.filter((_, index) => (index - 2) % 3 === 0);
 
 const handleClickCard = (id: number) => {
   emit('openCard', id);
@@ -131,7 +19,7 @@ const handleClickCard = (id: number) => {
   <div class="card-list-container">
     <div class="card-list-column">
       <ParallaxCard
-        v-for="(card, id) in firstColumnCards"
+        v-for="(card, id) in firstColumnItems"
         :key="id"
         v-bind="card"
         @click="() => handleClickCard(id)"
@@ -140,7 +28,7 @@ const handleClickCard = (id: number) => {
 
     <div class="card-list-column">
       <ParallaxCard
-        v-for="(card, id) in secondColumnCards"
+        v-for="(card, id) in secondColumnItems"
         :key="id"
         v-bind="card"
         @click="() => handleClickCard(id)"
@@ -149,7 +37,7 @@ const handleClickCard = (id: number) => {
 
     <div class="card-list-column">
       <ParallaxCard
-        v-for="(card, id) in thirdColumnCards"
+        v-for="(card, id) in thirdColumnItems"
         :key="id"
         v-bind="card"
         @click="() => handleClickCard(id)"

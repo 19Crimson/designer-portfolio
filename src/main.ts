@@ -1,5 +1,5 @@
 import { createApp } from 'vue';
-import '@/assets/css/style.css';
+import '@/assets/css/main.css';
 import App from '@/App.vue';
 // import VueCoreVideoPlayer from 'vue-core-video-player'
 

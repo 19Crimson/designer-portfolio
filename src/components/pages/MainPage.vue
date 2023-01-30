@@ -26,6 +26,7 @@ const onOpenCard = () => {
 // overflow hidden causes scroll to top when open card
 // fix header content right overflow
 // replace cards (content config)
+// Fix closebutton margins
 <template>
   <PageWrapper :blocked="dialogOpened">
     <PageHeader/>
