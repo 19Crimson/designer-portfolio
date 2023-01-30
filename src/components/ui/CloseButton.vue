@@ -11,7 +11,10 @@ const handleClick = () => {
 </script>
 
 <template>
-  <div class="close-button" @click="handleClick ">
+  <div
+    class="close-button"
+    @click="handleClick"
+  >
     <img
       class="close-button__icon"
       @click="handleClick"

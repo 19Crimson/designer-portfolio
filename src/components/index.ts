@@ -1,16 +1,21 @@
 import {
   CardList,
-  ProjectModal,
-  ProjectHeader,
-  ProjectRow,
-  TextHeadline,
-  TextWrapper,
-  TextBlock,
   ImageWrapper,
   PageHeader,
   PageWrapper,
-  Typewriter,
+  ProjectHeader,
+  ProjectModal,
+  ProjectRow,
+  TextBlock,
+  TextHeadline,
+  TextWrapper,
+  TypeWriter,
 } from '@/components/layout/';
+
+import {
+  CloseButton,
+  ParallaxCard,
+} from '@/components/ui';
 
 import MainPage from '@/components/pages/MainPage.vue';
 
@@ -18,16 +23,18 @@ import TestProject from '@/components/projects/TestProject.vue';
 
 export {
   CardList,
-  ProjectModal,
-  ProjectHeader,
-  ProjectRow,
-  TextHeadline,
-  TextWrapper,
-  TextBlock,
+  CloseButton,
   ImageWrapper,
+  MainPage,
   PageHeader,
   PageWrapper,
-  MainPage,
+  ParallaxCard,
+  ProjectHeader,
+  ProjectModal,
+  ProjectRow,
   TestProject,
-  Typewriter
+  TextBlock,
+  TextHeadline,
+  TextWrapper,
+  TypeWriter
 };

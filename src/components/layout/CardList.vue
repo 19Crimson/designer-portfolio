@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import CardParallax from '@/components/ui/ParallaxCard.vue';
+import ParallaxCard from '@/components/ui/ParallaxCard.vue';
 import { defineEmits } from 'vue';
 
 const emit = defineEmits(['openCard']);
@@ -130,7 +130,7 @@ const handleClickCard = (id: number) => {
 <template>
   <div class="card-list-container">
     <div class="card-list-column">
-      <CardParallax
+      <ParallaxCard
         v-for="(card, id) in firstColumnCards"
         :key="id"
         v-bind="card"
@@ -139,7 +139,7 @@ const handleClickCard = (id: number) => {
     </div>
 
     <div class="card-list-column">
-      <CardParallax
+      <ParallaxCard
         v-for="(card, id) in secondColumnCards"
         :key="id"
         v-bind="card"
@@ -148,7 +148,7 @@ const handleClickCard = (id: number) => {
     </div>
 
     <div class="card-list-column">
-      <CardParallax
+      <ParallaxCard
         v-for="(card, id) in thirdColumnCards"
         :key="id"
         v-bind="card"
