@@ -1,13 +1,40 @@
 <script setup lang="ts">
-import PageWrapper from '@/components/layout/PageWrapper.vue'
-import Header from '@/components/layout/Header.vue'
-import CardList from '@/components/layout/CardList.vue'
-</script>
+import {
+  PageHeader,
+  TypeWriter,
+  TestProject,
+  PageWrapper,
+  CardList,
+} from '@/components';
 
+import { ref } from 'vue';
+
+const dialogOpened = ref(false);
+
+const onCloseDialog = () => {
+  dialogOpened.value = false;
+};
+
+const onOpenCard = () => {
+  dialogOpened.value = true;
+};
+</script>
+// TODO:
+// Fix Dialog content owerflow
+// Fix words repeating until all words used
+// Fix CardList / header overflow
+// overflow hidden causes scroll to top when open card
+// fix header content right overflow
+// replace cards (content config)
 <template>
-  <PageWrapper>
-    <Header/>
-    <CardList/>
+  <PageWrapper :blocked="dialogOpened">
+    <PageHeader/>
+    <TypeWriter/>
+    <CardList @openCard="onOpenCard"/>
+    <TestProject
+      :opened="dialogOpened"
+      @close="onCloseDialog"
+    />
   </PageWrapper>
 </template>
 

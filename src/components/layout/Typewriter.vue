@@ -1,129 +1,185 @@
 <script setup lang="ts">
-  import {
-    ref,
-    computed,
-    onMounted,
-  } from 'vue'
+import {
+  ref,
+  computed,
+  onMounted,
+  defineEmits,
+} from 'vue';
+import { getRandomInt, getRandomValue } from '@/utils/helpers';
 
-  const props = defineProps({
-    value: {
-      type: Array<string>,
-      default: () => [],
-    },
-    colors: {
-      type: Array<string>,
-      default: () => ['white']
+const keywords = [
+  [
+    'design',
+    'business thinking',
+    'UX research',
+    'CJM',
+    'JTBD',
+    'processes',
+    'identity',
+    'accessibility',
+    'aha-moment',
+    'growth',
+    'insights',
+    'relevance',
+    'clarity',
+    'logic',
+  ],
+  [
+    'Identität',
+    'barrierefreiheit',
+    'identita',
+    'přístupnost',
+    'postřehy',
+    'motif',
+    'processus',
+    'identité',
+    'accessibilité',
+    'clarté',
+  ],
+  [
+    'デザイン',
+    'ビジネス思考',
+    'UXリサーチ',
+    'プロセス',
+    '身元',
+    'アクセシビリティ',
+    'あは瞬間',
+    '成長',
+    'インサイト',
+    '関連性',
+    '明瞭さ',
+    '身份',
+    '可達性',
+    '啊哈時刻',
+    '明晰',
+    '邏輯',
+    'դիզայն',
+    'բիզնես',
+    'ինքնությունը',
+    'մատչելիությունը',
+    'աճը',
+  ],
+];
+
+const colors = [
+  '#FFB9AA',
+  '#F2FDAE',
+  '#DAC3FF',
+  '#7DE3E8',
+  '#FFEB8C',
+  '#FBD0FF',
+];
+
+const emit = defineEmits(['next']);
+
+const currentKeyword = ref(keywords[0][0]);
+const renderedKyword = ref(keywords[0][0]);
+const currentList = ref(keywords[0]);
+const currentColor = ref(colors[Math.floor(getRandomInt(colors.length - 1))]);
+const usedColors = ref<Array<string>>([currentColor.value]);
+const step = ref(0);
+
+const getKeywordsList = () => getRandomValue({
+  chances: [50, 10, 40],
+  values: [keywords[0], keywords[1], keywords[2]],
+}) as string[];
+
+const getRandomTypingInterval = () => {
+  return getRandomValue({
+    chances: [10, 30, 60],
+    values: [90, 120, 70],
+  });
+};
+
+let i = 0;
+
+function typingEffect() {
+  let word = currentKeyword.value?.split('');
+  var loopTyping = function() {
+    if (word.length > 0) {
+      renderedKyword.value += word?.shift();
+    } else {
+      setTimeout(deletingEffect, 3000);
+      return;
     }
-  })
-
-  function getRandomInt(max: number) {
-    return Math.floor(Math.random() * max);
-  }
-
-  const currentKeyword = ref(props.value[0])
-  const renderedKyword = ref(props.value[0])
-  const currentColor = ref(props.colors[Math.floor(getRandomInt(props.colors.length - 1))])
-  const usedColors = ref<Array<String>>([currentColor.value])
-  const usedKeywords = ref<Array<String>>([currentKeyword.value])
-
-  const getRandomTypingInterval = () => {
-    const num = (Math.random() + 1) * 100
-    // 100ms 0.5
-    // 60ms 0.325
-    // 30ms 0.125
-    // 10ms 0.0625
-
-    if (num <= 7) { // 7
-      return 700
-    } else if (num <= 20) { // 13
-      return 50
-    } else if (num <= 50) { // 30
-      return 130
-    } else { // 50
-      return 100
-    }
-  }
-
-  let i = 0;
-  let timer;
-
-  function typingEffect() {
-    let word = currentKeyword.value.split("");
-    var loopTyping = function() {
-      if (word.length > 0) {
-        renderedKyword.value += word.shift();
-      } else {
-        setTimeout(deletingEffect, 3000);
-        return false;
-      };
-      timer = setTimeout(loopTyping, getRandomTypingInterval());
-    };
-    loopTyping();
+    setTimeout(loopTyping, getRandomTypingInterval());
   };
+  loopTyping();
+}
 
-  function deletingEffect() {
-    let word = currentKeyword.value.split("");
-    var loopDeleting = function() {
-      if (word.length > 0) {
-        word.pop();
-        renderedKyword.value = word.join("");
-        if (renderedKyword.value.length === currentKeyword.value.length - 1) {
-          timer = setTimeout(loopDeleting, 200);
-        } else {
-          timer = setTimeout(loopDeleting, 50);
-        }
+function deletingEffect() {
+  let word = currentKeyword.value?.split('');
+  var loopDeleting = function() {
+    if (word.length > 0) {
+      word.pop();
+      renderedKyword.value = word.join('');
+      if (renderedKyword.value.length === currentKeyword.value.length - 1) {
+        setTimeout(loopDeleting, 200);
       } else {
-        if (props.value.length > (i + 1)) {
-          i++;
-        } else {
-          i = 0;
-        };
-
-        nextWord()
-        typingEffect();
-
-        return false;
-      };
-    };
-    loopDeleting();
-  };
-
-  const colorStyle = computed(() => `
-    color: ${currentColor.value};
-    border-coler: ${currentColor.value};
-  `)
-
-  const nextWord = () => {
-    if (usedColors.value.length === props.colors.length) {
-      usedColors.value = []
+        setTimeout(loopDeleting, 50);
+      }
+    } else {
+      if (keywords.length > (i + 1)) {
+        i++;
+      } else {
+        i = 0;
+      }
+      emit('next');
+      nextWord();
+      typingEffect();
+      return;
     }
+  };
+  loopDeleting();
+}
 
-    if (usedKeywords.value.length === props.value.length) {
-      usedKeywords.value = []
-    } 
+const calculatedColorStyle = computed(() => `
+  color: ${currentColor.value};
+  border-coler: ${currentColor.value};
+`);
 
-    const availableWords = props.value.filter(word => !usedKeywords.value.includes(word))
-    const availableColors = props.colors.filter(color => !usedColors.value.includes(color))
+const nextWord = () => {
+  currentList.value = getKeywordsList();
 
-    console.log('usedColors', usedColors.value)
-    console.log('usedKeywords', usedKeywords.value)
-
-    currentColor.value = availableColors[getRandomInt(availableColors.length)]
-    currentKeyword.value = availableWords[getRandomInt(availableWords.length)]
-    usedColors.value.push(currentColor.value)
-    usedKeywords.value.push(currentKeyword.value)
+  if (usedColors.value.length === colors.length) {
+    usedColors.value = [];
   }
 
+  const availableColors = colors.filter(color => !usedColors.value.includes(color));
 
-  onMounted(() => {
-    setTimeout(deletingEffect, 1650);
-  })
+  currentColor.value = availableColors[getRandomInt(availableColors.length)];
+  usedColors.value.push(currentColor.value);
+
+  if (step.value === 0) {
+    const list = keywords[0];
+    currentKeyword.value = list[getRandomInt(list.length)];
+  } else if (step.value === 1) {
+    const list = keywords[2];
+    currentKeyword.value = list[getRandomInt(list.length)];
+  } else {
+    currentKeyword.value = currentList.value[getRandomInt(currentList.value.length)];
+  }
+  step.value += 1;
+};
+
+onMounted(() => {
+  setTimeout(deletingEffect, 1650);
+});
 </script>
 
 <template>
-  <div class="typewriter" >
-    <span :style="colorStyle">{{ renderedKyword }}</span>
-    <span class="caret" :style="colorStyle"/>
+  <div class="typewriter" >When product</div>
+    <div class="typewriter typewriter-suffix">
+      meets&nbsp;
+      <div class="typewriter__keyword" >
+        <span :style="calculatedColorStyle">
+          {{ renderedKyword }}
+        </span>
+        <span
+          class="caret"
+          :style="calculatedColorStyle"
+        />
+      </div>
   </div>
 </template>
 
@@ -145,13 +201,29 @@
   to { width: 100% }
 }
 
-/* The typewriter cursor effect */
+/* The typewriter__keyword cursor effect */
 @keyframes blink-caret {
   from, to { border-color: transparent }
   50% { border-color: orange; }
 }
-
 .typewriter {
+  color: #ffffff;
+  font-family: SfPro;
+  font-style: normal;
+  font-weight: 650;
+  font-size: 96px;
+  line-height: 104px;
+  font-stretch: expanded;
+  text-align: left;
+  max-width: 840px;
+  margin-left: 40px;
+
+  &-suffix {
+    display: flex;
+    margin-bottom: 52px;
+  }
+}
+.typewriter__keyword {
   display: flex;
   white-space: nowrap;
 }
