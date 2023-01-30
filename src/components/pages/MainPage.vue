@@ -36,6 +36,7 @@ const onOpenCard = () => {
 // replace cards (content config)
 // Fix close button margins
 // Fix reset scroll on open dialog
+// Fix autoplay video only whe visible
 <template>
   <PageWrapper :blocked="dialogOpened">
     <PageHeader/>

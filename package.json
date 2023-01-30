@@ -9,10 +9,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@cloudgeek/vue3-video-player": "^0.3.10",
     "path": "^0.12.7",
     "sass": "^1.57.1",
-    "vue": "^3.2.45",
-    "vue-core-video-player": "^0.2.0"
+    "vue": "^3.2.45"
   },
   "devDependencies": {
     "@types/node": "^18.11.18",

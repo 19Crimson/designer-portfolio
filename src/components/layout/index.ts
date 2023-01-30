@@ -1,5 +1,6 @@
 import CardList from '@/components/layout/CardList.vue';
 import ImageWrapper from '@/components/layout/ImageWrapper.vue';
+import VideoWrapper from '@/components/layout/VideoWrapper.vue';
 import PageHeader from '@/components/layout/PageHeader.vue';
 import PageWrapper from '@/components/layout/PageWrapper.vue';
 import ProjectHeader from '@/components/layout/ProjectHeader.vue';
@@ -22,4 +23,5 @@ export {
   TextHeadline,
   TextWrapper,
   Typewriter,
+  VideoWrapper,
 };

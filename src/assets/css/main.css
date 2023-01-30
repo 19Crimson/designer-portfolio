@@ -24,6 +24,10 @@ body {
   overflow-x: hidden;
 }
 
+video {
+  width: 100%;
+}
+
 #app {
   display: flex;
   flex-direction: column;

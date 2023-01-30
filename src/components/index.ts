@@ -10,6 +10,7 @@ import {
   TextHeadline,
   TextWrapper,
   Typewriter,
+  VideoWrapper,
 } from '@/components/layout/';
 
 import {
@@ -36,5 +37,6 @@ export {
   TextBlock,
   TextHeadline,
   TextWrapper,
-  Typewriter
+  Typewriter,
+  VideoWrapper,
 };

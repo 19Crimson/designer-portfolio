@@ -7,6 +7,7 @@ import {
   TextWrapper,
   TextBlock,
   ImageWrapper,
+  VideoWrapper,
 } from '@/components';
 import { defineEmits } from 'vue';
 
@@ -63,10 +64,7 @@ const handleClose = () => {
         </TextWrapper>
       </TextBlock>
 
-      <ImageWrapper
-        folder="test-project"
-        image="test-img.jpg"
-      />
+      <VideoWrapper/>
     </ProjectRow>
 
     <ProjectRow center color="#f4c5e3">
