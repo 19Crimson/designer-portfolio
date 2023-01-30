@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ParallaxCard from '@/components/ui/ParallaxCard.vue';
+import { ParallaxCard } from '@/components';
 import { defineEmits } from 'vue';
 
 const emit = defineEmits(['openCard']);

@@ -4,7 +4,7 @@ import {
   defineEmits,
   computed,
 } from 'vue';
-import CloseButton from '@/components/ui/CloseButton.vue';
+import { CloseButton } from '@/components';
 
 const emit = defineEmits(['close']);
 
