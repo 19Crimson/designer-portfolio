@@ -1,18 +1,42 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
+import { onIntersect } from '@/utils/helpers';
 
 const player = ref();
+const observer = ref();
+const wrapper = ref<HTMLElement>();
 
-onMounted(async () => {
-  await player.value.play();
+const onEnter = () => {
+  if (player.value) {
+    player.value.play();
+  }
+};
+
+const onExit = () => {
+  if (player.value) {
+    player.value.pause();
+  }
+};
+
+onMounted(() => {
+  if (!wrapper.value) {
+    return;
+  }
+  observer.value = onIntersect(wrapper.value, onEnter, onExit);
+});
+
+onUnmounted(() => {
+  observer.value.disconnect();
 });
 
 </script>
 
 <template>
-  <div class="video-wrapper">
+  <div
+    class="video-wrapper"
+    ref="wrapper"
+  >
     <vue3-video-player
-      class="player"
       muted
       ref="player"
       src="/src/assets/video/videoplayback.mp4"

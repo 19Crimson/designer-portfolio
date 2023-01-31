@@ -28,6 +28,10 @@ video {
   width: 100%;
 }
 
+.vcp-layer {
+  display: none !important;
+}
+
 #app {
   display: flex;
   flex-direction: column;

@@ -23,17 +23,12 @@ const onCloseDialog = () => {
 
 const onOpenCard = () => {
   dialogOpened.value = true;
-  // dialog.value.scrollTo(0, 0);
 };
 
 </script>
 // TODO:
-// Fix Dialog content owerflow
-// Fix CardList / header overflow
-// overflow hidden causes scroll to top when open card
-// fix header content right overflow
-// replace cards (content config)
 // Fix autoplay video only whe visible
+// Write README
 <template>
   <PageWrapper>
     <PageHeader/>
