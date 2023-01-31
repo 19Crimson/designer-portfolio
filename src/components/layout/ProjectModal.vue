@@ -2,8 +2,8 @@
 import {
   defineEmits,
   computed,
-  watch,
   ref,
+  watchEffect,
 } from 'vue';
 import { CloseButton } from '@/components';
 
@@ -17,16 +17,14 @@ const props = defineProps({
   bgImage: String,
 });
 
-// const inner = ref();
+const displayCondition = ref(props.opened);
 
-// watch(
-//   () => props.opened,
-//   () => {
-//     if (props.opened) {
-//       inner.value.scrollTo(0, 0);
-//     }
-//   }
-// );
+watchEffect(() => {
+  setTimeout(
+    () => displayCondition.value = props.opened,
+    props.opened ? 0 : 300
+  );
+});
 
 const handleClose = () => {
   emit('close');
@@ -49,6 +47,7 @@ const bgStyle = computed(() => ({
 
 <template>
 	<div
+    v-if="displayCondition"
 		:class="overlayClass"
 		@click.self="handleClose"
 	>
@@ -61,7 +60,7 @@ const bgStyle = computed(() => ({
         class="overlay__close"
         @click="handleClose"
       />
-      <slot/>
+      <slot />
 		</div>
 	</div>
 </template>
@@ -74,6 +73,7 @@ const bgStyle = computed(() => ({
 .overlay {
   position: fixed;
   overflow-y: scroll;
+  overscroll-behavior: contain;
   height: 100%;
   width: 100%;
 	visibility: hidden;

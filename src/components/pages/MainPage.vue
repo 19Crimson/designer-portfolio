@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import {
   PageHeader,
   Typewriter,
@@ -12,7 +13,6 @@ import {
   pretext,
   headline
 } from '@/assets/configs/typewriter';
-import { ref } from 'vue';
 
 const dialogOpened = ref(false);
 const dialog = ref();
@@ -33,10 +33,9 @@ const onOpenCard = () => {
 // overflow hidden causes scroll to top when open card
 // fix header content right overflow
 // replace cards (content config)
-// Fix reset scroll on open dialog
 // Fix autoplay video only whe visible
 <template>
-  <PageWrapper :blocked="dialogOpened">
+  <PageWrapper>
     <PageHeader/>
     <Typewriter
       :keywords="keywords"

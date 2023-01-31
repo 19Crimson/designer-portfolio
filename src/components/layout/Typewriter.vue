@@ -27,14 +27,14 @@ const props = defineProps({
 
 const firstKeyword = !props.keywords ? '' : props.keywords[0].values[0];
 
-const wordsLists = computed(() => {
+const wordLists = computed(() => {
   return props.keywords.map(item => item.values);
 });
 
 const currentKeyword = ref(firstKeyword);
 const renderedKeyword = ref(firstKeyword);
 const usedKeywords = ref([firstKeyword]);
-const currentList = ref(wordsLists.value[0]);
+const currentList = ref(wordLists.value[0]);
 const currentColor = ref<string>(getRandomArrayElement(props.colors));
 const usedColors = ref<Array<string>>([currentColor.value]);
 const currentStep = ref(1);
@@ -63,7 +63,7 @@ const colorStyle = computed(() => `
 
 const switchWordList = () => {
   if (!availableLists.value || availableLists.value.length === 0) {
-    return getRandomArrayElement(wordsLists.value);
+    return getRandomArrayElement(wordLists.value);
   }
   
   currentList.value = getRandomValue({
@@ -126,7 +126,7 @@ const checkCurrentStep = () => {
   if (currentStep.value > 2) {
     return;
   }
-  const list = wordsLists.value[currentStep.value - 1];
+  const list = wordLists.value[currentStep.value - 1];
 
   if (listHasUnusedKeywords(list)) {
     currentList.value = list;
