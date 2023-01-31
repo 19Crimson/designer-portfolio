@@ -7,7 +7,7 @@ import {
   CardList,
 } from '@/components';
 import {
-  keywordsList,
+  keywords,
   colors,
   pretext,
   headline
@@ -29,19 +29,17 @@ const onOpenCard = () => {
 </script>
 // TODO:
 // Fix Dialog content owerflow
-// Fix words repeating until all words used
 // Fix CardList / header overflow
 // overflow hidden causes scroll to top when open card
 // fix header content right overflow
 // replace cards (content config)
-// Fix close button margins
 // Fix reset scroll on open dialog
 // Fix autoplay video only whe visible
 <template>
   <PageWrapper :blocked="dialogOpened">
     <PageHeader/>
     <Typewriter
-      :keywords-list="keywordsList"
+      :keywords="keywords"
       :colors="colors"
       :headline="headline"
       :pretext="pretext"

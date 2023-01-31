@@ -4,25 +4,26 @@ export type getRandomValueConfig= {
 }
 
 export function getRandomArrayElement(array: Array<any>) {
-  const max = array.length;
-  return array[Math.floor(Math.random() * max)];
+  const max = array?.length - 1;
+  return array[max];
 }
 
 export function getRandomValue(config: getRandomValueConfig) {
   const { values, chances } = config;
+
+  const chancesSum = chances.reduce((partialSum, a) => partialSum + a, 0);
+  const normalizedChances = chances.map(chance => chance / (chancesSum / 100));
   const distributionLevels = Math.min(values.length, chances.length);
-  let lowerChanceLimit = 0;
   const randomChance = Math.random() * 100;
 
+  let lowerChanceLimit = 0;
+
   for (let i = 0; i < distributionLevels; i++) {
-    const higherChanceLimit = lowerChanceLimit + chances[i];
+    const higherChanceLimit = lowerChanceLimit + normalizedChances[i];
     if (
       randomChance >= lowerChanceLimit &&
       randomChance < higherChanceLimit
     ) {
-      if (!values[i]) {
-        console.log('found reason', values, i);
-      }
       return values[i];
     }
     lowerChanceLimit = higherChanceLimit;

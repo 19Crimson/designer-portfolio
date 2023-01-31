@@ -9,71 +9,67 @@ import { getRandomArrayElement, getRandomValue } from '@/utils/helpers';
 
 export type KeywordsType = {
   chance: number,
-  keywords: Array<string>
+  values: Array<string>
 }
 
 const props = defineProps({
-  keywordsList: Array<KeywordsType>,
+  keywords: {
+    type: Array<KeywordsType>,
+    default: () => []
+  },
   colors: {
     type: Array<string>,
-    default: ['#FFB9AA', '#F2FDAE']
+    default: () => []
   },
   pretext: String,
   headline: String,
 });
 
-const firstKeyword = computed(() => {
-  if (!props.keywordsList) {
-    return '';
-  }
-  return props.keywordsList[0].keywords[0];
+const firstKeyword = !props.keywords ? '' : props.keywords[0].values[0];
+
+const wordsLists = computed(() => {
+  return props.keywords.map(item => item.values);
 });
 
-const keywordsLists = computed(() => {
-  if (!props.keywordsList) {
-    return [['']];
-  }
-  return props.keywordsList.map(item => item.keywords);
-});
+const currentKeyword = ref(firstKeyword);
+const renderedKeyword = ref(firstKeyword);
+const usedKeywords = ref([firstKeyword]);
+const currentList = ref(wordsLists.value[0]);
+const currentColor = ref<string>(getRandomArrayElement(props.colors));
+const usedColors = ref<Array<string>>([currentColor.value]);
+const currentStep = ref(1);
 
-const keywordsAmount = computed(() => {
+const availableColors = computed(() => props.colors.filter(color => !usedColors.value.includes(color)));
+
+const availableLists = computed(() => props.keywords?.filter(list => {
+  const avaliableWordsAmount = list.values.filter(w => !usedKeywords.value.includes(w)).length;
+  return avaliableWordsAmount > 0;
+}));
+
+const availableKeywords = computed(() => currentList.value.filter(w => !usedKeywords.value.includes(w)));
+
+const totalKeywords = computed(() => {
   let amount = 0;
-  props.keywordsList?.forEach(list => {
-    amount += list.keywords.length;
+  props.keywords?.forEach(list => {
+    amount += list.values.length;
   });
   return amount;
 });
 
-const currentKeyword = ref(firstKeyword.value);
-const renderedKeyword = ref(firstKeyword.value);
-const usedKeywords = ref([firstKeyword.value]);
-const currentList = ref(keywordsLists.value[0]);
-const currentColor = ref<string>(getRandomArrayElement(props.colors));
-const usedColors = ref<Array<string>>([currentColor.value]);
-const step = ref(1);
+const colorStyle = computed(() => `
+  color: ${currentColor.value};
+  border-coler: ${currentColor.value};
+`);
 
-const getKeywordsList = () => {
-  const availableLists = keywordsLists.value?.filter(list => {
-    const avaliableWordsAmount = list.filter(w => !usedKeywords.value.includes(w)).length;
-    return avaliableWordsAmount > 0;
-  });
-  if (availableLists.length === 0) {
-    const a = getRandomArrayElement(keywordsLists.value);
-    console.log('reason 1', a);
-    return a;
+const switchWordList = () => {
+  if (!availableLists.value || availableLists.value.length === 0) {
+    return getRandomArrayElement(wordsLists.value);
   }
-
-  const a = getRandomValue({
-    chances: props.keywordsList?.map(item => item.chance) ?? [100],
-    values: availableLists,
+  
+  currentList.value = getRandomValue({
+    chances: availableLists.value.map(item => item.chance),
+    values: availableLists.value.map(item => item.values),
   });
-  console.log('reason 2', a);
-  return a;
-
-  // return getRandomValue({
-  //   chances: props.keywordsList?.map(item => item.chance) ?? [100],
-  //   values: availableLists,
-  // });
 };
 
 const getRandomTypingInterval = () => {
@@ -110,7 +106,7 @@ function deletingEffect() {
         setTimeout(loopDeleting, 50);
       }
     } else {
-      nextWord();
+      nextStep();
       typingEffect();
       return;
     }
@@ -118,42 +114,49 @@ function deletingEffect() {
   loopDeleting();
 }
 
-const colorStyle = computed(() => `
-  color: ${currentColor.value};
-  border-coler: ${currentColor.value};
-`);
+function listHasUnusedKeywords (list?: string[]): boolean  {
+  if (!list) {
+    return false;
+  }
+  const unusedKeywords = list.filter(w => !usedKeywords.value.includes(w));
+  return unusedKeywords.length > 0;
+}
 
-const nextWord = () => {
-  const availableColors = props.colors.filter(color => !usedColors.value.includes(color));
+const checkCurrentStep = () => {
+  if (currentStep.value > 2) {
+    return;
+  }
+  const list = wordsLists.value[currentStep.value - 1];
 
-  currentList.value = getKeywordsList();
+  if (listHasUnusedKeywords(list)) {
+    currentList.value = list;
+  }
+  currentStep.value += 1;
+};
 
-  if (usedColors.value.length === props.colors.length) {
+const switchColor = () => {
+  if (!availableColors.value.length) {
     usedColors.value = [];
   }
-  currentColor.value = getRandomArrayElement(availableColors);
+  currentColor.value = getRandomArrayElement(availableColors.value);
   usedColors.value.push(currentColor.value);
+};
 
-  let sourceList = currentList.value;
-  console.log('currentList.value', currentList.value);
+const switchWord = () => {
+  switchWordList();
+  checkCurrentStep();
 
-  if (step.value === 1) {
-    sourceList = keywordsLists.value[0];
-  } else if (step.value === 2 && keywordsLists.value[1]?.length > 0) {
-    sourceList = keywordsLists.value[1];
-  }
-
-  if (keywordsAmount.value === usedKeywords.value.length) {
+  if (totalKeywords.value === usedKeywords.value.length) {
     usedKeywords.value = [];
-    currentKeyword.value = getRandomArrayElement(sourceList);
-  } else {
-    currentKeyword.value = getRandomArrayElement(sourceList.filter(w => !usedKeywords.value.includes(w)));
-    usedKeywords.value.push(currentKeyword.value);
   }
 
-  // console.log('usedKeywords.value', usedKeywords.value, currentKeyword.value);
+  currentKeyword.value = getRandomArrayElement(availableKeywords.value);
+  usedKeywords.value.push(currentKeyword.value);
+};
 
-  step.value += 1;
+const nextStep = () => {
+  switchColor();
+  switchWord();
 };
 
 onMounted(() => {
@@ -163,7 +166,9 @@ onMounted(() => {
 
 <template>
   <div class="typewriter">
-    <div v-if="headline" class="typewriter__headline">{{ headline }}</div>
+    <div v-if="headline" class="typewriter__headline">
+      {{ headline }}
+    </div>
 
     <div class="typewriter__content">
       <div v-if="pretext" class="typewriter__content">
@@ -202,7 +207,6 @@ onMounted(() => {
   to { width: 100% }
 }
 
-/* The typewriter__keyword cursor effect */
 @keyframes blink-caret {
   from, to { border-color: transparent }
   50% { border-color: orange; }

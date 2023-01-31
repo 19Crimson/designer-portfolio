@@ -1,11 +1,12 @@
 /**
- * Config defines keywords and colors lists used for Typewriter conponent
+ * This config defines keywords and colors lists used for Typewriter conponent
  * For better randomizing keywordsList may contain multiple arrays of objects,
- * whitch of these apeears with frequency, defined by chances field (values in %)
- * First 'keyword' is alyays first word of 1st list, second word is rfndom from 1st list
- * other 'keyword' are picked randomly from random list
- * Headline is first line phrase, pretext is text placed befoer keyword
- * Words dont repeat until all words are used
+ * whitch of these appears with frequency, defined by chances field (values in %).
+ * First keyword is alyays first word of 1st list,
+ * second keyword is random word from 1st list,
+ * other keywords are picked randomly from random list.
+ * Headline is first line phrase, pretext is text placed before keyword
+ * Words  and colors dont repeat until all words are used
  */
 
 const headline = 'When product';
@@ -21,10 +22,10 @@ const colors = [
   '#FBD0FF',
 ];
 
-const keywordsList = [
+const keywords = [
   {
     chance: 50,
-    keywords: [
+    values: [
       'design',
       'business thinking',
       'UX research',
@@ -43,7 +44,7 @@ const keywordsList = [
   },
   {
     chance: 40,
-    keywords: [
+    values: [
       'デザイン',
       'ビジネス思考',
       'UXリサーチ',
@@ -69,7 +70,7 @@ const keywordsList = [
   },
   {
     chance: 10,
-    keywords: [
+    values: [
       'Identität',
       'barrierefreiheit',
       'identita',
@@ -85,7 +86,7 @@ const keywordsList = [
 ];
 
 export {
-  keywordsList,
+  keywords,
   colors,
   pretext,
   headline

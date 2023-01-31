@@ -3,8 +3,8 @@ import { ref, onMounted } from 'vue';
 
 const player = ref();
 
-onMounted(() => {
-  player.value.play();
+onMounted(async () => {
+  await player.value.play();
 });
 
 </script>
