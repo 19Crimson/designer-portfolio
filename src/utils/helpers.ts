@@ -50,3 +50,29 @@ export function getImageOnload (
   img.onerror = (err) => cb(undefined, err);
   img.src = url;
 }
+
+export const onIntersect = (
+  elementToWatch: HTMLElement,
+  callback: (target: Element) => void,
+  outCallback: (target: Element) => void,
+  once = false,
+  options = { threshold: 0 }
+) => {
+  const observer = new IntersectionObserver(([entry]) => {
+    if (entry && entry.isIntersecting) {
+      callback(entry.target);
+
+      if (once) {
+        observer.unobserve(entry.target);
+      }
+    }
+
+    else {
+      outCallback(entry.target);
+    }
+  }, options);
+
+  observer.observe(elementToWatch);
+
+  return observer;
+};
