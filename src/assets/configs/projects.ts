@@ -33,7 +33,7 @@ const content = [
     cardFg: 'fg-4.png',
     title: 'Custom pattern',
     titleColor: 'white',
-    'gradient-color': '77, 45, 45',
+    gradientColor: '77, 45, 45',
   },
   {
     project: 'Demo',
@@ -41,6 +41,7 @@ const content = [
     cardFg: 'fg-5.png',
     title: 'Build your own design',
     titleColor: 'white',
+    gradientColor: '0, 255, 204',
   },
 ];
 

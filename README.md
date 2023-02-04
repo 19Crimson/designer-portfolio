@@ -14,12 +14,13 @@ Made with: Vue 3, Vite, TS
 
 В файле **src/assets/configs/projects.ts** описывается структура проектов, их очередность и контент
 
-Параметры проекта:
-project - Название компонента проекта (и одноименной папки в assets/projects)
-cardBg - Фон parallax карточки
-cardFg - Обложка parallax карточки
-title - Заголовок карточки
-titleColor - Цвет заголовка
+Параметры проекта в файле **src/assets/configs/projects.ts**:
+- project - Название компонента проекта (и одноименной папки в assets/projects)
+- cardBg - Фон parallax карточки
+- cardFg - Обложка parallax карточки
+- title - Заголовок карточки
+- titleColor - Цвет заголовка
+- gradientColor - Цвет градиента карточки в RGB
 
 Описание основных компонентов
 | Компонент         | Описание | Параметры (props)                                       |
