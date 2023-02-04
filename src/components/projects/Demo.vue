@@ -76,11 +76,6 @@
       </TextBlock>
     </ProjectRow>
 
-    <ProjectRow bgImage="header_bg.png">
-      <!-- empty block to display other text at right half -->
-
-    </ProjectRow>
-
     <ProjectRow center color="#a1a1ff">
       <TextBlock>
         <TextHeadline>
@@ -94,13 +89,8 @@
       <VideoWrapper file="playback.mp4"/>
     </ProjectRow>
 
-    <ProjectRow
-      center
-      color="#f4c5e3"
-    >
-      <ImageWrapper
-        image="test-img.jpg"
-      />
+    <ProjectRow color="#f4c5e3" center>
+      <ImageWrapper image="test-img.jpg"/>
 
       <TextBlock>
         <TextHeadline>
@@ -161,7 +151,7 @@
       </TextBlock>
     </ProjectRow>
 
-    <ProjectRow center color="#3c3c3c">
+    <ProjectRow color="#3c3c3c" center>
       <ImageWrapper image="test-img.jpg" />
     </ProjectRow>
 
