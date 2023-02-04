@@ -1,8 +1,4 @@
 <script setup lang="ts">
-import {
-  defineEmits,
-} from 'vue';
-
 const emit = defineEmits(['click']);
 
 const handleClick = () => {
@@ -42,8 +38,8 @@ const handleClick = () => {
   &__icon {
     opacity: 1;
     position: absolute;
-    top: 9px;
-    left: 9px;
+    top: 7px;
+    left: 7px;
     transition: ease-in-out .5;
   }
 

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ParallaxCard } from '@/components';
 import Projects from '@/assets/configs/projects';
-import { defineEmits } from 'vue';
 
 const emit = defineEmits(['open']);
 

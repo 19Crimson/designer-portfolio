@@ -2,7 +2,6 @@
 import {
   onMounted,
   onBeforeUnmount,
-  defineEmits,
   ref,
   computed,
   watch,
@@ -12,6 +11,8 @@ import { getImageOnload } from '@/utils/helpers';
 const emit = defineEmits(['click']);
 
 const props = defineProps({
+  project: String,
+  folder: String,
   bgImage: String,
   fgImage: String,
   title: String,
@@ -27,13 +28,14 @@ const props = defineProps({
 
 const width = ref(0);
 
-const clientWidth = ref(document.documentElement.clientWidth);
-const clientHeight = ref(document.documentElement.clientHeight);
 const cardHeight = ref(0);
-const mouseX = ref(0);
-const mouseY = ref(0);
+const clientHeight = ref(document.documentElement.clientHeight);
+const clientWidth = ref(document.documentElement.clientWidth);
+const cardFgSrc = ref(`/src/assets/img/${props.folder ?? props.project}/${props.fgImage}`);
 const isHovered = ref(false);
 const mouseLeaveDelay = ref();
+const mouseX = ref(0);
+const mouseY = ref(0);
 
 const card = ref({
   offsetWidth: 0,
@@ -66,14 +68,21 @@ const cardStyle = computed(() => {
 });
 
 const fgStyle = computed(() => {
+  console.log(mousePX.value, mousePY.value);
   const rX = mousePX.value * 30;
   const rY = mousePY.value * -30;
   const tX = mousePX.value * -40;
   const tY = mousePY.value * -40;
 
-  return {
+  const style = {
     transform: `rotateY(${-0.33*rX}deg) rotateX(${-0.33*rY}deg) translateX(${0.33 * tX}px) translateY(${0.33 * tY}px)`,
   };
+
+  if (isHovered.value) {
+    style.transform = `scale(1.03) rotateY(${-0.33*rX}deg) rotateX(${-0.33*rY}deg) translateX(${0.33 * tX}px) translateY(${0.33 * tY}px)`;
+  }
+
+  return style;
 });
 
 const titleStyle = computed(() => {
@@ -82,16 +91,24 @@ const titleStyle = computed(() => {
   const tX = mousePX.value * -40;
   const tY = mousePY.value * -40;
 
-  return {
+  const style = {
     transform: `rotateY(${-0.33*rX}deg) rotateX(${-0.33*rY}deg) translateX(${0.33 * tX}px) translateY(${0.33 * tY}px)`,
   };
+
+  if (isHovered.value) {
+    style.transform = `scale(1.03) rotateY(${-0.33*rX}deg) rotateX(${-0.33*rY}deg) translateX(${0.33 * tX}px) translateY(${0.33 * tY}px)`;
+  }
+
+  return style;
 });
 
 const bgStyle = computed(() => {
-  return {
-    backgroundImage: `url("/src/assets/img/${props.bgImage}")`,
+  const style = {
+    backgroundImage: `url("/src/assets/img/${props.folder ?? props.project}/${props.bgImage}")`,
     height: `${cardHeight.value}px`,
   };
+
+  return style;
 });
 
 const getDimensions = () => {
@@ -134,7 +151,7 @@ const handleMouseup = () => {
 watch(
   () => clientWidth.value,
   () => {
-    const bgImagePath = `/src/assets/img/${props.bgImage}`;
+    const bgImagePath = `/src/assets/img/${props.folder ?? props.project}//${props.bgImage}`;
     const cb = (
       img?: HTMLImageElement,
       err?: string|Event
@@ -185,11 +202,11 @@ const gradientStyle = {
       <div class="card-bg" :style="[bgStyle]"/>
       <img
         class="card-fg"
-        :src="`/src/assets/img/${fgImage}`"
+        :src="cardFgSrc"
         :style="[fgStyle]"
       >
       <div class="gradient" :style="gradientStyle"/>
-      <div class="card-info" :style="[titleStyle]">
+      <div class="card-title" :style="[titleStyle]">
         {{ title }}
       </div>
     </div>
@@ -198,7 +215,7 @@ const gradientStyle = {
 
 <style lang="scss" scoped>
 $hoverEasing: cubic-bezier(0.23, 1, 0.32, 1);
-$returnEasing: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+$returnEasing: cubic-bezier(0.23, 1, 0.32, 1);
 
 .title {
   font-size: 24px;
@@ -220,27 +237,11 @@ h1+p, p+p {
   transform: perspective(1000px);
   transform-style: preserve-3d;
   cursor: pointer;
-  
+  transition: transform .3s;
+
   &:hover {
-    .card-info p {
-      opacity: 1;
-    }
-    .card-info, .card-info p {
-      transition: 1s $hoverEasing;
-    }
-    .card-info:after {
-      transition: 1s $hoverEasing;
-      opacity: 1;
-    }
-    .card-fg {
-      transition: 
-        1s $hoverEasing,
-    }
-    .card {
-      transition:
-        1s $hoverEasing,
-        box-shadow 2s $hoverEasing;
-    }
+    transform: perspective(1000px) scale(1.015);
+    z-index: 250;
   }
 }
 
@@ -251,20 +252,17 @@ h1+p, p+p {
   width: 100%;
   position: relative;
   overflow: hidden;
-  transition: .3s $returnEasing;
+  transition: 0.7s $returnEasing;
   
   &:hover {
     z-index: 250;
   }
-  &:active {
-    transform: scale(1.5)
-  }
 }
 
 .card-bg {
+  width: 100%;
   position: absolute;
   top: 0px; left: 0px;
-  width: 100%;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -277,23 +275,27 @@ h1+p, p+p {
   background-position: center;
   pointer-events: none;
   transition:
-    .3s $returnEasing;
+    0.7s $returnEasing;
+    
+  &:hover {
+    transform: scale(2);
+  }
 }
 
 .gradient {
   width: 100%;
-	position: absolute;
-	bottom: 0px;
-	left: 0px;
-	padding: 30px;
+ position: absolute;
+ bottom: 0px;
+ left: 0px;
+ padding: 30px;
 }
 
-.card-info {
+.card-title {
   font-size: 24px;
   margin: 0 24px;
   position: absolute;
   bottom: 20px;
-  transition: .3s $returnEasing;
+  transition: 1s $returnEasing;
   text-align: left;
   
   p {
@@ -319,7 +321,7 @@ h1+p, p+p {
   }
 }
 
-.card-info h1 {
+.card-title h1 {
   display: none;
   font-size: 24px;
   font-weight: 700;

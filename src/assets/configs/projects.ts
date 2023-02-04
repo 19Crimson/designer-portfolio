@@ -5,6 +5,7 @@ const content = [
     title: 'Lorem ipsum Lorem ipsum',
     titleColor: 'white',
     project: 'Draft',
+    folder: 'TestProject',
   },
   {
     bgImage: 'bg-1.png',

@@ -9,7 +9,6 @@ import {
   ImageWrapper,
   VideoWrapper,
 } from '@/components';
-import { defineEmits } from 'vue';
 
 defineProps({
   opened: Boolean,
@@ -28,7 +27,7 @@ const handleClose = () => {
     @close="handleClose"
   >
     <ProjectHeader
-      folder="test-project"
+      folder="TestProject"
       bgImage="header_bg.png"
       title-color="#FFB9AA"
     >
@@ -69,7 +68,7 @@ const handleClose = () => {
 
     <ProjectRow center color="#f4c5e3">
       <ImageWrapper
-        folder="test-project"
+        folder="TestProject"
         image="test-img.jpg"
       />
 
@@ -85,18 +84,18 @@ const handleClose = () => {
 
     <ProjectRow center color="#3c3c3c">
       <ImageWrapper
-        folder="test-project"
+        folder="TestProject"
         image="test-img.jpg"
       />
     </ProjectRow>
 
     <ProjectRow center no-padding color="#f4c5e3">
       <ImageWrapper
-        folder="test-project"
+        folder="TestProject"
         image="test-img.jpg"
       />
       <ImageWrapper
-        folder="test-project"
+        folder="TestProject"
         image="test-img.jpg"
       />
     </ProjectRow>

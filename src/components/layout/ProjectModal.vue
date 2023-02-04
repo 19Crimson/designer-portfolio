@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import {
-  defineEmits,
   computed,
   ref,
   watchEffect,
@@ -85,7 +84,7 @@ const bgStyle = computed(() => ({
   height: 100%;
   width: 100%;
 	padding: 100px;
-	background-color: rgba(16, 16, 16, 0.1);
+	background-color: rgba(7, 7, 7, 0.1);
 	cursor: pointer;
 	z-index: 1000;
 	transition: ease-in-out 0.3s;

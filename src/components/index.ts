@@ -1,8 +1,11 @@
 import {
   CardList,
+  CloseButton,
+  ComponentProvider,
   ImageWrapper,
   PageHeader,
   PageWrapper,
+  ParallaxCard,
   ProjectHeader,
   ProjectModal,
   ProjectRow,
@@ -11,13 +14,7 @@ import {
   TextWrapper,
   Typewriter,
   VideoWrapper,
-  ComponentProvider,
-} from '@/components/layout/';
-
-import {
-  CloseButton,
-  ParallaxCard,
-} from '@/components/ui';
+} from '@/components/layout';
 
 import MainPage from '@/components/pages/MainPage.vue';
 
@@ -25,8 +22,8 @@ import TestProject from '@/components/projects/TestProject.vue';
 
 export {
   CardList,
-  ComponentProvider,
   CloseButton,
+  ComponentProvider,
   ImageWrapper,
   MainPage,
   PageHeader,
