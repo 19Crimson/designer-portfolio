@@ -6,21 +6,21 @@ Made with: Vue 3, Vite, TS
 
 ## Добавление нового проекта (карточка + страница)
 - Создать новый компонент проекта в **src/components/projects/someProjectName.vue**, скопировав для примера **Demo.vue**
-- Создать одноименную папку с медиа-контентом проекта в **src/assets/media/someProjectName**, добавив туда необходимые файлы (обязательно наличие картинок для ParallaxCard - фон и обложка)
+- Создать одноименную папку с медиа-контентом проекта в **src/assets/projects/someProjectName**, добавив туда необходимые файлы (обязательно наличие картинок для ParallaxCard - фон и обложка)
 - Добавить данные о проекте в конфиг **src/assets/configs/projects.ts**  по примеру добавленных проектов (описание параметров ниже)
 - Настроить содержимое страницы на основе примера **Demo.vue** в соответствии с описанием ниже
 
-## Параметры конфига projects.ts:
+## Описание параметров конфига projects.ts:
 
-В файле **src/assets/configs/projects.ts** описывается структура проектов, их очередность и контент
+Для удобства базовые параметры проектов вынесены к конфиг **src/assets/configs/projects.ts**
 
-Параметры описания проекта:
-- **project** - Название компонента проекта (и одноименной папки в assets/projects)
-- **cardBg** - Фон parallax карточки
-- **cardFg** - Обложка parallax карточки
+Параметры проекта:
+- **project** - Название компонента проекта в папке **src/components/projects** и одноименной папки с медиа в папке **src/assets/projects/**
+- **cardBg** - Имя файла фона parallax карточки (файл должен лежать в папке с медиа проекта **src/assets/projects/someProjectName**)
+- **cardFg** - Обложка parallax карточки (файл должен лежать в папке с медиа проекта **src/assets/projects/someProjectName**)
 - **title** - Заголовок карточки
-- **titleColor** - Цвет заголовка (необязательный)
-- **gradientColor** - Цвет градиента карточки в RGB (необязательный)
+- **titleColor** - Цвет заголовка (необязательный параметр)
+- **gradientColor** - Цвет градиента карточки в RGB (необязательный параметр)
 
 ## Описание основных компонентов
 | Компонент         | Описание | Параметры (props)                                       |
@@ -41,14 +41,3 @@ This template should help get you started developing with Vue 3 and TypeScript i
 ## Recommended IDE Setup
 
 - [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Type Support For `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
