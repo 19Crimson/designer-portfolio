@@ -2,6 +2,12 @@
 
 This project was made as portfolio constructor with customizable content.
 
+**Main features:**
+- Interactive custimizable 3d Parallax cards;
+- Making your own projects pages with media content (images, video);
+- Customizable typing effect (with random words and colours defined in config);
+- Dynamic components initialization based on configuration file
+
 Made with: Vue 3, Vite, TS
 
 ## Добавление нового проекта (карточка + страница)
