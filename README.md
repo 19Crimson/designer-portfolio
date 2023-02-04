@@ -4,17 +4,6 @@ This project was made as portfolio constructor with customizable content.
 
 Made with: Vue 3, Vite, TS
 
-## Project initialization
-
-``` bash
-# install dependencies
-npm install
-
-# Setup dev mode
-npm run dev
-```
-
-
 ## Добавление нового проекта (карточка + страница)
 - Создать новый компонент проекта в **src/components/projects/someProjectName.vue**, скопировав для примера **Demo.vue**
 - Создать одноименную папку с медиа-контентом проекта в **src/assets/projects/someProjectName**, добавив туда необходимые файлы (обязательно наличие картинок для ParallaxCard - фон и обложка)
@@ -52,3 +41,14 @@ This template should help get you started developing with Vue 3 and TypeScript i
 ## Recommended IDE Setup
 
 - [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+
+
+## Project initialization
+
+``` bash
+# install dependencies
+npm install
+
+# Setup dev mode
+npm run dev
+```
