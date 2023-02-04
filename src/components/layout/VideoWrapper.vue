@@ -45,7 +45,6 @@ onUnmounted(() => {
   observer.value.disconnect();
 });
 
-
 const wrapperStyle = computed(() => ({
   margin: props.margin,
 }));

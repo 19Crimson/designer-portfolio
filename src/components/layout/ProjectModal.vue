@@ -2,6 +2,7 @@
 import {
   computed,
   ref,
+  inject,
   watchEffect,
 } from 'vue';
 import { CloseButton } from '@/components';
@@ -15,6 +16,8 @@ const props = defineProps({
   },
   bgImage: String,
 });
+
+const folder = inject('folder');
 
 const displayCondition = ref(props.opened);
 
@@ -40,7 +43,7 @@ const overlayInnerClass = computed(() => ({
 }));
 
 const bgStyle = computed(() => ({
-  ...(props.bgImage && { backgroundImage: `url("/src/assets/projects/${props.bgImage}")` }),
+  ...(props.bgImage && { backgroundImage: `url("/src/assets/projects/${folder}/${props.bgImage}")` }),
 }));
 </script>
 
