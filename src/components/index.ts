@@ -18,8 +18,6 @@ import {
 
 import MainPage from '@/components/pages/MainPage.vue';
 
-import TestProject from '@/components/projects/TestProject.vue';
-
 export {
   CardList,
   CloseButton,
@@ -32,7 +30,6 @@ export {
   ProjectHeader,
   ProjectModal,
   ProjectRow,
-  TestProject,
   TextBlock,
   TextHeadline,
   TextWrapper,

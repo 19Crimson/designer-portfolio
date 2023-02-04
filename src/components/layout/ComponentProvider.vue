@@ -1,6 +1,8 @@
 <template>
   <component
+    v-if="component"
     :is="component"
+    :folder="name"
     v-bind="$attrs"
   />
 </template>

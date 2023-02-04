@@ -3,24 +3,30 @@ import { computed, PropType } from 'vue';
 import { TextAlign } from '@/utils/types';
 
 const props = defineProps({
-  color: String,
-  folder: String,
   align: {
     type: String as PropType<TextAlign>,
     default: 'left'
   },
-  noBgRepeat: Boolean,
+  maxWidth: {
+    type: String,
+    default: '880'
+  },
+  margin: {
+    type: String,
+    default: '60px',
+  }
 });
 
 const computedStyle = computed(() => ({
+  margin: props.margin,
+  maxWidth: `${props.maxWidth}px`,
   textAlign: props.align,
-  color: props.color,
 }));
 </script>
 
 <template>
   <div class="text-block__wrapper" :style="computedStyle">
-    <div class="text-block" :style="computedStyle">
+    <div class="text-block">
       <slot/>
     </div>
   </div>
@@ -31,8 +37,6 @@ const computedStyle = computed(() => ({
   width: 100%;
 
   &__wrapper {
-    max-width: 800px;
-    padding: 0 60px;
     width: 100%;
   }
 }

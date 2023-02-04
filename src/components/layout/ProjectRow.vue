@@ -1,29 +1,28 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, inject } from 'vue';
 
 const props = defineProps({
-  folder: {
-    type: String,
-    default: '',
-  },
   bgImage: String,
   color: String,
-  noBgRepeat: Boolean,
-  noPadding: Boolean,
-  center: Boolean,  
+  bgRepeat: {
+    type: Boolean,
+    default: false,
+  },
+  center: Boolean,
 });
 
+const folder = inject('folder');
+
 const bgPath = computed(() => {
-  return props.folder
-    ? `url("/src/assets/img/${props.folder}/${props.bgImage}")`
+  return folder
+    ? `url("/src/assets/projects/${folder}/${props.bgImage}")`
     : `url("/src/assets/img/${props.bgImage}")`;
 });
 
 const rowWrapperStyle = computed(() => ({
   ...(props.bgImage && { backgroundImage: bgPath.value }),
   backgroundColor: props.color,
-  backgroundRepeat: props.noBgRepeat ? 'no-repeat' : 'repeat',
-  padding: props.noPadding ? '0' : '60px 0px'
+  backgroundRepeat: props.bgRepeat ? 'repeat' : 'no-repeat',
 }));
 
 const rowStyle = computed(() => ({
@@ -46,11 +45,10 @@ const rowStyle = computed(() => ({
 
   &__wrapper {
     display: flex;
-    padding: 60px 0px;
     width: 100%;
-    background-repeat: repeat;
     align-items: center;
     justify-content: center;
+    background-size: cover;
   }
 }
 </style>

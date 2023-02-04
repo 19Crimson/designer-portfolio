@@ -6,13 +6,20 @@ const props = defineProps({
   color: String,
   align: {
     type: String as PropType<TextAlign>,
-    default: 'left'
+    default: ''
   },
+  fontSize: {
+    type: String,
+    default: '22',
+  },
+  margin: String,
 });
 
 const computedStyle = computed(() => ({
-  textAlign: props.align,
-  color: props.color,
+  fontSize: `${props.fontSize}px`,
+  margin: props.margin,
+  ...(props.color && { color: props.color }),
+  ...(props.align && { textAlign: props.align })
 }));
 </script>
 
@@ -24,8 +31,6 @@ const computedStyle = computed(() => ({
 
 <style scoped lang="scss">
 .text {
-  font-size: 18px;
-  line-height: 24px;
   color: #000000;
 }
 </style>

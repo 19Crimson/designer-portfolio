@@ -12,9 +12,8 @@ const emit = defineEmits(['click']);
 
 const props = defineProps({
   project: String,
-  folder: String,
-  bgImage: String,
-  fgImage: String,
+  cardBg: String,
+  cardFg: String,
   title: String,
   titleColor: {
     type: String,
@@ -31,7 +30,7 @@ const width = ref(0);
 const cardHeight = ref(0);
 const clientHeight = ref(document.documentElement.clientHeight);
 const clientWidth = ref(document.documentElement.clientWidth);
-const cardFgSrc = ref(`/src/assets/img/${props.folder ?? props.project}/${props.fgImage}`);
+const cardFgSrc = ref(`/src/assets/projects/${props.project}/${props.cardFg}`);
 const isHovered = ref(false);
 const mouseLeaveDelay = ref();
 const mouseX = ref(0);
@@ -68,7 +67,6 @@ const cardStyle = computed(() => {
 });
 
 const fgStyle = computed(() => {
-  console.log(mousePX.value, mousePY.value);
   const rX = mousePX.value * 30;
   const rY = mousePY.value * -30;
   const tX = mousePX.value * -40;
@@ -104,7 +102,7 @@ const titleStyle = computed(() => {
 
 const bgStyle = computed(() => {
   const style = {
-    backgroundImage: `url("/src/assets/img/${props.folder ?? props.project}/${props.bgImage}")`,
+    backgroundImage: `url("/src/assets/projects/${props.project}/${props.cardBg}")`,
     height: `${cardHeight.value}px`,
   };
 
@@ -151,7 +149,7 @@ const handleMouseup = () => {
 watch(
   () => clientWidth.value,
   () => {
-    const bgImagePath = `/src/assets/img/${props.folder ?? props.project}//${props.bgImage}`;
+    const bgImagePath = `/src/assets/projects/${props.project}//${props.cardBg}`;
     const cb = (
       img?: HTMLImageElement,
       err?: string|Event

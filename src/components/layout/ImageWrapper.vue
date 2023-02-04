@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, inject } from 'vue';
 
 const props = defineProps({
-  folder: String,
   image: String,
 });
 
-const computedSrc = computed(() => `/src/assets/img/${props.folder}/${props.image}`);
+const folder = inject('folder');
+
+const computedSrc = computed(() => `/src/assets/projects/${folder}/${props.image}`);
 </script>
 
 <template>

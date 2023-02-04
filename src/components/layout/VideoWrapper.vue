@@ -1,6 +1,22 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue';
+import {
+  ref,
+  inject,
+  computed,
+  onMounted,
+  onUnmounted,
+} from 'vue';
 import { onIntersect } from '@/utils/helpers';
+
+const props = defineProps({
+  file: String,
+  margin: {
+    type: String,
+    default: ''
+  }
+});
+
+const folder = inject('folder');
 
 const player = ref();
 const observer = ref();
@@ -29,20 +45,25 @@ onUnmounted(() => {
   observer.value.disconnect();
 });
 
+
+const wrapperStyle = computed(() => ({
+  margin: props.margin,
+}));
 </script>
 
 <template>
   <div
     class="video-wrapper"
     ref="wrapper"
+    :style="wrapperStyle"
   >
     <vue3-video-player
-      muted
       ref="player"
-      src="/src/assets/video/videoplayback.mp4"
+      :src="`/src/assets/projects/${folder}/${file}`"
       :controls="false"
       autoplay
       loop
+      muted
     />
   </div>
 </template>

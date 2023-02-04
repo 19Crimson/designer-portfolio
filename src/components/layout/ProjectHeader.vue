@@ -1,22 +1,28 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, inject } from 'vue';
 import { TextAlign } from '@/utils/types';
 
 const props = defineProps({
   title: String,
-  folder: String,
   bgImage: String,
   bgColor: String,
   titleColor: String,
   center: Boolean,
   noBgRepeat: Boolean,
+  fontSize: {
+    type: String,
+    default: '40',
+  },
 });
 
+const folder = inject('folder');
+
 const headerStyle = computed(() => ({
-  ...(props.bgImage && { backgroundImage: `url("/src/assets/img/${props.folder}/${props.bgImage}")` }),
+  ...(props.bgImage && { backgroundImage: `url("/src/assets/projects/${folder}/${props.bgImage}")` }),
 }));
 
 const titleStyle = computed(() => ({
+  fontSize: `${props.fontSize}px`,
   color: props.titleColor,
   textAlign: props.center ? 'center' : 'left' as TextAlign,
   backgroundColor: props.bgColor,
@@ -41,7 +47,6 @@ const titleStyle = computed(() => ({
   background-repeat: repeat;
 
   &__title {
-    max-width: 680px;
     width: 100%;
   }
 }

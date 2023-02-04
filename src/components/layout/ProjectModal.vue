@@ -40,7 +40,7 @@ const overlayInnerClass = computed(() => ({
 }));
 
 const bgStyle = computed(() => ({
-  ...(props.bgImage && { backgroundImage: `url("/src/assets/img/${props.bgImage}")` }),
+  ...(props.bgImage && { backgroundImage: `url("/src/assets/projects/${props.bgImage}")` }),
 }));
 </script>
 
@@ -110,7 +110,7 @@ const bgStyle = computed(() => ({
 		align-items: center;
 		transform: scale(0);
 		border-radius: 20px;
-		cursor: default;
+		cursor: auto;
 		background-color: white;
 		width: 100%;
 		animation: scaleDown .5s
