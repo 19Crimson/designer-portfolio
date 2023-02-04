@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, defineAsyncComponent } from 'vue';
 import {
   PageHeader,
   Typewriter,
-  TestProject,
   PageWrapper,
   CardList,
 } from '@/components';
@@ -15,13 +14,20 @@ import {
 } from '@/assets/configs/typewriter';
 
 const dialogOpened = ref(false);
-const dialog = ref();
+const projectComponent = defineAsyncComponent(() =>
+  import('@/components/projects/TestProject.vue')
+);
 
 const onCloseDialog = () => {
   dialogOpened.value = false;
 };
 
-const onOpenCard = () => {
+const onOpenProject = (project?: string) => {
+  if (!project) {
+    console.error('Error, while opening project. Issue relates to project configuration');
+    return;
+  }
+  projectComponent.value = () => import(`@/components/projects/${project}.vue`);
   dialogOpened.value = true;
 };
 
@@ -38,9 +44,11 @@ const onOpenCard = () => {
       :headline="headline"
       :pretext="pretext"
     />
-    <CardList @openCard="onOpenCard"/>
-    <TestProject
-      ref="dialog"
+    <CardList
+      @open="onOpenProject"
+    />
+    <component
+      :is="projectComponent"
       :opened="dialogOpened"
       @close="onCloseDialog"
     />

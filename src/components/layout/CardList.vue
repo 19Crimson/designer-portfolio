@@ -3,15 +3,15 @@ import { ParallaxCard } from '@/components';
 import Projects from '@/assets/configs/projects';
 import { defineEmits } from 'vue';
 
-const emit = defineEmits(['openCard']);
+const emit = defineEmits(['open']);
 
 // Sorting content by columns
 const firstColumnItems = Projects.filter((_, index) => index % 3 === 0);
 const secondColumnItems = Projects.filter((_, index) => (index - 1) % 3 === 0);
 const thirdColumnItems = Projects.filter((_, index) => (index - 2) % 3 === 0);
 
-const handleClickCard = (id: number) => {
-  emit('openCard', id);
+const handleClickCard = (project?: string) => {
+  emit('open', project);
 };
 </script>
 
@@ -22,7 +22,7 @@ const handleClickCard = (id: number) => {
         v-for="(card, id) in firstColumnItems"
         :key="id"
         v-bind="card"
-        @click="() => handleClickCard(id)"
+        @click="() => handleClickCard(card.project)"
       />
     </div>
 
@@ -31,7 +31,7 @@ const handleClickCard = (id: number) => {
         v-for="(card, id) in secondColumnItems"
         :key="id"
         v-bind="card"
-        @click="() => handleClickCard(id)"
+        @click="() => handleClickCard(card.project)"
       />
     </div>
 
@@ -40,7 +40,7 @@ const handleClickCard = (id: number) => {
         v-for="(card, id) in thirdColumnItems"
         :key="id"
         v-bind="card"
-        @click="() => handleClickCard(id)"
+        @click="() => handleClickCard(card.project)"
       />
     </div>
   </div>
