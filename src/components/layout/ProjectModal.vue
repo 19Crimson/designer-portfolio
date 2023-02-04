@@ -46,37 +46,44 @@ const bgStyle = computed(() => ({
 </script>
 
 <template>
-	<div
-    v-if="displayCondition"
-		:class="overlayClass"
-		@click.self="handleClose"
-	>
-		<div
-			class="overlay__inner"
-			:class="overlayInnerClass"
-      :style="bgStyle"
+  <!-- <Transition appear> -->
+    <div
+      v-if="displayCondition"
+      :class="overlayClass"
+      @click.self="handleClose"
     >
-      <CloseButton
-        class="overlay__close"
-        @click="handleClose"
-      />
-      <slot />
-		</div>
-	</div>
+      <div
+        :class="overlayInnerClass"
+        :style="bgStyle"
+      >
+        <CloseButton
+          class="overlay__close"
+          @click="handleClose"
+        />
+        <slot />
+      </div>
+    </div>
+  <!-- </Transition> -->
 </template>
 
 <style scoped lang="scss">
-.test-text {
-	font-family: SfPro;
-	padding: 20px;
-}
+// .v-enter-active,
+// .v-leave-active {
+//   transition: 0.5s ease-in-out;
+//   backdrop-filter: blur(15px);
+// }
+
+// .v-enter-from,
+// .v-leave-to {
+//   transition: 0.5s ease-in-out;
+//   backdrop-filter: blur(0px);
+// }
 .overlay {
   position: fixed;
   overflow-y: scroll;
   overscroll-behavior: contain;
   height: 100%;
   width: 100%;
-	visibility: hidden;
 	padding: 100px;
 	background-color: rgba(16, 16, 16, 0.1);
 	cursor: pointer;
@@ -94,8 +101,6 @@ const bgStyle = computed(() => ({
   }
 
 	&--active {
-		visibility: visible;
-		display: block;
 		backdrop-filter: blur(15px);
 	}
 

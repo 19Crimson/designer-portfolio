@@ -10,6 +10,7 @@ import TextBlock from '@/components/layout/TextBlock.vue';
 import TextHeadline from '@/components/layout/TextHeadline.vue';
 import TextWrapper from '@/components/layout/TextWrapper.vue';
 import Typewriter from '@/components/layout/Typewriter.vue';
+import ComponentProvider from '@/components/layout/ComponentProvider.vue';
 
 export {
   CardList,
@@ -24,4 +25,5 @@ export {
   TextWrapper,
   Typewriter,
   VideoWrapper,
+  ComponentProvider,
 };

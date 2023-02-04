@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { ref, defineAsyncComponent } from 'vue';
+import { ref } from 'vue';
 import {
   PageHeader,
   Typewriter,
   PageWrapper,
   CardList,
+  ComponentProvider,
 } from '@/components';
 import {
   keywords,
@@ -14,9 +15,7 @@ import {
 } from '@/assets/configs/typewriter';
 
 const dialogOpened = ref(false);
-const projectComponent = defineAsyncComponent(() =>
-  import('@/components/projects/TestProject.vue')
-);
+const currentProject = ref('TestProject');
 
 const onCloseDialog = () => {
   dialogOpened.value = false;
@@ -27,14 +26,15 @@ const onOpenProject = (project?: string) => {
     console.error('Error, while opening project. Issue relates to project configuration');
     return;
   }
-  projectComponent.value = () => import(`@/components/projects/${project}.vue`);
+  currentProject.value = project;
   dialogOpened.value = true;
 };
 
 </script>
 // TODO:
-// Fix autoplay video only whe visible
 // Write README
+// Fix card open on right click
+// Fix Project Modal Blur Transition on open
 <template>
   <PageWrapper>
     <PageHeader/>
@@ -47,8 +47,8 @@ const onOpenProject = (project?: string) => {
     <CardList
       @open="onOpenProject"
     />
-    <component
-      :is="projectComponent"
+    <ComponentProvider
+      :name="currentProject"
       :opened="dialogOpened"
       @close="onCloseDialog"
     />

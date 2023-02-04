@@ -11,6 +11,7 @@ import {
   TextWrapper,
   Typewriter,
   VideoWrapper,
+  ComponentProvider,
 } from '@/components/layout/';
 
 import {
@@ -24,6 +25,7 @@ import TestProject from '@/components/projects/TestProject.vue';
 
 export {
   CardList,
+  ComponentProvider,
   CloseButton,
   ImageWrapper,
   MainPage,
