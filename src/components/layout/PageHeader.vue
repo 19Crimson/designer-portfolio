@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { scrrollTop } from '@/utils/helpers';
+import { SocialLink } from '@/components';
 </script>
 
 <template>
@@ -15,15 +16,9 @@ import { scrrollTop } from '@/utils/helpers';
         <div class="username">Nikita Karpinsky</div>
       </div>
       <div class="social-links">
-        <a class="social-link social-link--tg" href="https://t.me/karpnsky" target="_blank">
-          <div class="social-link__text">Tg</div>
-        </a>
-        <a class="social-link social-link--inst" href="https://www.instagram.com/n.karpnsky/" target="_blank">
-          <div class="social-link__text">Inst</div>
-        </a>
-        <a class="social-link social-link--linked-in" href="https://www.linkedin.com/in/nikita-karpinskiy-07b504211/" target="_blank">
-          <div class="social-link__text">LinkedIn</div>
-        </a>
+        <SocialLink link-type="tg" />
+        <SocialLink link-type="inst" />
+        <SocialLink link-type="linkedIn" />
       </div>
     </div>
   </header>
@@ -149,11 +144,27 @@ a {
     }
   }
 
+  &--tg {
+    > .social-link__text {
+      width: 46px;
+    }
+  }
+
+  &--inst {
+    > .social-link__text {
+      width: 70px;
+    }
+  }
+
   &--linked-in {
     background: #ffffff;
     font-weight: 470;
     color: #000000;
     margin-right: 0;
+
+    > .social-link__text {
+      width: 160px;
+    }
   }
 }
 </style>
