@@ -10,6 +10,8 @@ This project was made as portfolio constructor with customizable content.
 
 Made with: Vue 3, Vite, TS
 
+[Demo](https://19crimson.github.io/designer-portfolio/)
+
 ## Добавление нового проекта (карточка + страница)
 - Создать новый компонент проекта в **src/components/projects/someProjectName.vue**, скопировав для примера **Demo.vue**
 - Создать одноименную папку с медиа-контентом проекта в **public/projects/someProjectName**, добавив туда необходимые файлы (обязательно наличие картинок для ParallaxCard - фон и обложка)
