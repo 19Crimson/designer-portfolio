@@ -14,12 +14,12 @@ const headline = 'When product';
 const pretext = 'meets';
 
 const colors = [
-  '#FFB9AA',
-  '#F2FDAE',
-  '#DAC3FF',
-  '#7DE3E8',
-  '#FFEB8C',
-  '#FBD0FF',
+  '#FF947B',
+  '#FFD945',
+  '#95FF7B',
+  '#7BCFFF',
+  '#E07BFF',
+  '#7B7CFF',
 ];
 
 const keywords = [
@@ -61,11 +61,6 @@ const keywords = [
       '啊哈時刻',
       '明晰',
       '邏輯',
-      'դիզայն',
-      'բիզնես',
-      'ինքնությունը',
-      'մատչելիությունը',
-      'աճը',
     ],
   },
   {
@@ -74,13 +69,17 @@ const keywords = [
       'Identität',
       'barrierefreiheit',
       'identita',
-      'přístupnost',
       'postřehy',
-      'motif',
-      'processus',
       'identité',
       'accessibilité',
       'clarté',
+      'дизайн',
+      'процессы',
+      'доступность',
+      'рост',
+      'դիզայն',
+      'բիզնես',
+      'աճը',
     ],
   },
 ];

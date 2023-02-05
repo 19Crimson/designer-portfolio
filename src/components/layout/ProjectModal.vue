@@ -86,7 +86,7 @@ const bgStyle = computed(() => ({
   overscroll-behavior: contain;
   height: 100%;
   width: 100%;
-	padding: 100px;
+	padding: 60px;
 	background-color: rgba(7, 7, 7, 0.1);
 	cursor: pointer;
 	z-index: 1000;

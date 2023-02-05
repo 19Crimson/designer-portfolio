@@ -90,8 +90,12 @@ import { scrrollTop } from '@/utils/helpers';
   top: 40px;
   left: 28px;
   align-items: center;
+  transition: ease-in-out .2s;
   > img {
     z-index: 500;
+  }
+  &:hover {
+    opacity: .7;
   }
 }
 a {
@@ -101,16 +105,15 @@ a {
 .username {
   user-select: none;
   z-index: 500;
-  font-family: 'Mont';
-  font-style: normal;
-  font-weight: 700;
+  font-family: 'SFPro';
+  font-stretch: expanded;
+  font-weight: 600;
   font-size: 32px;
   margin-left: 16px;
   max-width: 180px;
-  text-transform: uppercase;
   text-align: left;
   letter-spacing: 2px;
-  line-height: 42px;
+  line-height: 36px;
 }
 .social-links {
   pointer-events: auto;
@@ -121,15 +124,16 @@ a {
 .social-link {
   display: block;
   font-family: SfPro;
-  margin-right: 40px;
-  font-weight: 560;
-  font-size: 36px;
+  margin-right: 20px;
+  font-weight: 400;
+  font-size: 32px;
   line-height: 44px;
   font-stretch: expanded;
+  
   color: #ffffff;
   text-decoration: none;
-  padding: 16px 32px;
-  border: 2px solid #ffffff1c;
+  padding: 8px 22px;
+  border: 2px solid #ffffff29;
   border-radius: 87px;
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -140,12 +144,14 @@ a {
 
   &:hover {
     .social-link__text {
-      opacity: .6;
+      witdh: fixed;
+      opacity: .7;
     }
   }
 
   &--linked-in {
-    background: #B5DEFF;
+    background: #ffffff;
+    font-weight: 470;
     color: #000000;
     margin-right: 0;
   }
