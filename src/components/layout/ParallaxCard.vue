@@ -149,7 +149,7 @@ const handleMouseup = () => {
 watch(
   () => clientWidth.value,
   () => {
-    const bgImagePath = `/projects/${props.project}//${props.cardBg}`;
+    const bgImagePath = `/projects/${props.project}/${props.cardBg}`;
     const cb = (
       img?: HTMLImageElement,
       err?: string|Event

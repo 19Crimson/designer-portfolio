@@ -1,6 +1,6 @@
 const content = [
   {
-    project: 'Demo',
+    project: 'HomeApp',
     cardBg: 'bg.png',
     cardFg: 'fg.png',
     title: 'Exciting title',
