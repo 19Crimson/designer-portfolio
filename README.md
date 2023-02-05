@@ -3,7 +3,7 @@
 This project was made as portfolio constructor with customizable content.
 
 **Main features:**
-- Interactive custimizable 3d Parallax cards;
+- Interactive customizable 3d Parallax cards;
 - Making your own projects pages with media content (images, video);
 - Customizable typing effect (with random words and colours defined in config);
 - Dynamic components initialization based on configuration file
@@ -34,7 +34,7 @@ Made with: Vue 3, Vite, TS
 | ProjectModal | Компонент модального окна со страницей проекта |  **bgImage** - Фон модального окна |
 | ProjectHeader | Основной заголовок проекта | **title** - Текст заголовка<br>**bgImage** - Имя файла фонового изображения<br>**bgColor** - Цвет фона<br>**titleColor** - Цвет текста заголовка<br>**center** - Текст по центру<br>**noBgRepeat**: Убрать повторение фоновой картинки |
 | ProjectRow | Контейнер страницы, содержит горизонтально расположенный контент | **bgImage** - Имя файла фонового изображения<br>**color** - Цвет текста<br>**noBgRepeat** - Фон без повторений<br>**center** - Текст по центру |
-| TextBlock | Контейнер для блока с текстом (может содержать TextHeadline и TextWrapper) | **align** - Выравнивание текста<br>**maxWidth** - Ширина блока с текстом (указывается количество px числом)<br>**margin** - Отступы блока текста |
+| TextBlock | Контейнер для блока с текстом (может содержать TextHeadline и TextWrapper) | **align** - Выравнивание текста<br>**maxWidth** - Макс ширина блока с текстом в px<br>**margin** - Отступы блока текста |
 | TextHeadline | Заголовок блока с текстом |  **color** - цвет текста<br>**align** - Выравнивание текста<br>**fontSize** - Размер шрифта<br>**margin** - Отступы блока |
 | TextWrapper | Контейнер для текста |  **color** - цвет текста<br>**align** - Выравнивание текста<br>**fontSize** - Размер шрифта<br>**margin** - Отступы блока |
 | ImageWrapper | Контейнер для изображения |  **image** - Имя файла изображения<br>**margin** - Отступы блока |
