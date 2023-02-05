@@ -107,9 +107,10 @@ const getDimensions = () => {
 };
 
 const handleMouseMove = (e: MouseEvent) => {
-
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   mouseX.value = e.pageX - link.value.getBoundingClientRect().left - width.value / 2;
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   mouseY.value = e.pageY - link.value.getBoundingClientRect().top - linkHeight.value / 2;
   isHovered.value = true;
