@@ -169,15 +169,15 @@ const handleMouseup = () => {
 .social-link {
   display: block;
   font-family: SfPro;
-  margin-right: 40px;
-  font-weight: 560;
-  font-size: 36px;
+  margin-right: 20px;
+  font-weight: 400;
+  font-size: 32px;
   line-height: 44px;
   font-stretch: expanded;
   color: #ffffff;
   text-decoration: none;
-  padding: 16px 32px;
-  border: 2px solid #ffffff1c;
+  padding: 8px 22px;
+  border: 2px solid #ffffff29;
   border-radius: 87px;
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -188,7 +188,7 @@ const handleMouseup = () => {
 
   &:hover {
     .social-link__text {
-      opacity: .6;
+      opacity: .7;
     }
   }
 
@@ -205,7 +205,8 @@ const handleMouseup = () => {
   }
 
   &--linked-in {
-    background: #B5DEFF;
+    background: #ffffff;
+    font-weight: 470;
     color: #000000;
     margin-right: 0;
 
