@@ -15,8 +15,8 @@ const folder = inject('folder');
 
 const bgPath = computed(() => {
   return folder
-    ? `url("/src/assets/projects/${folder}/${props.bgImage}")`
-    : `url("/src/assets/img/${props.bgImage}")`;
+    ? `url("/projects/${folder}/${props.bgImage}")`
+    : `url("public/${props.bgImage}")`;
 });
 
 const rowWrapperStyle = computed(() => ({

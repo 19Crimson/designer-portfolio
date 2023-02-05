@@ -30,7 +30,7 @@ const width = ref(0);
 const cardHeight = ref(0);
 const clientHeight = ref(document.documentElement.clientHeight);
 const clientWidth = ref(document.documentElement.clientWidth);
-const cardFgSrc = ref(`/src/assets/projects/${props.project}/${props.cardFg}`);
+const cardFgSrc = ref(`/projects/${props.project}/${props.cardFg}`);
 const isHovered = ref(false);
 const mouseLeaveDelay = ref();
 const mouseX = ref(0);
@@ -102,7 +102,7 @@ const titleStyle = computed(() => {
 
 const bgStyle = computed(() => {
   const style = {
-    backgroundImage: `url("/src/assets/projects/${props.project}/${props.cardBg}")`,
+    backgroundImage: `url("/projects/${props.project}/${props.cardBg}")`,
     height: `${cardHeight.value}px`,
   };
 
@@ -149,7 +149,7 @@ const handleMouseup = () => {
 watch(
   () => clientWidth.value,
   () => {
-    const bgImagePath = `/src/assets/projects/${props.project}//${props.cardBg}`;
+    const bgImagePath = `/projects/${props.project}//${props.cardBg}`;
     const cb = (
       img?: HTMLImageElement,
       err?: string|Event

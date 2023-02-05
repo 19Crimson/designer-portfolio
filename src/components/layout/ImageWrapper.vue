@@ -11,7 +11,7 @@ const props = defineProps({
 
 const folder = inject('folder');
 
-const computedSrc = computed(() => `/src/assets/projects/${folder}/${props.image}`);
+const computedSrc = computed(() => `/projects/${folder}/${props.image}`);
 
 const wrapperStyle = computed(() => ({
   margin: props.margin,
