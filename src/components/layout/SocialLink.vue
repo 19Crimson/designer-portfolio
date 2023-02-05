@@ -107,8 +107,11 @@ const getDimensions = () => {
 };
 
 const handleMouseMove = (e: MouseEvent) => {
-  mouseX.value = e.pageX - link.value.offsetLeft - width.value / 2;
-  mouseY.value = e.pageY - link.value.offsetTop - linkHeight.value / 2;
+
+  // @ts-ignore
+  mouseX.value = e.pageX - link.value.getBoundingClientRect().left - width.value / 2;
+  // @ts-ignore
+  mouseY.value = e.pageY - link.value.getBoundingClientRect().top - linkHeight.value / 2;
   isHovered.value = true;
 };
 
