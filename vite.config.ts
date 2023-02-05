@@ -3,11 +3,12 @@ import vue from '@vitejs/plugin-vue';
 import path from 'path';
 
 export default defineConfig({
-  base: '/designer-portfolio/',
+  base: '/',
   plugins: [vue()],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
     },
-  }
+  },
+  assetsInclude: ['**/*.otf', '**/*.ttf'],
 });
