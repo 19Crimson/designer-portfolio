@@ -23,6 +23,8 @@
 // Write README
 // Fix card open on right click
 // Fix Project Modal Blur Transition on open
+// Add favico / Page Title
+// Implement get-params to share projects pages
 
 
 <script setup lang="ts">
