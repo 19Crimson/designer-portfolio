@@ -12,7 +12,7 @@ import { SocialLink } from '@/components';
         <div class="header__gradient"></div>
       </div>>
       <div class="header__logo" @click="scrrollTop">
-        <img src="@/assets/img/logo.png" width="94" height="94"/>
+        <img src="@/assets/img/logo.png"/>
         <div class="username">Nikita Karpinsky</div>
       </div>
       <div class="social-links">
@@ -88,6 +88,8 @@ import { SocialLink } from '@/components';
   transition: ease-in-out .2s;
   > img {
     z-index: 500;
+    width: 94px;
+    height: 94px;
   }
   &:hover {
     opacity: .9;
