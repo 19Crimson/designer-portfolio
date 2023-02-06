@@ -12,7 +12,7 @@ import { SocialLink } from '@/components';
         <div class="header__gradient"></div>
       </div>>
       <div class="header__logo" @click="scrrollTop">
-        <img src="@/assets/img/logo.png"/>
+        <img src="@/assets/img/logo.png" width="94" height="94"/>
         <div class="username">Nikita Karpinsky</div>
       </div>
       <div class="social-links">
@@ -82,15 +82,15 @@ import { SocialLink } from '@/components';
   z-index: 500;
   display: flex;
   position: absolute;
-  top: 40px;
-  left: 28px;
+  top: 28px;
+  left: 30px;
   align-items: center;
   transition: ease-in-out .2s;
   > img {
     z-index: 500;
   }
   &:hover {
-    opacity: .7;
+    opacity: .9;
   }
 }
 a {
@@ -104,11 +104,17 @@ a {
   font-stretch: expanded;
   font-weight: 600;
   font-size: 32px;
-  margin-left: 16px;
+  margin-left: -8px;
   max-width: 180px;
   text-align: left;
   letter-spacing: 2px;
   line-height: 36px;
+  transition: ease-in-out .2s;
+
+  &:hover {
+    font-weight: 520;
+    margin-left: -10px;
+  }
 }
 .social-links {
   pointer-events: auto;

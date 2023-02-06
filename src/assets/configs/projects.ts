@@ -1,5 +1,13 @@
 const content = [
   {
+    project: 'SweetHome',
+    cardBg: 'bg.png',
+    cardFg: 'fg.png',
+    title: 'Information monitor for neighbours',
+    titleColor: 'black',
+    gradientColor: '255, 217, 129',
+  },
+  {
     project: 'HomeApp',
     cardBg: 'bg.png',
     cardFg: 'fg.png',

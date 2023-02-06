@@ -221,8 +221,9 @@ onMounted(() => {
   font-stretch: expanded;
   text-align: left;
   max-width: 840px;
+  margin-top: 16px;
   margin-left: 40px;
-  margin-bottom: 52px;
+  margin-bottom: 56px;
 
   &__content {
     display: flex;

@@ -6,7 +6,6 @@
       :colors="colors"
       :headline="headline"
       :pretext="pretext"
-      style="margin-top: 56px;"
     />
     <CardList
       @open="onOpenProject"

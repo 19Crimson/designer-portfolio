@@ -77,7 +77,7 @@ const fgStyle = computed(() => {
   };
 
   if (isHovered.value) {
-    style.transform = `scale(1.03) rotateY(${-0.33*rX}deg) rotateX(${-0.33*rY}deg) translateX(${0.33 * tX}px) translateY(${0.33 * tY}px)`;
+    style.transform = `scale(1) rotateY(${-0.33*rX}deg) rotateX(${-0.33*rY}deg) translateX(${0.33 * tX}px) translateY(${0.33 * tY}px)`;
   }
 
   return style;
@@ -275,9 +275,6 @@ h1+p, p+p {
   transition:
     0.7s $returnEasing;
     
-  &:hover {
-    transform: scale(2);
-  }
 }
 
 .gradient {
@@ -285,7 +282,7 @@ h1+p, p+p {
  position: absolute;
  bottom: 0px;
  left: 0px;
- padding: 30px;
+ padding: 60px;
 }
 
 .card-title {
