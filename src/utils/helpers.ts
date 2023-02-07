@@ -5,7 +5,7 @@ export type getRandomValueConfig= {
 
 export function getRandomArrayElement(array: Array<any>) {
   const max = array?.length - 1;
-  return array[max];
+  return array[Math.floor(Math.random() * max)];
 }
 
 export function getRandomValue(config: getRandomValueConfig) {
