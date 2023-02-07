@@ -18,27 +18,15 @@ const props = defineProps({
 
 const width = ref(0);
 
-const link = ref({
-  offsetWidth: 0,
-  offsetHeight: 0,
-  offsetLeft: 0,
-  offsetTop: 0,
-});
+const link = ref<HTMLElement>();
 const linkHeight = computed(() => link.value?.offsetHeight ?? 0);
-const clientHeight = ref(document.documentElement.clientHeight);
-const clientWidth = ref(document.documentElement.clientWidth);
 const isHovered = ref(false);
 const mouseLeaveDelay = ref();
 const mouseX = ref(0);
 const mouseY = ref(0);
 
 onMounted(() => {
-  window.addEventListener("resize", getDimensions);
-  width.value = link.value.offsetWidth;
-});
-
-onBeforeUnmount(() => {
-  window.removeEventListener("resize", getDimensions);
+  width.value = link.value?.offsetWidth ?? 0;
 });
 
 const mousePX = computed(() => mouseX.value / width.value);
@@ -101,18 +89,9 @@ const textStyle = computed(() => {
   return style;
 });
 
-const getDimensions = () => {
-  clientWidth.value = document.documentElement.clientWidth;
-  clientHeight.value = document.documentElement.clientHeight;
-};
-
 const handleMouseMove = (e: MouseEvent) => {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  mouseX.value = e.pageX - link.value.getBoundingClientRect().left - width.value / 2;
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  mouseY.value = e.pageY - link.value.getBoundingClientRect().top - linkHeight.value / 2;
+  mouseX.value = e.clientX - Number(link.value?.getBoundingClientRect().left) - width.value / 2;
+  mouseY.value = e.clientY - Number(link.value?.getBoundingClientRect().top) - linkHeight.value / 2;
   isHovered.value = true;
 };
 
