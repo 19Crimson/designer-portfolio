@@ -4,6 +4,7 @@ import {
   ref,
   computed,
   onMounted,
+  watchEffect,
 } from 'vue';
 import { getRandomArrayElement, getRandomValue } from '@/utils/helpers';
 
@@ -23,6 +24,7 @@ const props = defineProps({
   },
   pretext: String,
   headline: String,
+  changeTitle: Boolean
 });
 
 const firstKeyword = !props.keywords ? '' : props.keywords[0].values[0];
@@ -39,6 +41,12 @@ const currentColor = ref<string>(getRandomArrayElement(props.colors));
 const usedColors = ref<Array<string>>([currentColor.value]);
 const currentStep = ref(1);
 
+watchEffect(() => {
+  if (props.changeTitle) {
+    document.title = renderedKeyword.value;
+  }
+});
+
 const availableColors = computed(() => props.colors.filter(color => !usedColors.value.includes(color)));
 
 const availableLists = computed(() => props.keywords?.filter(list => {
@@ -46,14 +54,12 @@ const availableLists = computed(() => props.keywords?.filter(list => {
   return avaliableWordsAmount > 0;
 }));
 
-const availableKeywords = computed(() => currentList.value.filter(w => !usedKeywords.value.includes(w)));
+const availableCurrentListWords = computed(() => currentList.value.filter(w => !usedKeywords.value.includes(w)));
 
-const totalKeywords = computed(() => {
-  let amount = 0;
-  props.keywords?.forEach(list => {
-    amount += list.values.length;
-  });
-  return amount;
+const totalAvailableWords = computed(() => {
+  const mergedWords = props.keywords.map(list => list.values).flat();
+  const test = mergedWords.filter(w => !usedKeywords.value.includes(w)).length;
+  return test;
 });
 
 const colorStyle = computed(() => `
@@ -63,9 +69,9 @@ const colorStyle = computed(() => `
 
 const switchWordList = () => {
   if (!availableLists.value || availableLists.value.length === 0) {
-    return getRandomArrayElement(wordLists.value);
+    usedKeywords.value = [];
   }
-  
+
   currentList.value = getRandomValue({
     chances: availableLists.value.map(item => item.chance),
     values: availableLists.value.map(item => item.values),
@@ -146,11 +152,11 @@ const switchWord = () => {
   switchWordList();
   checkCurrentStep();
 
-  if (totalKeywords.value === usedKeywords.value.length) {
+  if (totalAvailableWords.value === 0) {
     usedKeywords.value = [];
   }
 
-  currentKeyword.value = getRandomArrayElement(availableKeywords.value);
+  currentKeyword.value = getRandomArrayElement(availableCurrentListWords.value);
   usedKeywords.value.push(currentKeyword.value);
 };
 
