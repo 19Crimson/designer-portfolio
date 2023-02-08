@@ -96,7 +96,7 @@ const fgStyle = computed(() => {
       rotateX(${-RC * rY}deg)
       translateX(${TC * tX}px)
       translateY(${TC * tY}px)
-      scale(1)`;
+      scale(${SC})`;
   }
 
   return style;
