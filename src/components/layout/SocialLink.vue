@@ -3,7 +3,6 @@ export type LinkType = 'tg' | 'inst' | 'linkedIn'
 
 import {
   onMounted,
-  onBeforeUnmount,
   ref,
   computed,
   PropType,
@@ -16,20 +15,32 @@ const props = defineProps({
   }
 });
 
-const width = ref(0);
-
-const link = ref<HTMLElement>();
-const linkHeight = computed(() => link.value?.offsetHeight ?? 0);
-const isHovered = ref(false);
-const mouseLeaveDelay = ref();
 const mouseX = ref(0);
 const mouseY = ref(0);
+const link = ref<HTMLElement>();
+const linkHeight = computed(() => link.value?.offsetHeight || 0);
+const linkWidth = ref(0);
+const isHovered = ref(false);
+const timeout = ref<ReturnType<typeof setTimeout>>();
+
+// Link Rotating coefficient
+const LRC = 60;
+
+// Text Rotating coefficient
+const TRC = 1;
+
+// Transforming coefficient
+const TC = 6;
+
+// Scaling coefficient
+const SC = 1.03;
+
 
 onMounted(() => {
-  width.value = link.value?.offsetWidth ?? 0;
+  linkWidth.value = link.value?.offsetWidth ?? 0;
 });
 
-const mousePX = computed(() => mouseX.value / width.value);
+const mousePX = computed(() => mouseX.value / linkWidth.value);
 const mousePY = computed(() => mouseY.value / linkHeight.value);
 
 const linkClass = computed(() => ({
@@ -52,11 +63,11 @@ const linkHref = computed(() => {
 });
 
 const linkStyle = computed(() => {
-  const rX = mousePX.value * 30;
-  const rY = mousePY.value * -30;
+  const rX = -mousePX.value;
+  const rY = mousePY.value;
 
   return {
-    transform: `rotateY(${-0.33*rX}deg) rotateX(${-0.33*rY}deg)`,
+    transform: `rotateY(${-LRC * rX}deg) rotateX(${-LRC * rY}deg)`,
   };
 });
 
@@ -73,34 +84,45 @@ const linkText = computed(() => {
 });
 
 const textStyle = computed(() => {
-  const rX = mousePX.value * 30;
-  const rY = mousePY.value * -30;
-  const tX = mousePX.value * -40;
-  const tY = mousePY.value * -40;
+  const rX = mousePX.value;
+  const rY = -mousePY.value;
+  const tX = -mousePX.value;
+  const tY = -mousePY.value;
 
   const style = {
-    transform: `rotateY(${-0.33*rX}deg) rotateX(${-0.33*rY}deg) translateX(${0.33 * tX}px) translateY(${0.33 * tY}px)`,
+    transform: `
+      rotateY(${-TRC * rX}deg)
+      rotateX(${-TRC * rY}deg)
+      translateX(${TC * tX}px)
+      translateY(${TC * tY}px)`,
   };
 
   if (isHovered.value) {
-    style.transform = `scale(1.03) rotateY(${-0.33*rX}deg) rotateX(${-0.33*rY}deg) translateX(${0.33 * tX}px) translateY(${0.33 * tY}px)`;
+    style.transform = `
+      rotateY(${-TRC * rX}deg)
+      rotateX(${-TRC * rY}deg)
+      translateX(${TC * tX}px)
+      translateY(${TC * tY}px)
+      perspective(1000px)
+      scale(${SC})`;
   }
 
   return style;
 });
 
 const handleMouseMove = (e: MouseEvent) => {
-  mouseX.value = e.clientX - Number(link.value?.getBoundingClientRect().left) - width.value / 2;
+  mouseX.value = e.clientX - Number(link.value?.getBoundingClientRect().left) - linkWidth.value / 2;
   mouseY.value = e.clientY - Number(link.value?.getBoundingClientRect().top) - linkHeight.value / 2;
+  console.log('Mouse XY', mouseX.value, mouseY.value);
   isHovered.value = true;
 };
 
 const handleMouseEnter = () => {
-  clearTimeout(mouseLeaveDelay.value);
+  clearTimeout(timeout.value);
 };
 
 const handleMouseLeave = () => {
-  mouseLeaveDelay.value = setTimeout(()=>{
+  timeout.value = setTimeout(()=>{
     mouseX.value = 0;
     mouseY.value = 0;
     isHovered.value = false;
@@ -146,6 +168,7 @@ const handleMouseup = () => {
 </template>
 
 <style scoped lang="scss">
+$returnEasing: cubic-bezier(0.23, 1, 0.32, 1);
 .social-link {
   display: block;
   font-family: SfPro;
@@ -161,9 +184,15 @@ const handleMouseup = () => {
   border-radius: 87px;
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
+  transition: 0.2s $returnEasing;
+  user-select: none;
+  // transform-style: preserve-3d;
+  transition: transform .3s;
 
   &__text {
-    transition: ease-in-out .2s;
+    transform-style: preserve-3d;
+    transition:
+      0.2s $returnEasing;
   }
 
   &:hover {

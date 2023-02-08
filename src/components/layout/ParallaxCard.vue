@@ -25,16 +25,24 @@ const props = defineProps({
   },
 });
 
-const width = ref(0);
-
-const cardHeight = ref(0);
-const clientHeight = ref(document.documentElement.clientHeight);
-const clientWidth = ref(document.documentElement.clientWidth);
-const cardFgSrc = ref(`/projects/${props.project}/${props.cardFg}`);
-const isHovered = ref(false);
-const mouseLeaveDelay = ref();
 const mouseX = ref(0);
 const mouseY = ref(0);
+const cardHeight = ref(0);
+const cardWidth = ref(0);
+const isHovered = ref(false);
+const timeout = ref<ReturnType<typeof setTimeout>>();
+const clientHeight = ref(document.documentElement.clientHeight);
+const clientWidth = ref(document.documentElement.clientWidth);
+const fgSrc = ref(`/projects/${props.project}/${props.cardFg}`);
+
+// Rotating coefficient
+const RC = 10;
+
+// Transforming coefficient
+const TC = 13.2;
+
+// Scaling coefficient
+const SC = 1.03;
 
 const card = ref({
   offsetWidth: 0,
@@ -45,68 +53,86 @@ const card = ref({
 
 onMounted(() => {
   window.addEventListener("resize", getDimensions);
-  width.value = card.value.offsetWidth;
+  cardWidth.value = card.value.offsetWidth;
 });
 
 onBeforeUnmount(() => {
   window.removeEventListener("resize", getDimensions);
 });
 
-const mousePX = computed(() => mouseX.value / width.value);
+const mousePX = computed(() => mouseX.value / cardWidth.value);
 const mousePY = computed(() => mouseY.value / cardHeight.value);
 
 const cardStyle = computed(() => {
-  const rX = mousePX.value * 30;
-  const rY = mousePY.value * -30;
+  const rX = mousePX.value;
+  const rY = -mousePY.value;
 
   return {
     color: props.titleColor,
     height: `${cardHeight.value}px`,
-    transform: `rotateY(${-0.33*rX}deg) rotateX(${-0.33*rY}deg)`,
+    transform: `
+      rotateY(${-RC * rX}deg)
+      rotateX(${-RC * rY}deg)`,
   };
 });
 
 const fgStyle = computed(() => {
-  const rX = mousePX.value * 30;
-  const rY = mousePY.value * -30;
-  const tX = mousePX.value * -40;
-  const tY = mousePY.value * -40;
+  const rX = mousePX.value;
+  const rY = -mousePY.value;
+  const tX = -mousePX.value;
+  const tY = -mousePY.value;
 
   const style = {
-    transform: `rotateY(${-0.33*rX}deg) rotateX(${-0.33*rY}deg) translateX(${0.33 * tX}px) translateY(${0.33 * tY}px)`,
+    transform: `
+      rotateY(${-RC * rX}deg)
+      rotateX(${-RC * rY}deg)
+      translateX(${TC * tX}px)
+      translateY(${TC * tY}px)`,
   };
 
   if (isHovered.value) {
-    style.transform = `scale(1) rotateY(${-0.33*rX}deg) rotateX(${-0.33*rY}deg) translateX(${0.33 * tX}px) translateY(${0.33 * tY}px)`;
+    style.transform = `
+      rotateY(${-RC * rX}deg)
+      rotateX(${-RC * rY}deg)
+      translateX(${TC * tX}px)
+      translateY(${TC * tY}px)
+      scale(1)`;
   }
 
   return style;
 });
 
 const titleStyle = computed(() => {
-  const rX = mousePX.value * 30;
-  const rY = mousePY.value * -30;
-  const tX = mousePX.value * -40;
-  const tY = mousePY.value * -40;
+  const rX = mousePX.value;
+  const rY = -mousePY.value;
+  const tX = -mousePX.value;
+  const tY = -mousePY.value;
 
   const style = {
-    transform: `rotateY(${-0.33*rX}deg) rotateX(${-0.33*rY}deg) translateX(${0.33 * tX}px) translateY(${0.33 * tY}px)`,
+    transform: `
+      rotateY(${-RC * rX}deg)
+      rotateX(${-RC * rY}deg)
+      translateX(${TC * tX}px)
+      translateY(${TC * tY}px)`,
   };
 
   if (isHovered.value) {
-    style.transform = `scale(1.03) rotateY(${-0.33*rX}deg) rotateX(${-0.33*rY}deg) translateX(${0.33 * tX}px) translateY(${0.33 * tY}px)`;
+    style.transform = `
+      scale(${SC})
+      rotateY(${-RC * rX}deg)
+      rotateX(${-RC * rY}deg)
+      translateX(${TC * tX}px)
+      translateY(${TC * tY}px)`;
   }
 
   return style;
 });
 
 const bgStyle = computed(() => {
-  const style = {
+  return {
     backgroundImage: `url("/projects/${props.project}/${props.cardBg}")`,
     height: `${cardHeight.value}px`,
   };
-
-  return style;
 });
 
 const getDimensions = () => {
@@ -115,17 +141,18 @@ const getDimensions = () => {
 };
 
 const handleMouseMove = (e: MouseEvent) => {
-  mouseX.value = e.pageX - card.value.offsetLeft - width.value / 2;
+  mouseX.value = e.pageX - card.value.offsetLeft - cardWidth.value / 2;
   mouseY.value = e.pageY - card.value.offsetTop - cardHeight.value / 2;
+  console.log('Mouse XY', mouseX.value, mouseY.value);
   isHovered.value = true;
 };
 
 const handleMouseEnter = () => {
-  clearTimeout(mouseLeaveDelay.value);
+  clearTimeout(timeout.value);
 };
 
 const handleMouseLeave = () => {
-  mouseLeaveDelay.value = setTimeout(()=>{
+  timeout.value = setTimeout(()=>{
     mouseX.value = 0;
     mouseY.value = 0;
     isHovered.value = false;
@@ -200,7 +227,7 @@ const gradientStyle = {
       <div class="card-bg" :style="[bgStyle]"/>
       <img
         class="card-fg"
-        :src="cardFgSrc"
+        :src="fgSrc"
         :style="[fgStyle]"
       >
       <div class="gradient" :style="gradientStyle"/>
@@ -212,7 +239,6 @@ const gradientStyle = {
 </template>
 
 <style lang="scss" scoped>
-$hoverEasing: cubic-bezier(0.23, 1, 0.32, 1);
 $returnEasing: cubic-bezier(0.23, 1, 0.32, 1);
 
 .title {
@@ -274,7 +300,6 @@ h1+p, p+p {
   pointer-events: none;
   transition:
     0.7s $returnEasing;
-    
 }
 
 .gradient {
@@ -292,17 +317,6 @@ h1+p, p+p {
   bottom: 20px;
   transition: 1s $returnEasing;
   text-align: left;
-  
-  p {
-    opacity: 0;
-    text-shadow: rgba(black, 1) 0 2px 3px;
-    transition: 1s 1.6s cubic-bezier(0.215, 0.61, 0.355, 1);
-  }
-  
-  * {
-    position: relative;
-    z-index: 1;
-  }
   
   &:after {
     content: '';
