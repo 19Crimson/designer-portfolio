@@ -19,13 +19,13 @@ const folder = inject('folder');
 
 const headerStyle = computed(() => ({
   ...(props.bgImage && { backgroundImage: `url("/projects/${folder}/${props.bgImage}")` }),
+  backgroundColor: props.bgColor,
 }));
 
 const titleStyle = computed(() => ({
   fontSize: `${props.fontSize}px`,
   color: props.titleColor,
   textAlign: props.center ? 'center' : 'left' as TextAlign,
-  backgroundColor: props.bgColor,
   backgroundRepeat: props.noBgRepeat ? 'no-repeat' : 'repeat',
 }));
 </script>

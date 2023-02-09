@@ -4,27 +4,28 @@ import {
   ref,
   inject,
   watchEffect,
+  Ref,
 } from 'vue';
 import { CloseButton } from '@/components';
 
 const emit = defineEmits(['close']);
 
 const props = defineProps({
-  opened: {
-    type: Boolean,
-    default: false,
-  },
   bgImage: String,
 });
 
-const folder = inject('folder');
 
-const displayCondition = ref(props.opened);
+const folder = inject<string>('folder');
+const opened = inject<Ref<boolean>>('modalOpened');
+
+console.log('dfdf', folder, opened?.value);
+
+const displayCondition = ref(opened?.value);
 
 watchEffect(() => {
   setTimeout(
-    () => displayCondition.value = props.opened,
-    props.opened ? 0 : 300
+    () => displayCondition.value = opened?.value,
+    opened?.value ? 0 : 300
   );
 });
 
@@ -34,12 +35,12 @@ const handleClose = () => {
 
 const overlayClass = computed(() => ({
   'overlay': true,
-  'overlay--active': props.opened,
+  'overlay--active': opened?.value,
 }));
 
 const overlayInnerClass = computed(() => ({
   'overlay__inner': true,
-  'overlay__inner--active': props.opened,
+  'overlay__inner--active': opened?.value,
 }));
 
 const bgStyle = computed(() => ({
@@ -69,17 +70,6 @@ const bgStyle = computed(() => ({
 </template>
 
 <style scoped lang="scss">
-// .v-enter-active,
-// .v-leave-active {
-//   transition: 0.5s ease-in-out;
-//   backdrop-filter: blur(15px);
-// }
-
-// .v-enter-from,
-// .v-leave-to {
-//   transition: 0.5s ease-in-out;
-//   backdrop-filter: blur(0px);
-// }
 .overlay {
   position: fixed;
   overflow-y: scroll;

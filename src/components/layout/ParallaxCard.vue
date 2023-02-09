@@ -143,7 +143,6 @@ const getDimensions = () => {
 const handleMouseMove = (e: MouseEvent) => {
   mouseX.value = e.pageX - card.value.offsetLeft - cardWidth.value / 2;
   mouseY.value = e.pageY - card.value.offsetTop - cardHeight.value / 2;
-  console.log('Mouse XY', mouseX.value, mouseY.value);
   isHovered.value = true;
 };
 

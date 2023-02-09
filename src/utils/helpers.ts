@@ -1,4 +1,4 @@
-export type getRandomValueConfig= {
+export type GetRandomValueConfig = {
   values: Array<any>,
   chances: Array<number>,
 }
@@ -8,7 +8,7 @@ export function getRandomArrayElement(array: Array<any>) {
   return array[Math.floor(Math.random() * max)];
 }
 
-export function getRandomValue(config: getRandomValueConfig) {
+export function getRandomValue(config: GetRandomValueConfig) {
   const { values, chances } = config;
 
   const chancesSum = chances.reduce((partialSum, a) => partialSum + a, 0);

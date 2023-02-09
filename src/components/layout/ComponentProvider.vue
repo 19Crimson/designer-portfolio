@@ -8,11 +8,17 @@
 </template>
   
 <script setup lang="ts">
-import { defineAsyncComponent, computed } from 'vue';
+import {
+  defineAsyncComponent,
+  computed,
+  provide,
+} from 'vue';
   
 const props = defineProps({
   name: String,
 });
+
+provide('folder', props.name);
 
 const component = computed (() => props.name ? defineAsyncComponent(() => import(`../projects/${props.name}.vue`)) : '');
 </script>

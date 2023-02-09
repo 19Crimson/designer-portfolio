@@ -15,7 +15,14 @@ const content = [
     titleColor: 'white',
   },
   {
-    project: 'Demo',
+    project: 'DemoProject',
+    cardBg: 'bg-1.png',
+    cardFg: 'fg-1.png',
+    title: 'Geometry',
+    titleColor: 'white',
+  },
+  {
+    project: 'DemoProjectWithTabs',
     cardBg: 'bg-1.png',
     cardFg: 'fg-1.png',
     title: 'Geometry',

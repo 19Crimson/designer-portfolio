@@ -113,7 +113,6 @@ const textStyle = computed(() => {
 const handleMouseMove = (e: MouseEvent) => {
   mouseX.value = e.clientX - Number(link.value?.getBoundingClientRect().left) - linkWidth.value / 2;
   mouseY.value = e.clientY - Number(link.value?.getBoundingClientRect().top) - linkHeight.value / 2;
-  console.log('Mouse XY', mouseX.value, mouseY.value);
   isHovered.value = true;
 };
 

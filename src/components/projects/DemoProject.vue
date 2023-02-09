@@ -1,13 +1,11 @@
 <template>
   <ProjectModal
-    :opened="opened"
     @close="handleClose"
   >
     <ProjectHeader
       bgImage="header_bg.png"
       title-color="#4a4a52"
       fontSize="80"
-      
     >
       Some <strong style="font-weight: 900;">title</strong> example
     </ProjectHeader>
@@ -162,7 +160,6 @@
 </template>
 
 <script setup lang="ts">
-import { provide } from 'vue';
 import {
   ProjectModal,
   ProjectHeader,
@@ -173,13 +170,6 @@ import {
   ImageWrapper,
   VideoWrapper,
 } from '@/components';
-
-const props = defineProps({
-  opened: Boolean,
-  folder: String,
-});
-
-provide('folder', props.folder);
 
 const emit = defineEmits(['close']);
 

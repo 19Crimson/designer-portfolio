@@ -13,22 +13,19 @@
     />
     <ComponentProvider
       :name="currentProject"
-      :opened="dialogOpened"
       @close="onCloseDialog"
     />
   </PageWrapper>
 </template>
 
 // TODO:
-// Write README
 // Fix card open on right click
 // Fix Project Modal Blur Transition on open
 // Add favico / Page Title
 // Implement get-params to share projects pages
 
-
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, provide } from 'vue';
 import {
   PageHeader,
   Typewriter,
@@ -43,12 +40,14 @@ import {
   headline
 } from '@/assets/configs/typewriter';
 
-const dialogOpened = ref(false);
+const modalOpened = ref(false);
 const currentProject = ref('');
 
 const onCloseDialog = () => {
-  dialogOpened.value = false;
+  modalOpened.value = false;
 };
+
+provide('modalOpened', modalOpened);
 
 const onOpenProject = (project?: string) => {
   if (!project) {
@@ -56,6 +55,6 @@ const onOpenProject = (project?: string) => {
     return;
   }
   currentProject.value = project;
-  dialogOpened.value = true;
+  modalOpened.value = true;
 };
 </script>

@@ -33,6 +33,7 @@ module.exports = {
       "error",
       "always"
     ],
+    // "eslint no-trailing-spaces": ["error", { "skipBlankLines": true }],
     "vue/multi-word-component-names": 'off',
     "@typescript-eslint/ban-ts-comment": "off"
   }
