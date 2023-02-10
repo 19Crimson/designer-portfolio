@@ -12,7 +12,7 @@
       @open="onOpenProject"
     />
     <ComponentProvider
-      :project="currentProject"
+      :folder="currentProject"
       @close="onCloseDialog"
     />
   </PageWrapper>

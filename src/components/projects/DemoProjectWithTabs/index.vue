@@ -49,7 +49,7 @@ const handleClose = () => {
     />
 
     <ComponentProvider
-      :project="project"
+      :folder="project"
       :name="activeTab"
     />
   </ProjectModal>
