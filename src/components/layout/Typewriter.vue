@@ -43,7 +43,7 @@ const currentStep = ref(1);
 
 watchEffect(() => {
   if (props.changeTitle) {
-    document.title = renderedKeyword.value;
+    document.title = currentKeyword.value;
   }
 });
 
