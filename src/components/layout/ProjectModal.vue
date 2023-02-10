@@ -18,8 +18,6 @@ const props = defineProps({
 const folder = inject<string>('folder');
 const opened = inject<Ref<boolean>>('modalOpened');
 
-console.log('dfdf', folder, opened?.value);
-
 const displayCondition = ref(opened?.value);
 
 watchEffect(() => {
@@ -108,6 +106,7 @@ const bgStyle = computed(() => ({
 		width: 100%;
 		animation: scaleDown .5s
 			cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+    transition: 1s;
 
 		&--active {
 			transform: scale(1);

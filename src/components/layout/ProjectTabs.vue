@@ -24,14 +24,14 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue']);
 
-function getValueByIndex(index) {
+function getValueByIndex(index: number) {
   if (props.items && props.items[index]) {
     return props.items[index]?.value;
   }
 }
 
 onMounted(() => {
-  if (props.modelValue && props.items) {
+  if (!props.modelValue && props.items) {
     emit('update:modelValue', getValueByIndex(0));
   }
 });
@@ -44,7 +44,7 @@ const tabStyle = computed(() => ({
   color: props.color,
 }));
 
-const getTabClass = (index: string) => ({
+const getTabClass = (index: number) => ({
   'project-tabs__tab': true,
   'project-tabs__tab--active': getValueByIndex(index) === props.modelValue,
 });
@@ -93,6 +93,7 @@ const getTabClass = (index: string) => ({
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 40px 0;
   }
 }
 </style>

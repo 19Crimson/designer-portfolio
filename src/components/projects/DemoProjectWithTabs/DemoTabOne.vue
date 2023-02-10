@@ -1,5 +1,35 @@
 <template>
+  <ProjectRow>
+    <TextBlock
+      align="center"
+      max-width="100%"
+    >
+      <TextHeadline>
+        This is first tab content
+      </TextHeadline>
+    </TextBlock> 
+  </ProjectRow>
+
   <ProjectRow center>
+    <TextBlock
+      align="left"
+      max-width="550"
+      padding="100px 20px 20px"
+    >
+      <TextHeadline
+        font-size="26"
+        color="#0202b8"
+      >
+        Text block with custom props
+      </TextHeadline>
+      <TextWrapper
+        font-size="16"
+        color="#0202b8"
+      >
+        Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.
+      </TextWrapper>
+    </TextBlock>
+
     <TextBlock>
       <TextHeadline>
         Default text block
@@ -17,30 +47,9 @@
         Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.
       </TextWrapper>
     </TextBlock>
-
-    <TextBlock
-      align="right"
-      max-width="550"
-      padding="100px 20px 20px"
-    >
-      <TextHeadline
-        font-size="26"
-        color="#0202b8"
-      >
-        Text block with custom props
-      </TextHeadline>
-      <TextWrapper
-        font-size="16"
-        color="#0202b8"
-      >
-        Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.
-      </TextWrapper>
-    </TextBlock>
   </ProjectRow>
 
-  <ProjectRow
-    bgImage="header_bg.png"
-  >
+  <ProjectRow>
     <TextBlock>
       <TextHeadline color="gray">
         Row example with background image
@@ -131,7 +140,6 @@
 
 <script setup lang="ts">
 import {
-  ProjectHeader,
   ProjectRow,
   TextHeadline,
   TextWrapper,

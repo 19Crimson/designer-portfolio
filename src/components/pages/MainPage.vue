@@ -12,7 +12,7 @@
       @open="onOpenProject"
     />
     <ComponentProvider
-      :name="currentProject"
+      :project="currentProject"
       @close="onCloseDialog"
     />
   </PageWrapper>
@@ -48,6 +48,7 @@ const onCloseDialog = () => {
 };
 
 provide('modalOpened', modalOpened);
+provide('project', currentProject);
 
 const onOpenProject = (project?: string) => {
   if (!project) {

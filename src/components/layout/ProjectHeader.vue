@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, inject } from 'vue';
+import { computed, inject, Ref } from 'vue';
 import { TextAlign } from '@/utils/types';
 
 const props = defineProps({
@@ -15,10 +15,10 @@ const props = defineProps({
   },
 });
 
-const folder = inject('folder');
+const project = inject<Ref<string>>('project');
 
 const headerStyle = computed(() => ({
-  ...(props.bgImage && { backgroundImage: `url("/projects/${folder}/${props.bgImage}")` }),
+  ...(props.bgImage && { backgroundImage: `url("/projects/${project?.value}/${props.bgImage}")` }),
   backgroundColor: props.bgColor,
 }));
 

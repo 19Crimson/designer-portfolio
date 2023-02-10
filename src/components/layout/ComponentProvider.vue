@@ -11,14 +11,19 @@
 import {
   defineAsyncComponent,
   computed,
-  provide,
 } from 'vue';
   
 const props = defineProps({
-  name: String,
+  name: {
+    type: String,
+    required: true,
+    default: 'index'
+  },
+  project: String,
 });
 
-provide('folder', props.name);
-
-const component = computed (() => props.name ? defineAsyncComponent(() => import(`../projects/${props.name}.vue`)) : '');
+const component = computed (() => props.project && props.name
+  ? defineAsyncComponent(() => import(`../projects/${props.project}/${props.name}.vue`))
+  : ''
+);
 </script>

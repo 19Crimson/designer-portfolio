@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, inject } from 'vue';
+import { computed, inject, Ref } from 'vue';
 
 const props = defineProps({
   bgImage: String,
@@ -11,11 +11,11 @@ const props = defineProps({
   center: Boolean,
 });
 
-const folder = inject('folder');
+const project = inject<Ref<string>>('project');
 
 const bgPath = computed(() => {
-  return folder
-    ? `url("/projects/${folder}/${props.bgImage}")`
+  return project?.value
+    ? `url("/projects/${project.value}/${props.bgImage}")`
     : `url("public/${props.bgImage}")`;
 });
 

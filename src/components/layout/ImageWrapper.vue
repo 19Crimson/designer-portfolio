@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, inject } from 'vue';
+import { computed, inject, Ref } from 'vue';
 
 const props = defineProps({
   image: String,
@@ -9,9 +9,9 @@ const props = defineProps({
   }
 });
 
-const folder = inject('folder');
+const project = inject<Ref<string>>('project');
 
-const computedSrc = computed(() => `/projects/${folder}/${props.image}`);
+const computedSrc = computed(() => `/projects/${project?.value}/${props.image}`);
 
 const wrapperStyle = computed(() => ({
   margin: props.margin,

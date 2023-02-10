@@ -17,9 +17,16 @@ const props = defineProps({
   }
 });
 
+const maxWidth = computed(() => {
+  if (props.maxWidth && !isNaN(parseFloat(props.maxWidth))) {
+    return `${props.maxWidth}px`;
+  }
+  return props.maxWidth;
+});
+
 const computedStyle = computed(() => ({
   margin: props.margin,
-  maxWidth: `${props.maxWidth}px`,
+  maxWidth: maxWidth.value,
   textAlign: props.align,
 }));
 </script>
