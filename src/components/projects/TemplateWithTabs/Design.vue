@@ -1,24 +1,23 @@
 <template>
-  <ProjectRow>
+  <Row>
     <TextBlock
       align="center"
       max-width="100%"
     >
-      <TextHeadline>
+      <Headline>
         This is first tab content
-      </TextHeadline>
+      </Headline>
     </TextBlock> 
-  </ProjectRow>
+  </Row>
 </template>
 
 <script setup lang="ts">
 import {
-  ProjectRow, //Горизонтальный ряд
-  ImageWrapper, //Картинка 
-  VideoWrapper, //Видосик
+  Row, //Горизонтальный ряд
+  // ImageWrapper, //Картинка 
+  // VideoWrapper, //Видосик
   TextBlock, //Контейнер для текста 
-  TextHeadline, //Заголовок
-  TextWrapper, //Текст
-
+  Headline, //Заголовок
+  // Text, //Текст
 } from '@/components';
 </script>

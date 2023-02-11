@@ -11,7 +11,7 @@ import ProjectRow from '@/components/layout/ProjectRow.vue';
 import Tabs from '@/components/layout/Tabs.vue';
 import SocialLink from '@/components/layout/SocialLink.vue';
 import TextBlock from '@/components/layout/TextBlock.vue';
-import TextHeadline from '@/components/layout/TextHeadline.vue';
+import Headline from '@/components/layout/Headline.vue';
 import TextWrapper from '@/components/layout/TextWrapper.vue';
 import Typewriter from '@/components/layout/Typewriter.vue';
 import VideoWrapper from '@/components/layout/VideoWrapper.vue';
@@ -30,7 +30,7 @@ export {
   Tabs,
   SocialLink,
   TextBlock,
-  TextHeadline,
+  Headline,
   TextWrapper,
   Typewriter,
   VideoWrapper,

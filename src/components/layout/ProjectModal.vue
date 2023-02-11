@@ -12,10 +12,11 @@ const emit = defineEmits(['close']);
 
 const props = defineProps({
   bgImage: String,
+  color: String
 });
 
 
-const folder = inject<string>('folder');
+const project = inject<string>('project');
 const opened = inject<Ref<boolean>>('modalOpened');
 
 const displayCondition = ref(opened?.value);
@@ -42,7 +43,7 @@ const overlayInnerClass = computed(() => ({
 }));
 
 const bgStyle = computed(() => ({
-  ...(props.bgImage && { backgroundImage: `url("/projects/${folder}/${props.bgImage}")` }),
+  ...(props.bgImage && { backgroundImage: `url("/projects/${project}/${props.bgImage}")` }),
 }));
 </script>
 

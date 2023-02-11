@@ -6,9 +6,9 @@
     :opened="opened"
     @close="handleClose"
   >
-    <ProjectRow color="#3c3c3c" center>
+    <Row color="#3c3c3c" center>
       <ImageWrapper image="1.png" />
-    </ProjectRow>
+    </Row>
 
     <Tabs
       v-model="activeTab"
@@ -23,10 +23,10 @@
 <script setup lang="ts">
 import {
   ProjectModal,
-  ProjectRow,
+  Row,
   Tabs,
-  // TextHeadline,
-  // TextWrapper,
+  // Headline,
+  // Text,
   // TextBlock,
   ImageWrapper,
 } from '@/components';

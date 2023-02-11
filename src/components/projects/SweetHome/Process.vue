@@ -1,19 +1,19 @@
 <template>
-  <ProjectRow>
+  <Row>
     <ImageWrapper
     image = "6.png"
     />
-  </ProjectRow>
+  </Row>
 </template>
 
 <script setup lang="ts">
 import {
-  ProjectRow, //Горизонтальный ряд
+  Row, //Горизонтальный ряд
   ImageWrapper, //Картинка 
-  VideoWrapper, //Видосик
-  TextBlock, //Контейнер для текста 
-  TextHeadline, //Заголовок
-  TextWrapper, //Текст
+  // VideoWrapper, //Видосик
+  // TextBlock, //Контейнер для текста 
+  // Headline, //Заголовок
+  // TextWrapper, //Текст
 
 } from '@/components';
 </script>

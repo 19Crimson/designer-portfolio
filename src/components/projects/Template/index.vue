@@ -11,9 +11,9 @@
 import {
   ProjectModal,
   // ProjectHeader,
-  // ProjectRow,
-  // TextHeadline,
-  // TextWrapper,
+  // Row,
+  // Headline,
+  // Text,
   // TextBlock,
 } from '@/components';
 

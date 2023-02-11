@@ -1,21 +1,21 @@
 <template>
-  <ProjectRow>
+  <Row>
     <TextBlock>
-      <TextWrapper>
+      <Text>
         Табло полностью заменяет оффлайновую доску объявлений, превращая ее в функциональный и эстетичный инструмент двухсторонней коммуникации жильцов подъезда
-      </TextWrapper>
+      </Text>
     </TextBlock> 
-  </ProjectRow>
+  </Row>
 </template>
 
 <script setup lang="ts">
 import {
-  ProjectRow, //Горизонтальный ряд
+  Row, //Горизонтальный ряд
   // ImageWrapper, //Картинка 
   // VideoWrapper, //Видосик
   TextBlock, //Контейнер для текста 
-  // TextHeadline, //Заголовок
-  TextWrapper, //Текст
+  // Headline, //Заголовок
+  Text, //Текст
 
 } from '@/components';
 </script>
