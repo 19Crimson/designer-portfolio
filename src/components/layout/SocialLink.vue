@@ -35,7 +35,6 @@ const TC = 6;
 // Scaling coefficient
 const SC = 1.03;
 
-
 onMounted(() => {
   linkWidth.value = link.value?.offsetWidth ?? 0;
 });

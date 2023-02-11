@@ -3,52 +3,14 @@
     :opened="opened"
     @close="handleClose"
   >
-    <ProjectHeader
-      bg-color="#f58142"
-      title-color="#4a4a52"
-      fontSize="80"      
-    >
-      Some <strong style="font-weight: 900;">title</strong> example
-    </ProjectHeader>
-
-    <ProjectRow center>
-      <TextBlock>
-        <TextHeadline>
-          Default text block
-        </TextHeadline>
-        <TextWrapper>
-          Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.
-        </TextWrapper>
-      </TextBlock>
-
-      <TextBlock>
-        <TextHeadline align="center">
-          Centered text block
-        </TextHeadline>
-        <TextWrapper  align="center">
-          Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.
-        </TextWrapper>
-      </TextBlock>
-
-      <TextBlock
-        align="right"
-        max-width="550"
-        padding="100px 20px 20px"
-      >
-        <TextHeadline
-          font-size="26"
-          color="#0202b8"
-        >
-          Text block with custom props
-        </TextHeadline>
-        <TextWrapper
-          font-size="16"
-          color="#0202b8"
-        >
-          Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.
-        </TextWrapper>
-      </TextBlock>
+    <ProjectRow>
+      <ImageWrapper image="First screen.png"/>
     </ProjectRow>
+
+    <Tabs
+      v-model="activeTab"
+      :items="tabs"
+    />
 
     <ProjectRow>
       <TextBlock>
@@ -65,89 +27,43 @@
         </TextWrapper>
       </TextBlock>
     </ProjectRow>
-
-    <ProjectRow center color="#a1a1ff">
-      <TextBlock>
-        <TextHeadline>
-          Row with video
-        </TextHeadline>
-        <TextWrapper>
-          Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.
-        </TextWrapper>
-      </TextBlock>
-    </ProjectRow>
-
-    <ProjectRow color="#f4c5e3" center>
-      <TextBlock>
-        <TextHeadline>
-          Test headline
-        </TextHeadline>
-        <TextWrapper>
-          Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.
-        </TextWrapper>
-      </TextBlock>
-    </ProjectRow>
-
-    <ProjectRow center color="#070707">
-      <TextBlock>
-        <TextHeadline color="#a1a1ff">
-          Headline example
-        </TextHeadline>
-        <TextWrapper color="#5151b8">
-          Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.
-        </TextWrapper>
-      </TextBlock>
-    </ProjectRow>
-
-    <ProjectRow color="#3c3c3c" center>
-      <TextBlock>
-        <TextHeadline>
-          Test headline
-        </TextHeadline>
-        <TextWrapper>
-          Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.
-        </TextWrapper>
-
-        <TextHeadline margin="20px 0 0 0">
-          Test headline
-        </TextHeadline>
-        <TextWrapper>
-          Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.
-        </TextWrapper>
-      </TextBlock>
-
-      <TextBlock>
-        <TextHeadline>
-          Test headline
-        </TextHeadline>
-        <TextWrapper>
-          Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.
-        </TextWrapper>
-        <TextHeadline margin="20px 0 0 0">
-          Test headline
-        </TextHeadline>
-        <TextWrapper>
-          Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.
-        </TextWrapper>  
-      </TextBlock>
-    </ProjectRow>
   </ProjectModal>
 </template>
 
 <script setup lang="ts">
 import {
   ProjectModal,
-  ProjectHeader,
   ProjectRow,
+  Tabs,
   TextHeadline,
   TextWrapper,
   TextBlock,
+  ImageWrapper,
 } from '@/components';
+import { ref } from 'vue';
+import { TabsItems } from '@/components/layout/Tabs.vue.js';
 
 defineProps({
   opened: Boolean,
   folder: String,
 });
+
+const activeTab = ref<string>('');
+
+const tabs: TabsItems = [
+  {
+    title: 'Design',
+    value: 'Design',
+    // textColor: '#000000',
+    textColorActive: '#000000',
+  },
+  {
+    title: 'Procesess',
+    value: 'Procesess',
+    // textColor: '#FFFFFF',
+    // textColorActive: '#3С3С3С',
+  },
+];
 
 const emit = defineEmits(['close']);
 

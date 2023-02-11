@@ -1,19 +1,20 @@
   
 <script setup lang="ts">
-import { ref, inject } from 'vue';
+import { ref } from 'vue';
 import {
   ProjectModal,
   ProjectHeader,
-  ProjectTabs,
-  ComponentProvider,
+  Tabs,
 } from '@/components';
-import { ProjectTabsItems } from '@/components/layout/ProjectTabs.vue';
+import { TabsItems } from '@/components/layout/Tabs.vue.js';
+import DemoTabOne from '@/components/projects/DemoProjectWithTabs/DemoTabOne.vue';
+import DemoTabTwo from '@/components/projects/DemoProjectWithTabs/DemoTabTwo.vue';
 
 const emit = defineEmits(['close']);
 
 const activeTab = ref<string>('');
 
-const projectTabsProps: ProjectTabsItems = [
+const tabs: TabsItems = [
   {
     title: 'One',
     value: 'DemoTabOne',
@@ -23,8 +24,6 @@ const projectTabsProps: ProjectTabsItems = [
     value: 'DemoTabTwo',
   },
 ];
-
-const project = inject<string>('project');
   
 const handleClose = () => {
   emit('close');
@@ -43,14 +42,15 @@ const handleClose = () => {
       Some title example
     </ProjectHeader>
 
-    <ProjectTabs
+    <Tabs
       v-model="activeTab"
-      :items="projectTabsProps"
+      :items="tabs"
     />
 
-    <ComponentProvider
-      :folder="project"
-      :name="activeTab"
-    />
+    <!-- <component
+      :is="activeTab"
+    /> -->
+    <DemoTabOne v-if="activeTab === 'DemoTabOne'"/>
+    <DemoTabTwo v-if="activeTab === 'DemoTabTwo'"/>
   </ProjectModal>
 </template>

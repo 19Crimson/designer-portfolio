@@ -23,6 +23,11 @@
 // Fix Project Modal Blur Transition on open
 // Add favico / Page Title
 // Implement get-params to share projects pages
+// Add lazyload / skeletons
+// Roc center content
+// Smart render tabs
+// Tab active transition / width
+// Scroll modal on change tab
 
 <script setup lang="ts">
 import { ref, provide } from 'vue';

@@ -8,7 +8,7 @@ import ParallaxCard from '@/components/layout/ParallaxCard.vue';
 import ProjectHeader from '@/components/layout/ProjectHeader.vue';
 import ProjectModal from '@/components/layout/ProjectModal.vue';
 import ProjectRow from '@/components/layout/ProjectRow.vue';
-import ProjectTabs from '@/components/layout/ProjectTabs.vue';
+import Tabs from '@/components/layout/Tabs.vue';
 import SocialLink from '@/components/layout/SocialLink.vue';
 import TextBlock from '@/components/layout/TextBlock.vue';
 import TextHeadline from '@/components/layout/TextHeadline.vue';
@@ -27,7 +27,7 @@ export {
   ProjectHeader,
   ProjectModal,
   ProjectRow,
-  ProjectTabs,
+  Tabs,
   SocialLink,
   TextBlock,
   TextHeadline,

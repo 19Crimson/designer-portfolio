@@ -16,7 +16,7 @@ const props = defineProps({
   }
 });
 
-const folder = inject('folder');
+const project = inject('project');
 
 const player = ref();
 const observer = ref();
@@ -58,7 +58,7 @@ const wrapperStyle = computed(() => ({
   >
     <vue3-video-player
       ref="player"
-      :src="`/projects/${folder}/${file}`"
+      :src="`/projects/${project}/${file}`"
       :controls="false"
       autoplay
       loop
