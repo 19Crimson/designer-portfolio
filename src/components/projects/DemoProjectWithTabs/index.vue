@@ -22,7 +22,7 @@ const tabs: TabsItems = [
   {
     title: 'Process',
     value: 'Process',
-  },
+  }
 ];
   
 const handleClose = () => {
@@ -43,6 +43,10 @@ const handleClose = () => {
     </ProjectHeader>
 
     <Tabs
+      bg-color="#3c3c3c"
+      indicator-color="#f54242"
+      text-color="#45d65f"
+      text-color-active="#ffffff"
       v-model="activeTab"
       :items="tabs"
     />

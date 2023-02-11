@@ -23,16 +23,25 @@ const props = defineProps({
   },
   modelValue: String,
   bgColor: String,
-  activeColor: String,
+  textColor: String,
+  textColorActive: String,
+  indicatorColor: String,
 });
 
-const tab = ref<HTMLElement>();
+const tabs = ref<any>([]);
 
 const emit = defineEmits(['update:modelValue']);
 
 function getValueByIndex(index: number) {
   if (props.items && props.items[index]) {
     return props.items[index]?.value;
+  }
+}
+
+function getTabByName(name?: string) {
+  const index = props.items.findIndex(item => item.value === name);
+  if (props.items && name) {
+    return tabs.value[index];
   }
 }
 
@@ -46,14 +55,21 @@ const handleClickTab = (index: number) => {
   emit('update:modelValue', getValueByIndex(index));
 };
 
-
-const indicatorStyle = () => {
-  const isAvtive = props.modelValue === tab.value;
+const indicatorStyle = computed(() => {
+  const tab = getTabByName(props.modelValue);
   return {
-    backgroundColor:  props.activeColor,
-    height: tab.value?.clientHeight,
-    width: tab.value?.clientWidth,
-    left: tab.value?.offsetLeft,
+    backgroundColor: props.indicatorColor,
+    height: `${tab?.clientHeight}px`,
+    width: `${tab?.clientWidth}px`,
+    left: `${tab?.offsetLeft}px`,
+  };
+});
+
+const getTabStyle = (index: number) => {
+  const tab = props.items[index];
+  const isActive = tab.value === props.modelValue;
+  return {
+    color: isActive ? props.textColorActive : props.textColor,
   };
 };
 
@@ -68,22 +84,25 @@ const indicatorClass = computed(() => ({
 </script>
 
 <template>
-  <div class="project-tabs__wrapper" :style="wrapperStyle">
+  <div
+    class="project-tabs__wrapper"
+    :style="wrapperStyle"
+  >
     <div class="project-tabs">
-      <div
-        ref="tab"
-        v-for="(tab, index) in items"
-        :key="index"
-        class="project-tabs__tab"
-        @click="handleClickTab(index)"
-      >
-        {{ tab.title }}
-      </div>
-
       <div
         :class="indicatorClass"
         :style="indicatorStyle"
+      />
+
+      <div
+        v-for="(tab, index) in items"
+        :ref="el => { tabs[index] = el }"
+        :key="index"
+        class="project-tabs__tab"
+        :style="getTabStyle(index)"
+        @click="handleClickTab(index)"
       >
+        {{ tab.title }}
       </div>
     </div>
   </div>
@@ -98,26 +117,23 @@ const indicatorClass = computed(() => ({
     font-weight: 600;
     color: #00000070;
     margin-right: 4px;
-    transition: ease-in-out .3s;
     cursor: pointer;
     border-radius: 24px;
     padding: 10px 18px;
+    z-index: 10;
+  }
 
-    :last-child {
-      margin-right: 0;
-    }
+  &__tab:last-child {
+    margin-right: 0px;
   }
 
   &__indicator {
-    width: 100px;
-    height: 50px;
     position: absolute;
-    top: 4px;
-    left: 4px;
+    top: 3px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.12);
     background-color: #FFFFFF;
     opacity: 1;
-    transition: ease-in-out .3s;
+    transition: cubic-bezier(0, .79, .33, 1.02) .3s;
     cursor: pointer;
     border-radius: 24px;
     padding: 10px 18px;
