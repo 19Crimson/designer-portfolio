@@ -50,7 +50,7 @@
     center
     color="#f4c5e3"
   >
-    <ImageWrap image="test-img.jpg" />
+    <ImageWrap src="test-img.jpg" />
   </Row>
 
   <Row
@@ -81,11 +81,11 @@
       </TextWrap>
     </TextBlock>
 
-    <VideoWrap file="playback.mp4"/>
+    <VideoWrap src="playback.mp4"/>
   </Row>
 
   <Row color="#f4c5e3" center>
-    <ImageWrap image="test-img.jpg"/>
+    <ImageWrap src="test-img.jpg"/>
 
     <TextBlock>
       <Headline>
@@ -99,7 +99,7 @@
 
   <Row center color="#070707">
     <VideoWrap
-      file="playback.mp4"
+      src="playback.mp4"
       margin="26px 0 0"
     />
     <TextBlock>
@@ -110,7 +110,7 @@
         Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.
       </TextWrap>
     </TextBlock>
-    <ImageWrap image="test-img.jpg" />
+    <ImageWrap src="test-img.jpg" />
   </Row>
 
   <Row center color="#3c3c3c">
@@ -147,10 +147,10 @@
   </Row>
 
   <Row color="#3c3c3c" center>
-    <ImageWrap image="test-img.jpg" />
+    <ImageWrap src="test-img.jpg" />
   </Row>
 
   <Row center color="#070707">
-    <VideoWrap file="playback.mp4" />
+    <VideoWrap src="playback.mp4" />
   </Row>
 </template>

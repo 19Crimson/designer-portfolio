@@ -2,7 +2,7 @@
 import { computed, inject, Ref } from 'vue';
 
 const props = defineProps({
-  image: String,
+  src: String,
   margin: {
     type: String,
     default: ''
@@ -11,7 +11,7 @@ const props = defineProps({
 
 const project = inject<Ref<string>>('project');
 
-const computedSrc = computed(() => `/projects/${project?.value}/${props.image}`);
+const computedSrc = computed(() => `/projects/${project?.value}/${props.src}`);
 
 const wrapperStyle = computed(() => ({
   margin: props.margin,

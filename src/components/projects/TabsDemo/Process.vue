@@ -72,7 +72,7 @@
       </TextWrap>
     </TextBlock>
 
-    <VideoWrap file="playback.mp4"/>
+    <VideoWrap src="playback.mp4"/>
   </Row>
 
   <Row color="#f4c5e3" center>
@@ -88,7 +88,7 @@
 
   <Row center color="#070707">
     <VideoWrap
-      file="playback.mp4"
+      src="playback.mp4"
       margin="26px 0 0"
     />
     <TextBlock>

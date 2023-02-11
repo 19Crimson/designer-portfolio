@@ -9,7 +9,7 @@ import {
 import { onIntersect } from '@/utils/helpers';
 
 const props = defineProps({
-  file: String,
+  src: String,
   margin: {
     type: String,
     default: ''
@@ -58,7 +58,7 @@ const wrapperStyle = computed(() => ({
   >
     <vue3-video-player
       ref="player"
-      :src="`/projects/${project}/${file}`"
+      :src="`/projects/${project}/${src}`"
       :controls="false"
       autoplay
       loop

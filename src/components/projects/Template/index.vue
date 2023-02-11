@@ -2,158 +2,98 @@
 <!-- Rартинки / видео добавляем в одноименную папку в public/projects -->
 <!-- Для примера указаны все свойства элементов, ненужные удалить -->
 <template>
+
+  <!-- Шапка модалки -->
+  <!-- bg-image - фоновое изображение -->
+  <!-- bg-color - цвет фона -->
+  <!-- title-color - цвет заголовка -->
+  <!-- font-size - размер текста -->
+  <!-- center - Содержимое по центру -->
+  <!-- no-bg-repeat - Убрать повторение фона -->
   <ProjectHeader
-    bgImage="header_bg.png"
+    bg-image="header_bg.png"
     title-color="#4a4a52"
-    fontSize="80"
+    font-size="80"
+    bg-color="#3c3c3c"
+    center
+    no-bg-repeat
   >
     Some <strong style="font-weight: 900;">title</strong> example
   </ProjectHeader>
 
-  <Row center>
-    <TextBlock>
-      <Headline>
+<!-- Контейнер горизонтально расположенного контента (ряд) -->
+<!-- bg-image - картинка фона -->
+<!-- color - цвет фона -->
+<!-- bg-repeat - вкл повтор фона -->
+<!-- center - содержимое по центру -->
+  <Row
+    bg-image="header_bg.png"
+    color="#4a4a52"
+    bg-repeat
+    center
+  >
+
+    <!-- Контейнер текста (может содержать Headline и TextWrap) -->
+    <!-- align - выравнивание текста -->
+    <!-- max-width - макс ширина блока -->
+    <!-- margin - отступы -->
+    <TextBlock
+      align="center"
+      max-width="600"
+      margin="60px 40px"
+    >
+
+      <!-- Заголовок -->
+      <!-- color - цвет текста -->
+      <!-- align - выравнивание текста -->
+      <!-- font-size - размер текста -->
+      <!-- margin - отступы -->
+      <Headline
+        color="#4a4a52"
+        align="center"
+        font-size="28"
+        margin="60px 40px"
+      >
         Default text block
       </Headline>
-      <TextWrap>
-        Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.
-      </TextWrap>
-    </TextBlock>
 
-    <TextBlock>
-      <Headline align="center">
-        Centered text block
-      </Headline>
-      <TextWrap  align="center">
-        Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.
-      </TextWrap>
-    </TextBlock>
-
-    <TextBlock
-      align="right"
-      max-width="550"
-      padding="100px 20px 20px"
-    >
-      <Headline
-        font-size="26"
-        color="#0202b8"
-      >
-        Text block with custom props
-      </Headline>
+      <!-- Текст -->
+      <!-- color - цвет текста -->
+      <!-- align - выравнивание текста -->
+      <!-- font-size - размер текста -->
+      <!-- margin - отступы -->
       <TextWrap
-        font-size="16"
-        color="#0202b8"
+        color="#4a4a52"
+        align="center"
+        font-size="28"
+        margin="60px 40px"
       >
         Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.
       </TextWrap>
     </TextBlock>
-  </Row>
 
-  <Row
-    center
-    color="#f4c5e3"
-  >
-    <ImageWrap image="test-img.jpg" />
-  </Row>
-
-  <Row
-    bgImage="header_bg.png"
-  >
-    <TextBlock>
-      <Headline color="gray">
-        Row example with background image
-      </Headline>
-      <TextWrap color="gray">
-        Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.
-      </TextWrap>
-    </TextBlock>
-    <TextBlock align="center" margin="260px 60px 60px">
-      <TextWrap color="gray">
-        Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.
-      </TextWrap>
-    </TextBlock>
-  </Row>
-
-  <Row center color="#a1a1ff">
-    <TextBlock>
-      <Headline>
-        Row with video
-      </Headline>
-      <TextWrap>
-        Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.
-      </TextWrap>
-    </TextBlock>
-
-    <VideoWrap file="playback.mp4"/>
-  </Row>
-
-  <Row color="#f4c5e3" center>
-    <ImageWrap image="test-img.jpg"/>
-
-    <TextBlock>
-      <Headline>
-        Test headline
-      </Headline>
-      <TextWrap>
-        Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.
-      </TextWrap>
-    </TextBlock>
-  </Row>
-
-  <Row center color="#070707">
-    <VideoWrap
-      file="playback.mp4"
-      margin="26px 0 0"
+    <!-- Картинка -->
+    <!-- src - Имя файла в одноименной папке с проектом в public/projects -->
+    <!-- margin - отступы -->
+    <ImageWrap
+      src="test-img.jpg"
+      margin="20px"
     />
-    <TextBlock>
-      <Headline color="#a1a1ff">
-        Headline example
-      </Headline>
-      <TextWrap color="#5151b8">
-        Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.
-      </TextWrap>
-    </TextBlock>
-    <ImageWrap image="test-img.jpg" />
+
+    <!-- Видео -->
+    <!-- src Имя файла в одноименной папке с проектом в public/projects -->
+    <!-- margin - отступы -->
+    <VideoWrap src="playback.mp4"/>
   </Row>
 
-  <Row center color="#3c3c3c">
+  <Row>
     <TextBlock>
       <Headline>
-        Test headline
-      </Headline>
-      <TextWrap>
-        Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.
-      </TextWrap>
-
-      <Headline margin="20px 0 0 0">
-        Test headline
+        Second row
       </Headline>
       <TextWrap>
         Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.
       </TextWrap>
     </TextBlock>
-
-    <TextBlock>
-      <Headline>
-        Test headline
-      </Headline>
-      <TextWrap>
-        Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.
-      </TextWrap>
-      <Headline margin="20px 0 0 0">
-        Test headline
-      </Headline>
-      <TextWrap>
-        Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.
-      </TextWrap>  
-    </TextBlock>
-  </Row>
-
-  <Row color="#3c3c3c" center>
-    <ImageWrap image="test-img.jpg" />
-  </Row>
-
-  <Row center color="#070707">
-    <VideoWrap file="playback.mp4" />
   </Row>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <ImageWrap image="1.png" />
+  <ImageWrap src="1.png" />
 
   <Tabs
     v-model="activeTab"

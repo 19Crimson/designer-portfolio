@@ -1,120 +1,51 @@
-<template>
-  <Row>
-    <TextBlock
-      align="center"
-      max-width="100%"
-    >
-      <Headline>
-        Design tab content
-      </Headline>
-    </TextBlock> 
-  </Row>
 
-  <Row center>
+<template>
+  <Row
+    bg-image="header_bg.png"
+    color="#4a4a52"
+    bg-repeat
+    center
+  >
     <TextBlock
       align="center"
       max-width="600"
+      margin="60px 40px"
     >
       <Headline
-        font-size="26"
-        color="#5757b8"
+        color="#4a4a52"
+        align="center"
+        font-size="28"
+        margin="60px 40px"
       >
-        Centered colored text block
+        Default text block
       </Headline>
+
       <TextWrap
-        font-size="16"
-        color="#0202b8"
+        color="#4a4a52"
+        align="center"
+        font-size="28"
+        margin="60px 40px"
       >
         Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.
       </TextWrap>
     </TextBlock>
-  </Row>
 
-  <Row bgImage="header_bg.png">
-    <TextBlock>
-      <Headline color="gray">
-        Row example with background image
-      </Headline>
-      <TextWrap color="gray">
-        Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.
-      </TextWrap>
-    </TextBlock>
-    <TextBlock align="center" margin="260px 60px 60px">
-      <TextWrap color="gray">
-        Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.
-      </TextWrap>
-    </TextBlock>
-  </Row>
-
-  <Row center color="#a1a1ff">
-    <TextBlock>
-      <Headline>
-        Row with video
-      </Headline>
-      <TextWrap>
-        Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.
-      </TextWrap>
-    </TextBlock>
-
-    <VideoWrap file="playback.mp4"/>
-  </Row>
-
-  <Row color="#f4c5e3" center>
-    <TextBlock>
-      <Headline>
-        Test headline
-      </Headline>
-      <TextWrap>
-        Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.
-      </TextWrap>
-    </TextBlock>
-  </Row>
-
-  <Row center color="#070707">
-    <VideoWrap
-      file="playback.mp4"
-      margin="26px 0 0"
+    <ImageWrap
+      src="test-img.jpg"
+      margin="20px"
     />
-    <TextBlock>
-      <Headline color="#a1a1ff">
-        Headline example
-      </Headline>
-      <TextWrap color="#5151b8">
-        Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.
-      </TextWrap>
-    </TextBlock>
+
+    <VideoWrap src="playback.mp4"/>
   </Row>
 
-  <Row center color="#3c3c3c">
+  <Row>
     <TextBlock>
       <Headline>
-        Test headline
+        Second row
       </Headline>
       <TextWrap>
         Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.
       </TextWrap>
-
-      <Headline margin="20px 0 0 0">
-        Test headline
-      </Headline>
-      <TextWrap>
-        Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.
-      </TextWrap>
-    </TextBlock>
-
-    <TextBlock>
-      <Headline>
-        Test headline
-      </Headline>
-      <TextWrap>
-        Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.
-      </TextWrap>
-      <Headline margin="20px 0 0 0">
-        Test headline
-      </Headline>
-      <TextWrap>
-        Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.
-      </TextWrap>  
     </TextBlock>
   </Row>
 </template>
