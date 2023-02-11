@@ -7,8 +7,8 @@ import {
   Tabs,
 } from '@/components';
 import { TabsItems } from '@/components/layout/Tabs.vue.js';
-import DemoTabOne from '@/components/projects/DemoProjectWithTabs/DemoTabOne.vue';
-import DemoTabTwo from '@/components/projects/DemoProjectWithTabs/DemoTabTwo.vue';
+import Design from './Design.vue';
+import Process from './Process.vue';
 
 const emit = defineEmits(['close']);
 
@@ -16,12 +16,12 @@ const activeTab = ref<string>('');
 
 const tabs: TabsItems = [
   {
-    title: 'One',
-    value: 'DemoTabOne',
+    title: 'Design',
+    value: 'Design',
   },
   {
-    title: 'Two',
-    value: 'DemoTabTwo',
+    title: 'Process',
+    value: 'Process',
   },
 ];
   
@@ -47,10 +47,7 @@ const handleClose = () => {
       :items="tabs"
     />
 
-    <!-- <component
-      :is="activeTab"
-    /> -->
-    <DemoTabOne v-if="activeTab === 'DemoTabOne'"/>
-    <DemoTabTwo v-if="activeTab === 'DemoTabTwo'"/>
+    <Process v-if="activeTab === 'Process'"/>
+    <Design v-if="activeTab === 'Design'"/>
   </ProjectModal>
 </template>
