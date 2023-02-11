@@ -1,24 +1,14 @@
 <script setup lang="ts">
 import {
-  PropType,
   defineEmits,
   onMounted,
   computed,
   ref,
 } from 'vue';
 
-export type ProjectTab = {
-  value: string,
-  title: string,
-  textColor?: string,
-  textColorActive?: string,
-}
-
-export type TabsItems = Array<ProjectTab>
-
 const props = defineProps({
   items: {
-    type: Array as PropType<TabsItems>,
+    type: Array<string>,
     required: true,
   },
   modelValue: String,
@@ -34,12 +24,12 @@ const emit = defineEmits(['update:modelValue']);
 
 function getValueByIndex(index: number) {
   if (props.items && props.items[index]) {
-    return props.items[index]?.value;
+    return props.items[index];
   }
 }
 
 function getTabByName(name?: string) {
-  const index = props.items.findIndex(item => item.value === name);
+  const index = props.items.findIndex(tab => tab === name);
   if (props.items && name) {
     return tabs.value[index];
   }
@@ -67,7 +57,7 @@ const indicatorStyle = computed(() => {
 
 const getTabStyle = (index: number) => {
   const tab = props.items[index];
-  const isActive = tab.value === props.modelValue;
+  const isActive = tab === props.modelValue;
   return {
     color: isActive ? props.textColorActive : props.textColor,
   };
@@ -79,7 +69,7 @@ const wrapperStyle = computed(() => ({
 
 const indicatorClass = computed(() => ({
   'project-tabs__indicator': true,
-  'project-tabs__indicator--right': props.modelValue === props.items[1]?.value,
+  'project-tabs__indicator--right': props.modelValue === props.items[1],
 }));
 </script>
 
@@ -102,7 +92,7 @@ const indicatorClass = computed(() => ({
         :style="getTabStyle(index)"
         @click="handleClickTab(index)"
       >
-        {{ tab.title }}
+        {{ tab }}
       </div>
     </div>
   </div>

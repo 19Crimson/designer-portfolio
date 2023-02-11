@@ -12,9 +12,7 @@ const emit = defineEmits(['close']);
 
 const props = defineProps({
   bgImage: String,
-  color: String
 });
-
 
 const project = inject<string>('project');
 const opened = inject<Ref<boolean>>('modalOpened');
@@ -29,7 +27,10 @@ watchEffect(() => {
 });
 
 const handleClose = () => {
-  emit('close');
+  if (!opened) {
+    return;
+  }
+  opened.value = false;
 };
 
 const overlayClass = computed(() => ({

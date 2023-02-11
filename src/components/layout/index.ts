@@ -1,7 +1,7 @@
 import CardList from '@/components/layout/CardList.vue';
 import CloseButton from '@/components/layout/CloseButton.vue';
 import ComponentProvider from '@/components/layout/ComponentProvider.vue';
-import ImageWrapper from '@/components/layout/ImageWrapper.vue';
+import ImageWrap from '@/components/layout/ImageWrap.vue';
 import PageHeader from '@/components/layout/PageHeader.vue';
 import PageWrapper from '@/components/layout/PageWrapper.vue';
 import ParallaxCard from '@/components/layout/ParallaxCard.vue';
@@ -12,15 +12,15 @@ import Tabs from '@/components/layout/Tabs.vue';
 import SocialLink from '@/components/layout/SocialLink.vue';
 import TextBlock from '@/components/layout/TextBlock.vue';
 import Headline from '@/components/layout/Headline.vue';
-import TextWrapper from '@/components/layout/TextWrapper.vue';
+import TextWrap from '@/components/layout/TextWrap.vue';
 import Typewriter from '@/components/layout/Typewriter.vue';
-import VideoWrapper from '@/components/layout/VideoWrapper.vue';
+import VideoWrap from '@/components/layout/VideoWrap.vue';
 
 export {
   CardList,
   CloseButton,
   ComponentProvider,
-  ImageWrapper,
+  ImageWrap,
   PageHeader,
   PageWrapper,
   ParallaxCard,
@@ -31,7 +31,7 @@ export {
   SocialLink,
   TextBlock,
   Headline,
-  TextWrapper,
+  TextWrap,
   Typewriter,
-  VideoWrapper,
+  VideoWrap,
 };

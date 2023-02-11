@@ -1,64 +1,54 @@
-  
-<!--
-  Это файл с фикс шапкой и табами. 
-  Фикс шапку (и названия табов) прописываем тут. 
-  Остальной переключаемый табами контент прописываем в отдельный файлах в этой же папке. ''
--->
+<!-- Пример основного компонент проекта с табами (Содержимое модального окна) -->
+<!-- Компоненты с содержимым табов лежат в этой же папке -->
+<!-- Заголовок таба должен совпадать с именем компонента с содержимым -->
+<!-- Для примера указаны все свойства элементов, ненужные удалить -->
+<template>
+  <!-- bg-image - фоновое изображение -->
+  <!-- bg-color - цвет фона -->
+  <!-- title-color - цвет заголовка -->
+  <!-- fontSize - размер текста -->
+  <!-- center - Содержимое по центру -->
+  <!-- no-bg-repeat - Убрать повторение фона -->
+  <ProjectHeader
+    bg-image="header_bg.png"
+    bg-color="#3c3c3c"
+    title-color="#4a4a52"
+    fontSize="80"
+    center
+    no-bg-repeat
+  >
+    Project example with colored tabs
+  </ProjectHeader>
+
+  <!-- bg-color - цвет фона -->
+  <!-- indicator-color - цвет индикатора активного таба -->
+  <!-- text-color - цвет текста (неактивный) -->
+  <!-- text-color-active - цвет текста (активный) -->
+  <Tabs
+    v-model="activeTab"
+    :items="tabs"
+    bg-color="#3c3c3c"
+    indicator-color="#f54242"
+    text-color="#45d65f"
+    text-color-active="#ffffff"
+  />
+
+  <component :is="component"/>
+</template>
+
   
 <script setup lang="ts">
-import { ref } from 'vue';
-import {
-  ProjectModal,
-  ProjectHeader,
-  Tabs,
-} from '@/components';
-import { TabsItems } from '@/components/layout/Tabs.vue.js';
+import { ref, computed } from 'vue';
 import Design from './Design.vue';
 import Process from './Process.vue';
-  
-const emit = defineEmits(['close']);
-  
-const activeTab = ref<string>('');
-  
-const tabs: TabsItems = [
-  {
-    title: 'Design',
-    value: 'Design',
-  },
-  {
-    title: 'Process',
-    value: 'Process',
-  }
-];
-    
-const handleClose = () => {
-  emit('close');
-};
+
+const tabs = ['Design', 'Process'] as const;
+
+const components = computed(() => ({
+  Design,
+  Process,
+}));
+
+const activeTab = ref(tabs[0]);
+const component = computed(() => components.value[activeTab.value] ?? '');
 </script>
-  
-<template>
-  <ProjectModal
-    @close="handleClose"
-  >
-    <ProjectHeader
-      bgImage="header_bg.png"
-      title-color="#4a4a52"
-      fontSize="80"
-    >
-      Some title example
-    </ProjectHeader>
-
-    <Tabs
-      v-model="activeTab"
-      :items="tabs"
-      bg-color="#3c3c3c"
-      indicator-color="#f54242"
-      text-color="#45d65f"
-      text-color-active="#ffffff"
-    />
-
-    <Process v-if="activeTab === 'Process'"/>
-    <Design v-if="activeTab === 'Design'"/>
-  </ProjectModal>
-</template>
-  

@@ -2,7 +2,6 @@
   <component
     v-if="component"
     :is="component"
-    :folder="name"
     v-bind="$attrs"
   />
 </template>
@@ -16,7 +15,6 @@ import {
 const props = defineProps({
   name: {
     type: String,
-    required: true,
     default: 'index'
   },
   folder: String,

@@ -3,7 +3,6 @@ import { computed, inject, Ref } from 'vue';
 import { TextAlign } from '@/utils/types';
 
 const props = defineProps({
-  title: String,
   bgImage: String,
   bgColor: String,
   titleColor: String,

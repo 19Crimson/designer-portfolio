@@ -42,12 +42,12 @@ const rowStyle = computed(() => ({
 .project-row {
   width: 100%;
   display: flex;
+  align-items: center;
+  justify-content: center;
 
   &__wrapper {
     display: flex;
     width: 100%;
-    align-items: center;
-    justify-content: center;
     background-size: cover;
   }
 }

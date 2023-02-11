@@ -2,31 +2,26 @@
   <PageWrapper>
     <PageHeader/>
     <Typewriter
-      :keywords="keywords"
-      :colors="colors"
-      :headline="headline"
-      :pretext="pretext"
-      change-title
+      v-bind="typewriterProps"
     />
+
     <CardList
       @open="onOpenProject"
     />
-    <ComponentProvider
-      :folder="currentProject"
-      @close="onCloseDialog"
-    />
+
+    <Modal>
+      <ComponentProvider
+        :folder="currentProject"
+      />
+    </Modal>
   </PageWrapper>
 </template>
 
 // TODO:
 // Fix card open on right click
 // Fix Project Modal Blur Transition on open
-// Add favico / Page Title
 // Implement get-params to share projects pages
 // Add lazyload / skeletons
-// Roc center content
-// Smart render tabs
-// Tab active transition / width
 // Scroll modal on change tab
 
 <script setup lang="ts">
@@ -48,8 +43,12 @@ import {
 const modalOpened = ref(false);
 const currentProject = ref('');
 
-const onCloseDialog = () => {
-  modalOpened.value = false;
+const typewriterProps = {
+  keywords,
+  colors,
+  headline,
+  pretext,
+  changeTitle: true
 };
 
 provide('modalOpened', modalOpened);
