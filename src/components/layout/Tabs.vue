@@ -55,6 +55,11 @@ const indicatorStyle = computed(() => {
   };
 });
 
+const getTabClass = (index: number) => ({
+  'project-tabs__tab': true,
+  'project-tabs__tab--active': props.modelValue === props.items[index],
+});
+
 const getTabStyle = (index: number) => {
   const tab = props.items[index];
   const isActive = tab === props.modelValue;
@@ -66,11 +71,6 @@ const getTabStyle = (index: number) => {
 const wrapperStyle = computed(() => ({
   backgroundColor: props.bgColor,
 }));
-
-const indicatorClass = computed(() => ({
-  'project-tabs__indicator': true,
-  'project-tabs__indicator--right': props.modelValue === props.items[1],
-}));
 </script>
 
 <template>
@@ -80,7 +80,7 @@ const indicatorClass = computed(() => ({
   >
     <div class="project-tabs">
       <div
-        :class="indicatorClass"
+        class="project-tabs__indicator"
         :style="indicatorStyle"
       />
 
@@ -88,7 +88,7 @@ const indicatorClass = computed(() => ({
         v-for="(tab, index) in items"
         :ref="el => { tabs[index] = el }"
         :key="index"
-        class="project-tabs__tab"
+        :class="getTabClass(index)"
         :style="getTabStyle(index)"
         @click="handleClickTab(index)"
       >
@@ -111,6 +111,10 @@ const indicatorClass = computed(() => ({
     border-radius: 24px;
     padding: 10px 18px;
     z-index: 10;
+  }
+
+  &__tab--active {
+    font-weight: 800;
   }
 
   &__tab:last-child {
