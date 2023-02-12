@@ -21,6 +21,7 @@ const handleClick = () => {
 
 <style scoped lang="scss">
 .close-button {
+  z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
