@@ -1,8 +1,7 @@
 <template>
-  <VideoWrap src="Video1.mp4" 
-  />
+  <VideoWrap src="Video1.mp4"/>
 
-    <Tabs
+  <Tabs
     v-model="activeTab"
     :items="tabs"
     bg-color="#F2F2F2"

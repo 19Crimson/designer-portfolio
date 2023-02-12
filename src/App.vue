@@ -5,4 +5,3 @@ import { MainPage } from '@/components';
 <template>
   <MainPage/>
 </template>
-

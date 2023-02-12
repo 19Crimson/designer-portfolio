@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { scrrollTop } from '@/utils/helpers';
+import { scrollTop } from '@/utils/helpers';
 import { SocialLink } from '@/components';
 </script>
 
@@ -11,7 +11,7 @@ import { SocialLink } from '@/components';
         <div class="header__bg-top"></div>
         <div class="header__gradient"></div>
       </div>>
-      <div class="header__logo" @click="scrrollTop">
+      <div class="header__logo" @click="scrollTop">
         <img src="@/assets/img/logo.png"/>
         <div class="username">Nikita Karpinsky</div>
       </div>

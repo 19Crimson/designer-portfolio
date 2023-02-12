@@ -19,10 +19,8 @@
 
 // TODO:
 // Fix card open on right click
-// Fix Project Modal Blur Transition on open
 // Implement get-params to share projects pages
 // Add lazyload / skeletons
-// Scroll modal on change tab
 
 <script setup lang="ts">
 import { ref, provide } from 'vue';

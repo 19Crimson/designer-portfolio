@@ -13,32 +13,35 @@ const props = defineProps({
 });
 
 const project = inject<string>('project');
-const opened = inject<Ref<boolean>>('modalOpened');
+const showModal = inject<Ref<boolean>>('modalOpened');
+const showBlur = ref<boolean|undefined>(false);
 
-const displayCondition = ref(opened?.value);
+const displayCondition = ref(showModal?.value);
 
 watchEffect(() => {
+  // Wait animation ends
   setTimeout(
-    () => displayCondition.value = opened?.value,
-    opened?.value ? 0 : 300
+    () => displayCondition.value = showModal?.value,
+    showModal?.value ? 0 : 300
   );
+  setTimeout(() => showBlur.value = showModal?.value, 5);
 });
 
 const handleClose = () => {
-  if (!opened) {
+  if (!showModal) {
     return;
   }
-  opened.value = false;
+  showModal.value = false;
 };
 
 const overlayClass = computed(() => ({
   'overlay': true,
-  'overlay--active': opened?.value,
+  'overlay--active': showBlur?.value,
 }));
 
 const overlayInnerClass = computed(() => ({
   'overlay__inner': true,
-  'overlay__inner--active': opened?.value,
+  'overlay__inner--active': showModal?.value,
 }));
 
 const bgStyle = computed(() => ({
@@ -47,7 +50,6 @@ const bgStyle = computed(() => ({
 </script>
 
 <template>
-  <!-- <Transition appear> -->
     <div
       v-if="displayCondition"
       :class="overlayClass"
@@ -64,7 +66,6 @@ const bgStyle = computed(() => ({
         <slot />
       </div>
     </div>
-  <!-- </Transition> -->
 </template>
 
 <style scoped lang="scss">

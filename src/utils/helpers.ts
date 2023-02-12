@@ -30,7 +30,7 @@ export function getRandomValue(config: GetRandomValueConfig) {
   }
 }
 
-export function scrrollTop () {
+export function scrollTop () {
   window.scrollTo({
     top: 0,
     left: 0,
