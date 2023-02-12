@@ -1,3 +1,3 @@
 <template>
-  <ImageWrap image="6.png"/>
+  <ImageWrap src="6.png"/>
 </template>
