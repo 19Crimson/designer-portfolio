@@ -24,16 +24,16 @@ const isHovered = ref(false);
 const timeout = ref<ReturnType<typeof setTimeout>>();
 
 // Link Rotating coefficient
-const LRC = 60;
+const LRC = 30;
 
 // Text Rotating coefficient
-const TRC = 1;
+const TRC = 3;
 
 // Transforming coefficient
-const TC = 6;
+const TC = 4;
 
 // Scaling coefficient
-const SC = 1.03;
+const SC = 1;
 
 onMounted(() => {
   linkWidth.value = link.value?.offsetWidth ?? 0;

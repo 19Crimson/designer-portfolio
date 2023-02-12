@@ -1,9 +1,13 @@
 <template>
-  <ImageWrap src="1.png" />
+  <VideoWrap src="Video1.mp4" 
+  />
 
-  <Tabs
+    <Tabs
     v-model="activeTab"
     :items="tabs"
+    bg-color="#F2F2F2"
+    text-color-active="#000000"
+    margin="-140px 0 0 0"
   />
 
   <component :is="component"/>

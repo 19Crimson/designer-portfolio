@@ -123,7 +123,7 @@ const indicatorClass = computed(() => ({
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.12);
     background-color: #FFFFFF;
     opacity: 1;
-    transition: cubic-bezier(0, .79, .33, 1.02) .3s;
+    transition: cubic-bezier(0, .79, .33, 1.02) .2s;
     cursor: pointer;
     border-radius: 24px;
     padding: 10px 18px;
@@ -136,9 +136,9 @@ const indicatorClass = computed(() => ({
     justify-content: center;
     align-items: center;
     margin: 40px 0;
-    padding: 4px;
+    padding: 3px;
     background-color: #00000012;
-    border-radius: 24px;
+    border-radius: 26px;
     overflow: hidden;
   }
 }
