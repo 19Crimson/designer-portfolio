@@ -58,7 +58,7 @@ const wrapperStyle = computed(() => ({
   >
     <vue3-video-player
       ref="player"
-      :src="`/projects/${project}/${src}`"
+      :src="`/designer-portfolio/projects/${project}/${src}`"
       :controls="false"
       autoplay
       loop

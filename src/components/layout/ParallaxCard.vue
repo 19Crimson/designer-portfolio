@@ -33,7 +33,7 @@ const isHovered = ref(false);
 const timeout = ref<ReturnType<typeof setTimeout>>();
 const clientHeight = ref(document.documentElement.clientHeight);
 const clientWidth = ref(document.documentElement.clientWidth);
-const fgSrc = ref(`/projects/${props.project}/${props.cardFg}`);
+const fgSrc = ref(`/designer-portfolio/projects/${props.project}/${props.cardFg}`);
 
 // Rotating coefficient
 const RC = 10;
@@ -130,7 +130,7 @@ const titleStyle = computed(() => {
 
 const bgStyle = computed(() => {
   return {
-    backgroundImage: `url("/projects/${props.project}/${props.cardBg}")`,
+    backgroundImage: `url("/designer-portfolio/projects/${props.project}/${props.cardBg}")`,
     height: `${cardHeight.value}px`,
   };
 });
@@ -175,7 +175,7 @@ const handleMouseup = () => {
 watch(
   () => clientWidth.value,
   () => {
-    const bgImagePath = `/projects/${props.project}/${props.cardBg}`;
+    const bgImagePath = `/designer-portfolio/projects/${props.project}/${props.cardBg}`;
     const cb = (
       img?: HTMLImageElement,
       err?: string|Event

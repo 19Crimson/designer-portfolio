@@ -17,7 +17,7 @@ const props = defineProps({
 const project = inject<Ref<string>>('project');
 
 const headerStyle = computed(() => ({
-  ...(props.bgImage && { backgroundImage: `url("/projects/${project?.value}/${props.bgImage}")` }),
+  ...(props.bgImage && { backgroundImage: `url("/designer-portfolio/projects/${project?.value}/${props.bgImage}")` }),
   backgroundColor: props.bgColor,
 }));
 

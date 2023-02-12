@@ -15,8 +15,8 @@ const project = inject<Ref<string>>('project');
 
 const bgPath = computed(() => {
   return project?.value
-    ? `url("/projects/${project.value}/${props.bgImage}")`
-    : `url("public/${props.bgImage}")`;
+    ? `url("/designer-portfolio/projects/${project.value}/${props.bgImage}")`
+    : `url("/designer-portfolio/public/${props.bgImage}")`;
 });
 
 const rowWrapperStyle = computed(() => ({

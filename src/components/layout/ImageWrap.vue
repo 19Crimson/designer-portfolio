@@ -11,7 +11,7 @@ const props = defineProps({
 
 const project = inject<Ref<string>>('project');
 
-const computedSrc = computed(() => `/projects/${project?.value}/${props.src}`);
+const computedSrc = computed(() => `/designer-portfolio/projects/${project?.value}/${props.src}`);
 
 const wrapperStyle = computed(() => ({
   margin: props.margin,

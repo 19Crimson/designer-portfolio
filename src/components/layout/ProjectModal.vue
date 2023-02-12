@@ -42,7 +42,7 @@ const overlayInnerClass = computed(() => ({
 }));
 
 const bgStyle = computed(() => ({
-  ...(props.bgImage && { backgroundImage: `url("/projects/${project}/${props.bgImage}")` }),
+  ...(props.bgImage && { backgroundImage: `url("/designer-portfolio/projects/${project}/${props.bgImage}")` }),
 }));
 </script>
 
