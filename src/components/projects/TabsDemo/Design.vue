@@ -38,6 +38,9 @@
     <VideoWrap src="playback.mp4"/>
   </Row>
 
+  <ImageWrap src="test-img.jpg"/>
+  <VideoWrap src="playback.mp4"/>
+
   <Row>
     <TextBlock>
       <Headline>

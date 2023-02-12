@@ -1,7 +1,3 @@
 <template>
-  <Row>
-    <ImageWrap
-      image = "6.png"
-    />
-  </Row>
+  <ImageWrap image="6.png"/>
 </template>

@@ -1,5 +1,5 @@
 /**
- * This config defines keywords and colors lists used for Typewriter conponent
+ * Config defines keywords and colors lists used for Typewriter conponent
  * For better randomizing keywordsList may contain multiple arrays of objects,
  * whitch of these appears with frequency, defined by chances field (values in %).
  * First keyword is alyays first word of 1st list,

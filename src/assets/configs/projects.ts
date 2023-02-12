@@ -1,3 +1,14 @@
+
+/**
+ * Config defines Cards on main page and relative Projects
+ * 
+ * project - name of project folder in src/components/projects
+ * cardBg - background image of 3d-card on main page
+ * cardFg - foreground image of 3d-card on main page
+ * title - title of card
+ * titleColor - color of title
+ * gradientColor - color of card gradient in RGB
+ */
 const content = [
   {
     project: 'SweetHome',
@@ -19,15 +30,6 @@ const content = [
     cardFg: 'fg-1.png',
     title: 'Tabs',
   },
-  // Tabs example
-  // {
-  //   project: 'TemplateWithTabs',
-  //   cardBg: 'bg.png',
-  //   cardFg: 'fg.png',
-  //   title: 'Information monitor for neighbours',
-  //   titleColor: 'black',
-  //   gradientColor: '255, 217, 129',
-  // },
 ];
 
 export default content;

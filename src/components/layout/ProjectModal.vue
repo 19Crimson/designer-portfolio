@@ -8,8 +8,6 @@ import {
 } from 'vue';
 import { CloseButton } from '@/components';
 
-const emit = defineEmits(['close']);
-
 const props = defineProps({
   bgImage: String,
 });

@@ -1,7 +1,8 @@
 <!-- Пример основного компонент проекта с табами (Содержимое модального окна) -->
+<!-- Картинки / видео добавляем в одноименную папку в public/projects -->
 <!-- Компоненты с содержимым табов лежат в этой же папке -->
 <!-- Заголовок таба должен совпадать с именем компонента с содержимым -->
-<!-- Для примера указаны все свойства элементов, ненужные удалить -->
+<!-- Для примера указаны все свойства элементов, ненужные удаляем -->
 <template>
 
   <!-- Шапка модалкиы -->
@@ -36,6 +37,21 @@
     text-color-active="#ffffff"
   />
 
+  <!-- Пример табов с картинкой на фоне -->
+  <Row
+    bgImage="header_bg.png"
+    center
+  >
+    <Tabs
+      v-model="activeTab"
+      :items="tabs"
+      bg-color="#3c3c3c"
+      indicator-color="#f54242"
+      text-color="#45d65f"
+      text-color-active="#ffffff"
+    />
+  </Row>
+
   <component :is="component"/>
 </template>
 
@@ -45,6 +61,7 @@ import { ref, computed } from 'vue';
 import Design from './Design.vue';
 import Process from './Process.vue';
 
+// Состав вкладок (названия = имена компонентов в папке)
 const tabs = ['Design', 'Process'] as const;
 
 const components = computed(() => ({

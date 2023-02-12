@@ -8,14 +8,16 @@
     Tabs Demo
   </ProjectHeader>
 
-  <Tabs
-    v-model="activeTab"
-    :items="tabs"
-    bg-color="#3c3c3c"
-    indicator-color="#f54242"
-    text-color="#45d65f"
-    text-color-active="#ffffff"
-  />
+  <Row bgImage="header_bg.png" center>
+    <Tabs
+      v-model="activeTab"
+      :items="tabs"
+      bg-color="#3c3c3c"
+      indicator-color="#f54242"
+      text-color="#45d65f"
+      text-color-active="#ffffff"
+    />
+  </Row>
 
   <component :is="component"/>
 </template>

@@ -68,6 +68,10 @@
     <VideoWrap src="playback.mp4"/>
   </Row>
 
+  <!-- Картинки и видео можно не помещать в Row, если кроме них нет контента в ряду -->
+  <ImageWrap src="test-img.jpg"/>
+  <VideoWrap src="playback.mp4"/>
+
   <Row>
     <TextBlock>
       <Headline>
