@@ -104,17 +104,18 @@ const wrapperStyle = computed(() => ({
 
   &__tab {
     font-size: 20px;
-    font-weight: 600;
+    font-weight: 500;
     color: #00000070;
     margin-right: 4px;
     cursor: pointer;
     border-radius: 24px;
     padding: 10px 18px;
+    transition: ease-in-out 0.2s;
     z-index: 10;
   }
 
   &__tab--active {
-    font-weight: 800;
+    font-weight: 600;
   }
 
   &__tab:last-child {
