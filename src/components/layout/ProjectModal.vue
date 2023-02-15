@@ -92,7 +92,7 @@ const bgStyle = computed(() => ({
 
 	&--active {
 		backdrop-filter: blur(15px);
-    background-color: rgba(7, 7, 7, 0.1);
+    background-color: rgba(7, 7, 7, 0.6);
 	}
 
 	&__inner {

@@ -1,19 +1,10 @@
 <template>
-  <ImageWrap src="2.png"
+  <ImageWrap src="4.png"
     id="startimage"
     margin="-80px 0 0 0"
   />
-  <Row
-    color="#000000"
-    center
-  >
-    <TextBlock>
-      <TextWrap 
-        color="#ffffff"
-        font-size="28"
-      >
-        Табло полностью заменяет оффлайновую доску объявлений, превращая ее в функциональный и эстетичный инструмент двухсторонней коммуникации соседей
-      </TextWrap>
-    </TextBlock> 
-  </Row>
+  <ImageWrap src="5.png"
+    id="startimage"
+    margin="0 0 0 0"
+  />
 </template>
