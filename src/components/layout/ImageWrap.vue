@@ -23,7 +23,10 @@ const wrapperStyle = computed(() => ({
     class="image-wrapper"
     :style="wrapperStyle"
   >
-    <img :src="computedSrc">
+    <img
+      :src="computedSrc"
+      draggable="false"
+    >
   </div>
 </template>
 

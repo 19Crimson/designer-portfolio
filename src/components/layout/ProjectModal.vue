@@ -76,7 +76,6 @@ const bgStyle = computed(() => ({
   height: 100%;
   width: 100%;
 	padding: 60px;
-	background-color: rgba(7, 7, 7, 0.1);
 	cursor: pointer;
 	z-index: 1000;
 	transition: ease-in-out 0.3s;
@@ -93,6 +92,7 @@ const bgStyle = computed(() => ({
 
 	&--active {
 		backdrop-filter: blur(15px);
+    background-color: rgba(7, 7, 7, 0.1);
 	}
 
 	&__inner {
