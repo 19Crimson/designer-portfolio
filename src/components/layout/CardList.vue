@@ -4,6 +4,10 @@ import Projects from '@/assets/configs/projects';
 
 const emit = defineEmits(['open']);
 
+defineProps({
+  smallScreen: Boolean
+});
+
 // Sorting content by columns
 const firstColumnItems = Projects.filter((_, index) => index % 3 === 0);
 const secondColumnItems = Projects.filter((_, index) => (index - 1) % 3 === 0);
@@ -15,7 +19,10 @@ const handleClickCard = (project?: string) => {
 </script>
 
 <template>
-  <div class="card-list-container">
+  <div
+    v-if="!smallScreen"
+    class="card-list-container"
+  >
     <div class="card-list-column">
       <ParallaxCard
         v-for="(card, id) in firstColumnItems"
@@ -37,6 +44,20 @@ const handleClickCard = (project?: string) => {
     <div class="card-list-column">
       <ParallaxCard
         v-for="(card, id) in thirdColumnItems"
+        :key="id"
+        v-bind="card"
+        @click="() => handleClickCard(card.project)"
+      />
+    </div>
+  </div>
+  <div
+    v-else
+    class="card-list-container"
+  >
+    <div class="card-list-column">
+      <ParallaxCard
+        :smallScreen="smallScreen"
+        v-for="(card, id) in Projects"
         :key="id"
         v-bind="card"
         @click="() => handleClickCard(card.project)"

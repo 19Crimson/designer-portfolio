@@ -1,11 +1,13 @@
 <template>
   <PageWrapper>
-    <PageHeader/>
+    <PageHeader :smallScreen="smallScreen"/>
     <Typewriter
+      v-if="!smallScreen"
       v-bind="typewriterProps"
     />
 
     <CardList
+      :smallScreen="smallScreen"
       @open="onOpenProject"
     />
 
@@ -23,7 +25,7 @@
 // Add lazyload / skeletons
 
 <script setup lang="ts">
-import { ref, provide } from 'vue';
+import { ref, provide, onMounted, computed } from 'vue';
 import {
   PageHeader,
   Typewriter,
@@ -31,6 +33,7 @@ import {
   CardList,
   ComponentProvider,
 } from '@/components';
+// import { useWindow } from '@/utils/helpers';
 import {
   keywords,
   colors,
@@ -40,6 +43,20 @@ import {
 
 const modalOpened = ref(false);
 const currentProject = ref('');
+const clientHeight = ref(document.documentElement.clientHeight);
+const clientWidth = ref(document.documentElement.clientWidth);
+
+const smallScreen = computed(() => clientWidth.value < 840);
+
+onMounted(() => {
+  window.addEventListener("resize", getDimensions);
+});
+
+const getDimensions = () => {
+  clientWidth.value = document.documentElement.clientWidth;
+  clientHeight.value = document.documentElement.clientHeight;
+};
+
 
 const typewriterProps = {
   keywords,

@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { scrollTop } from '@/utils/helpers';
 import { SocialLink } from '@/components';
+
+defineProps({
+  smallScreen: Boolean
+});
 </script>
 
 <template>
@@ -16,8 +20,8 @@ import { SocialLink } from '@/components';
         <div class="username">Nikita Karpinsky</div>
       </div>
       <div class="social-links">
-        <SocialLink link-type="tg" />
-        <SocialLink link-type="inst" />
+        <SocialLink link-type="tg" v-if="!smallScreen"/>
+        <SocialLink link-type="inst" v-if="!smallScreen"/>
         <SocialLink link-type="linkedIn" />
       </div>
     </div>

@@ -1,7 +1,16 @@
+import { computed } from 'vue';
+
 export type GetRandomValueConfig = {
   values: Array<any>,
   chances: Array<number>,
 }
+// Вынести получение ширины окна в хук
+// export function useWindow() {
+//   const windowWidth = computed(() => window.width);
+//   return {
+//     windowWidth
+//   };
+// }
 
 export function getRandomArrayElement(array: Array<any>) {
   const max = array?.length - 1;

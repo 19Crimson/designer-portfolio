@@ -15,6 +15,7 @@ const props = defineProps({
   cardBg: String,
   cardFg: String,
   title: String,
+  smallScreen: Boolean,
   titleColor: {
     type: String,
     default: 'white'
@@ -184,7 +185,9 @@ watch(
         console.error('Error while uploading image with path: ', bgImagePath);
         return;
       }
-      cardHeight.value = (img.naturalHeight / img.naturalWidth) * (window.innerWidth -160) / 3;
+      cardHeight.value = props.smallScreen
+        ? (img.naturalHeight / img.naturalWidth) * (window.innerWidth -160)
+        : (img.naturalHeight / img.naturalWidth) * (window.innerWidth -160) / 3;
     };
 
     getImageOnload(bgImagePath, cb);
