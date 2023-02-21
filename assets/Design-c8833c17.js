@@ -1,0 +1,1 @@
+import{_ as r,r as n,o as t,c as s,a,F as c}from"./index-ea9b6983.js";const o={};function m(p,_){const e=n("ImageWrap");return t(),s(c,null,[a(e,{src:"4.png",id:"startimage",margin:"-80px 0 0 0"}),a(e,{src:"5.png",id:"startimage",margin:"0 0 0 0"})],64)}const i=r(o,[["render",m]]);export{i as default};
