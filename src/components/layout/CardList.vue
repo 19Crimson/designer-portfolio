@@ -53,6 +53,7 @@ const handleClickCard = (project?: string) => {
   <div
     v-else
     class="card-list-container"
+    style="margin: 0 12px"
   >
     <div class="card-list-column">
       <ParallaxCard

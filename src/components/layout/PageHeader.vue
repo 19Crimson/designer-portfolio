@@ -3,7 +3,8 @@ import { scrollTop } from '@/utils/helpers';
 import { SocialLink } from '@/components';
 
 defineProps({
-  smallScreen: Boolean
+  smallScreen: Boolean,
+  mobile: Boolean
 });
 </script>
 
@@ -17,7 +18,7 @@ defineProps({
       </div>>
       <div class="header__logo" @click="scrollTop">
         <img src="@/assets/img/logo.png"/>
-        <div class="username">Nikita Karpinsky</div>
+        <div class="username" v-if="!mobile">Nikita Karpinsky</div>
       </div>
       <div class="social-links">
         <SocialLink link-type="tg" v-if="!smallScreen"/>

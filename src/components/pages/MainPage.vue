@@ -1,6 +1,9 @@
 <template>
   <PageWrapper>
-    <PageHeader :smallScreen="smallScreen"/>
+    <PageHeader
+      :smallScreen="smallScreen"
+      :mobile="isMobile"
+    />
     <Typewriter
       v-if="!smallScreen"
       v-bind="typewriterProps"
@@ -11,7 +14,7 @@
       @open="onOpenProject"
     />
 
-    <Modal>
+    <Modal :smallScreen="smallScreen">
       <ComponentProvider
         :folder="currentProject"
       />
@@ -47,6 +50,7 @@ const clientHeight = ref(document.documentElement.clientHeight);
 const clientWidth = ref(document.documentElement.clientWidth);
 
 const smallScreen = computed(() => clientWidth.value < 840);
+const isMobile = computed(() => clientWidth.value < 600);
 
 onMounted(() => {
   window.addEventListener("resize", getDimensions);

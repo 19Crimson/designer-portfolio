@@ -142,8 +142,8 @@ const getDimensions = () => {
 };
 
 const handleMouseMove = (e: MouseEvent) => {
-  mouseX.value = e.pageX - card.value.offsetLeft - cardWidth.value / 2;
-  mouseY.value = e.pageY - card.value.offsetTop - cardHeight.value / 2;
+  mouseX.value = !props.smallScreen ? e.pageX - card.value.offsetLeft - cardWidth.value / 2 : 0;
+  mouseY.value = !props.smallScreen ? e.pageY - card.value.offsetTop - cardHeight.value / 2 : 0;
   isHovered.value = true;
 };
 
@@ -186,8 +186,8 @@ watch(
         return;
       }
       cardHeight.value = props.smallScreen
-        ? (img.naturalHeight / img.naturalWidth) * (window.innerWidth -160)
-        : (img.naturalHeight / img.naturalWidth) * (window.innerWidth -160) / 3;
+        ? (img.naturalHeight / img.naturalWidth) * (window.innerWidth - 20)
+        : (img.naturalHeight / img.naturalWidth) * (window.innerWidth - 160) / 3;
     };
 
     getImageOnload(bgImagePath, cb);
@@ -218,6 +218,7 @@ const gradientStyle = {
 
 <template>
   <div class="card-wrapper"
+    :style="smallScreen ? 'margin-bottom: 12px' : ''"
     @mousemove="handleMouseMove"
     @mouseenter="handleMouseEnter"
     @mouseleave="handleMouseLeave"

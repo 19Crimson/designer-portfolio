@@ -10,6 +10,7 @@ import { CloseButton } from '@/components';
 
 const props = defineProps({
   bgImage: String,
+  smallScreen: Boolean
 });
 
 const project = inject<string>('project');
@@ -37,11 +38,13 @@ const handleClose = () => {
 const overlayClass = computed(() => ({
   'overlay': true,
   'overlay--active': showBlur?.value,
+  'overlay--mobile': props.smallScreen
 }));
 
 const overlayInnerClass = computed(() => ({
   'overlay__inner': true,
   'overlay__inner--active': showModal?.value,
+  'overlay__inner--mobile': props.smallScreen
 }));
 
 const bgStyle = computed(() => ({
@@ -95,6 +98,10 @@ const bgStyle = computed(() => ({
     background-color: rgba(7, 7, 7, 0.6);
 	}
 
+  &--mobile {
+    padding: 0px;
+  }
+
 	&__inner {
     overflow: hidden;
 		display: flex;
@@ -114,6 +121,10 @@ const bgStyle = computed(() => ({
 			animation: scaleUp .5s
 				cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 		}
+
+    &--mobile {
+			border-radius: 0px;
+    }
 	}
 
   @keyframes scaleUp {
