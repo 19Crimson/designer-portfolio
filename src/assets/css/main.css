@@ -1,11 +1,16 @@
 @font-face {
-  font-family: Mont;
-  src: url("../fonts/Mont-Bold.otf") format("opentype");  
+  font-family: RF-Text-Bold;
+  src: url("../fonts/RFDewiExtended-Black.ttf") format("truetype");  
 }
 
 @font-face {
-  font-family: SfPro;
-  src: url("../fonts/SF-Pro.ttf") format('truetype');  
+  font-family: RF-Headline;
+  src: url("../fonts/RFDewiExpanded-Bold.ttf") format("truetype");  
+}
+
+@font-face {
+  font-family: RF-Text;
+  src: url("../fonts/RFDewiExtended-Semibold.ttf") format('truetype');  
 }
 
 ::-webkit-scrollbar {
@@ -13,8 +18,9 @@
 }
 
 body {
-  font-family: SfPro;
+  font-family: "RF-Text";
   background-color: #070707;
+  font-weight: 450;
   margin: 0;
   display: flex;
   place-items: center;
@@ -22,6 +28,10 @@ body {
   min-height: 100vh;
   width: 100vw;
   overflow-x: hidden;
+}
+
+strong {
+  font-family: "RF-Text-Bold";
 }
 
 video {

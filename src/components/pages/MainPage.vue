@@ -25,7 +25,8 @@
 // TODO:
 // Fix card open on right click
 // Implement get-params to share projects pages
-// Add lazyload / skeletons
+// Add lazyload / skeletons\
+// Place social links under modal
 
 <script setup lang="ts">
 import { ref, provide, onMounted, computed } from 'vue';

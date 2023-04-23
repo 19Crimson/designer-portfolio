@@ -27,6 +27,7 @@ const wrapperStyle = computed(() => ({
       :src="computedSrc"
       draggable="false"
     >
+
   </div>
 </template>
 

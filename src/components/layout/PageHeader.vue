@@ -107,7 +107,7 @@ a {
 .username {
   user-select: none;
   z-index: 500;
-  font-family: 'SFPro';
+  font-family: "RF-Text";
   font-stretch: expanded;
   font-weight: 600;
   font-size: 32px;

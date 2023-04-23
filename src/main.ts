@@ -13,6 +13,7 @@ import {
   VideoWrap,
 } from '@/components';
 
+// @ts-ignore
 import Vue3VideoPlayer from '@cloudgeek/vue3-video-player';
 
 const app = createApp(App);
@@ -28,4 +29,5 @@ app.component('Headline', Headline);
 app.component('TextWrap', TextWrap);
 
 app.use(Vue3VideoPlayer);
+
 app.mount('#app');

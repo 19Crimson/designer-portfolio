@@ -169,12 +169,11 @@ const handleMouseup = () => {
 $returnEasing: cubic-bezier(0.23, 1, 0.32, 1);
 .social-link {
   display: block;
-  font-family: SfPro;
+  font-family: "RF-Text";
   margin-right: 20px;
   font-weight: 400;
   font-size: 32px;
   line-height: 44px;
-  font-stretch: expanded;
   color: #ffffff;
   text-decoration: none;
   padding: 8px 22px;

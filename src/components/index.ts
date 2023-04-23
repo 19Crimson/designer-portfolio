@@ -16,6 +16,7 @@ import {
   TextWrap,
   Typewriter,
   VideoWrap,
+  Skeleton
 } from '@/components/layout';
 
 import MainPage from '@/components/pages/MainPage.vue';
@@ -39,4 +40,5 @@ export {
   VideoWrap,
   ProjectRow,
   TextWrap,
+  Skeleton,
 };

@@ -219,14 +219,11 @@ onMounted(() => {
 }
 .typewriter {
   color: #ffffff;
-  font-family: SfPro;
-  font-style: normal;
-  font-weight: 650;
+  font-family: "RF-Headline";
+  font-weight: 450;
   font-size: 96px;
   line-height: 104px;
-  font-stretch: expanded;
   text-align: left;
-  max-width: 840px;
   margin-top: 16px;
   margin-left: 40px;
   margin-bottom: 56px;

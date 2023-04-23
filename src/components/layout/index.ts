@@ -15,6 +15,7 @@ import Headline from '@/components/layout/Headline.vue';
 import TextWrap from '@/components/layout/TextWrap.vue';
 import Typewriter from '@/components/layout/Typewriter.vue';
 import VideoWrap from '@/components/layout/VideoWrap.vue';
+import Skeleton from '@/components/layout/Skeleton.vue';
 
 export {
   CardList,
@@ -34,4 +35,5 @@ export {
   TextWrap,
   Typewriter,
   VideoWrap,
+  Skeleton,
 };

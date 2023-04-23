@@ -10,7 +10,7 @@ const props = defineProps({
   },
   fontSize: {
     type: String,
-    default: '22',
+    default: '21',
   },
   margin: String,
 });
@@ -31,6 +31,8 @@ const computedStyle = computed(() => ({
 
 <style scoped lang="scss">
 .text {
-  color: #000000;
+  color: #0f0f0f;
+  line-height: 32px;
+  font-stretch: semi-expanded;
 }
 </style>

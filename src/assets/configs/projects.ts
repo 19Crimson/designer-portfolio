@@ -11,24 +11,20 @@
  */
 const content = [
   {
+    project: 'Prequel',
+    cardBg: 'bg.png',
+    cardFg: 'fg.png',
+    title: 'Prequel: How i designed and supported one of the most popular media editing app',
+    titleColor: 'white',
+    gradientColor: '0, 0, 0',
+  },
+  {
     project: 'SweetHome',
     cardBg: 'bg.png',
     cardFg: 'fg.png',
-    title: 'Information monitor for neighbours',
+    title: 'Information board for neighbourds',
     titleColor: 'black',
-    gradientColor: '255, 217, 129',
-  },
-  {
-    project: 'HomeApp',
-    cardBg: 'bg.png',
-    cardFg: 'fg.png',
-    title: 'Exciting title',
-  },
-  {
-    project: 'TabsDemo',
-    cardBg: 'bg-1.png',
-    cardFg: 'fg-1.png',
-    title: 'Tabs',
+    gradientColor: '236, 237, 237',
   },
 ];
 

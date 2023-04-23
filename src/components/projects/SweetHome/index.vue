@@ -4,7 +4,8 @@
   <Tabs
     v-model="activeTab"
     :items="tabs"
-    bg-color="#F2F2F2"
+    bg-color="#ffd983"
+    text-color="#000000"
     text-color-active="#000000"
     margin="-140px 0 0 0"
   />

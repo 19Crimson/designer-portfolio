@@ -9,11 +9,11 @@ const props = defineProps({
   },
   maxWidth: {
     type: String,
-    default: '880'
+    default: '920'
   },
   margin: {
     type: String,
-    default: '60px',
+    default: '0px',
   }
 });
 

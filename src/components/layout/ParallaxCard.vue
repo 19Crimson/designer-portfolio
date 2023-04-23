@@ -7,6 +7,7 @@ import {
   watch,
 } from 'vue';
 import { getImageOnload } from '@/utils/helpers';
+import { Skeleton } from '@/components';
 
 const emit = defineEmits(['click']);
 
@@ -35,6 +36,7 @@ const timeout = ref<ReturnType<typeof setTimeout>>();
 const clientHeight = ref(document.documentElement.clientHeight);
 const clientWidth = ref(document.documentElement.clientWidth);
 const fgSrc = ref(`/projects/${props.project}/${props.cardFg}`);
+const loading = ref(true);
 
 // Rotating coefficient
 const RC = 10;
@@ -70,7 +72,7 @@ const cardStyle = computed(() => {
 
   return {
     color: props.titleColor,
-    height: `${cardHeight.value}px`,
+    height: `${skeletonHeight.value}px`,
     transform: `
       rotateY(${-RC * rX}deg)
       rotateX(${-RC * rY}deg)`,
@@ -173,6 +175,9 @@ const handleMouseup = () => {
   emit('click');
 };
 
+const skeletonWidth = computed(() => `${cardWidth.value}px`);
+const skeletonHeight = computed(() => `${cardWidth.value || cardWidth.value}px`);
+
 watch(
   () => clientWidth.value,
   () => {
@@ -188,6 +193,7 @@ watch(
       cardHeight.value = props.smallScreen
         ? (img.naturalHeight / img.naturalWidth) * (window.innerWidth - 20)
         : (img.naturalHeight / img.naturalWidth) * (window.innerWidth - 160) / 3;
+      loading.value = false;
     };
 
     getImageOnload(bgImagePath, cb);
@@ -227,8 +233,15 @@ const gradientStyle = {
     ref="card"
   >
     <div class="card" :style="cardStyle">
-      <div class="card-bg" :style="[bgStyle]"/>
+      <Skeleton
+        v-if="loading"
+        :width="skeletonWidth"
+        :height="skeletonHeight"
+        loading
+      />
+      <div v-if="!loading" class="card-bg" :style="[bgStyle]"/>
       <img
+        v-if="!loading"
         class="card-fg"
         :src="fgSrc"
         :style="[fgStyle]"
@@ -258,9 +271,7 @@ h1+p, p+p {
 
 .card-wrapper {
   user-select: none;
-  font-size: 24px;
   margin-bottom: 40px;
-  font-family: 'Mont';
   transform: perspective(1000px);
   transform-style: preserve-3d;
   cursor: pointer;
@@ -268,6 +279,7 @@ h1+p, p+p {
 
   &:hover {
     transform: perspective(1000px) scale(1.015);
+
     z-index: 250;
   }
 }
@@ -275,7 +287,7 @@ h1+p, p+p {
 .card {
   display: flex;
   align-items: center;
-  border-radius: 16px;
+  border-radius: 24px;
   width: 100%;
   position: relative;
   overflow: hidden;
@@ -306,7 +318,7 @@ h1+p, p+p {
 }
 
 .gradient {
-  width: 100%;
+width: 100%;
  position: absolute;
  bottom: 0px;
  left: 0px;
@@ -315,6 +327,8 @@ h1+p, p+p {
 
 .card-title {
   font-size: 24px;
+  font-family: "RF-Text";
+  line-height: 34px;
   margin: 0 24px;
   position: absolute;
   bottom: 20px;
