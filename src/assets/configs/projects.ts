@@ -18,6 +18,7 @@ const content = [
     titleColor: 'white',
     gradientColor: '0, 0, 0',
   },
+  
   {
     project: 'SweetHome',
     cardBg: 'bg.png',

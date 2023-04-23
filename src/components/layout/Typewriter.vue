@@ -220,7 +220,7 @@ onMounted(() => {
 .typewriter {
   color: #ffffff;
   font-family: "RF-Headline";
-  font-weight: 450;
+  font-weight: 550;
   font-size: 96px;
   line-height: 104px;
   text-align: left;

@@ -5,8 +5,13 @@ import {
   inject,
   watchEffect,
   Ref,
+  onMounted,
+  onUnmounted
 } from 'vue';
 import { CloseButton } from '@/components';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const props = defineProps({
   bgImage: String,
@@ -33,7 +38,23 @@ const handleClose = () => {
     return;
   }
   showModal.value = false;
+  router.push({ path: '/' });
 };
+
+const handleEscapeKey = (event) => {
+  if (event.keyCode === 27) {
+    handleClose();
+  }
+};
+
+onMounted(() => {
+  document.addEventListener('keydown', handleEscapeKey);
+});
+
+onUnmounted(() => {
+  document.removeEventListener('keydown', handleEscapeKey);
+});
+
 
 const overlayClass = computed(() => ({
   'overlay': true,
@@ -53,22 +74,22 @@ const bgStyle = computed(() => ({
 </script>
 
 <template>
+  <div
+    v-if="displayCondition"
+    :class="overlayClass"
+    @click.self="handleClose"
+  >
     <div
-      v-if="displayCondition"
-      :class="overlayClass"
-      @click.self="handleClose"
+      :class="overlayInnerClass"
+      :style="bgStyle"
     >
-      <div
-        :class="overlayInnerClass"
-        :style="bgStyle"
-      >
-        <CloseButton
-          class="overlay__close"
-          @click="handleClose"
-        />
-        <slot />
-      </div>
+      <CloseButton
+        class="overlay__close"
+        @click="handleClose"
+      />
+      <slot />
     </div>
+  </div>
 </template>
 
 <style scoped lang="scss">

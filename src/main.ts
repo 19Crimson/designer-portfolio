@@ -1,4 +1,5 @@
 import { createApp } from 'vue';
+import { createRouter, createWebHistory  } from 'vue-router';
 import App from '@/App.vue';
 import '@/assets/css/main.css';
 import {
@@ -11,12 +12,27 @@ import {
   TextBlock,
   TextWrap,
   VideoWrap,
+  MainPage
 } from '@/components';
+
+// import SweetHome from '@/components/projects/SweetHome/index.vue';
+// import Prequel from '@/components/projects/Prequel/index.vue';
 
 // @ts-ignore
 import Vue3VideoPlayer from '@cloudgeek/vue3-video-player';
 
 const app = createApp(App);
+
+// Defining routes
+const routes = [
+  { path: '/', component: MainPage },
+  { path: '/:id', component: MainPage },
+];
+
+const router = createRouter({
+  history: createWebHistory(),
+  routes,
+});
 
 app.component('Modal', ProjectModal);
 app.component('ProjectHeader', ProjectHeader);
@@ -29,5 +45,6 @@ app.component('Headline', Headline);
 app.component('TextWrap', TextWrap);
 
 app.use(Vue3VideoPlayer);
+app.use(router);
 
 app.mount('#app');
